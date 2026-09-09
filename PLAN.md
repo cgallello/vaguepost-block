@@ -93,7 +93,7 @@ A strike belongs to one author and one distinct quote-post. Revisiting, scrollin
 | Blur & Review | Blur flagged quote-posts, put the Vaguepost King over them, and let the user reveal, allowlist, or explicitly block |
 | Automatic block | Count only high-confidence flags; block only after all safety checks pass |
 | Local AI downloading | Show progress; do not classify or block |
-| Local AI unavailable | Disable automatic mode; offer review-only pattern hints with no strike/block action |
+| Local AI unavailable | Keep the extension enabled for settings and local controls, but do not classify, add strikes, blur, or block until Chrome exposes the local model |
 
 Blur & Review is the recommended default after onboarding. Automatic block starts disabled. Enabling automatic block requires an explicit acknowledgement that the extension will operate X's visible block controls on eligible accounts.
 
@@ -239,10 +239,12 @@ The Prompt API is not available in Web Workers, so the implementation must host 
 ### Stack
 
 - Manifest V3.
-- TypeScript, React, Vite, and minimal CSS.
+- The shipped 0.1.0 MVP uses dependency-free JavaScript and minimal CSS so it can be audited, loaded unpacked, and packaged without a build service.
 - `chrome.storage.local` for all settings and logs.
-- Vitest for unit/fixture tests; Playwright for browser integration tests.
+- Node's built-in test runner for policy/fixture tests; controlled Chrome/X checks are documented in `docs/live-test.md`.
 - No remote code, runtime downloads, analytics SDK, or dependency loaded from a CDN.
+
+TypeScript, React, Vite, and Playwright remain reasonable post-MVP hardening options if the codebase grows, but they are not prerequisites for the current launch candidate.
 
 ### Components
 
@@ -322,26 +324,19 @@ verify X reports blocked → persist event + show toast
 
 All DOM queries must be scoped to the target article/modal. No global “first block button” selectors. Every transition has a timeout and a harmless failure path.
 
-### Proposed repository layout
+### Shipped repository layout
 
 ```text
-src/
-  manifest.json
-  background/service-worker.ts
-  content/{index.ts,extractor.ts,dom-adapter.ts,block-coordinator.ts}
-  classifier/{host.html,host.ts,contract.ts,prompt.ts,queue.ts}
-  shared/{types.ts,storage.ts,policy.ts,messages.ts}
-  popup/
-  options/
-  assets/
-tests/
-  unit/
-  fixtures/x/
-  integration/
-docs/
-  privacy-policy.md
-  support.md
-  store-listing.md
+manifest.json
+background.js                 # service worker and action coordinator
+content.js / content.css      # X adapter and Blur & Review overlay
+classifier.js / offscreen.html # local Prompt API host
+popup.{html,js} / options.{html,js}
+shared/                       # policy, strike, and storage helpers
+assets/                       # icons and transparent mascot PNGs
+tests/                        # unit and fixture tests
+docs/                         # privacy, support, listing, and live-test docs
+store-assets/                 # Web Store promo artwork, excluded from ZIP
 ```
 
 ## 7. Test and evaluation plan
