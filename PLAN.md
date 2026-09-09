@@ -64,6 +64,8 @@ The production mascot is bundled in the extension package, never fetched from a 
 | Screenshots | Five 1280×800 PNGs | Blur overlay, review controls, strike settings, follow safety, activity log |
 | Social/website image | 1200×630 PNG | Project/support site |
 
+The current generated promotional files are [store-assets/promo-small.png](store-assets/promo-small.png) and [store-assets/marquee.png](store-assets/marquee.png). Capture the five product screenshots after live Chrome/X verification; do not substitute generated UI art for evidence of actual behavior.
+
 Use the actual product in screenshots, not mockups that overstate capability. Chrome requires an icon and at least one screenshot; its listing guidance specifies the promo image and screenshot dimensions above. [Chrome listing requirements](https://developer.chrome.com/docs/webstore/cws-dashboard-listing/) and [image guidance](https://developer.chrome.com/docs/webstore/images).
 
 ## 3. Product behavior

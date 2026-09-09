@@ -22,6 +22,12 @@ VagueBlock is independent software and is not affiliated with X.
 
 Productivity
 
+## Promotional files
+
+- Small promo tile: `store-assets/promo-small.png` (440×280)
+- Marquee: `store-assets/marquee.png` (1400×560)
+- Product screenshots: capture from the verified extension using the checklist in `docs/live-test.md`; the Store listing must show the real Blur & Review and follow-safety UI.
+
 ## Support and privacy
 
 - Support: `/docs/support.md` must be published at a maintained HTTPS URL before submission.

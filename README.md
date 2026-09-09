@@ -13,6 +13,7 @@ The product plan is in [PLAN.md](PLAN.md). The initial privacy-policy draft is i
 - The extension never intentionally blocks an account the user follows. If follow status is uncertain, it does nothing.
 - It uses X's visible interface for the block action; it does not call private X APIs.
 - The mascot is a packaged transparent PNG, not a remotely loaded image or tracking pixel.
+- Chrome Web Store promotional artwork is staged under `store-assets/`; it is intentionally kept out of the runtime extension package.
 
 ## Status
 
