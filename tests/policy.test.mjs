@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { confidenceGate, automaticBlockAllowed, localCandidateGate, validateClassifierResult } from "../shared/policy.mjs";
 import { nextStrike } from "../shared/strike.mjs";
+import cases from "./fixtures/candidate-cases.json" with { type: "json" };
 
 test("candidate gate nominates short context-free quote commentary", () => {
   assert.equal(localCandidateGate("Can I say something without everyone getting mad?", "A quoted post with context."), true);
@@ -34,4 +35,10 @@ test("reprocessing a post cannot add a strike", () => {
   const result = nextStrike({ strikes: 2, processedPostIds: ["same"] }, "same", 3);
   assert.equal(result.duplicate, true);
   assert.equal(result.strikes, 2);
+});
+
+test("candidate gate matches the labeled regression fixtures", () => {
+  for (const fixture of cases) {
+    assert.equal(localCandidateGate(fixture.added, fixture.quote), fixture.expectedCandidate, fixture.name);
+  }
 });

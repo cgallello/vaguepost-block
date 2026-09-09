@@ -1,0 +1,10 @@
+[
+  {"name":"classic permission hedge","added":"Can I say something without everyone getting mad?","quote":"A detailed quoted post about a public dispute.","expectedCandidate":true},
+  {"name":"unnamed drama","added":"Not naming names, but wow.","quote":"A detailed quoted post with a specific claim.","expectedCandidate":true},
+  {"name":"contextual explanation","added":"This happened because the committee published the report yesterday.","quote":"A detailed quoted post.","expectedCandidate":false},
+  {"name":"link provides context","added":"Read the full explanation: https://example.com/report","quote":"A detailed quoted post.","expectedCandidate":false},
+  {"name":"empty author text","added":"","quote":"A quoted post.","expectedCandidate":false},
+  {"name":"long concrete reaction","added":"I disagree with the author because the timeline and the attached evidence clearly show what happened, and the proposed conclusion does not follow.","quote":"A quoted post.","expectedCandidate":false},
+  {"name":"short ambiguous reaction","added":"This is wild.","quote":"A quoted post with context.","expectedCandidate":true},
+  {"name":"named topic","added":"The budget vote is the real story here.","quote":"A quoted post.","expectedCandidate":false}
+]
