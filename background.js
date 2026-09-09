@@ -73,7 +73,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "save-settings") {
       const settings = { ...DEFAULT_SETTINGS, ...(message.settings || {}) };
       await chrome.storage.local.set({ settings });
-      await broadcastSettings(settings);
+      try { await broadcastSettings(settings); } catch { /* The next X navigation will read storage. */ }
       return sendResponse(settings);
     }
     if (message.type === "classify-candidate") return sendResponse(await classify(message.candidate));
