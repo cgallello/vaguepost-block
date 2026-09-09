@@ -62,7 +62,8 @@
     const confirm = await waitFor(() => [...document.querySelectorAll('[role="dialog"] button, [role="dialog"] [role="button"]')].find((el) => /^block$/i.test((el.textContent || '').trim()) || /^block\s+@/i.test((el.textContent || '').trim())));
     if (!confirm) return { ok: false, reason: 'block_confirmation_missing' };
     confirm.click();
-    await waitFor(() => /blocked/i.test(article.innerText || ''), 1800);
+    const blocked = await waitFor(() => /blocked/i.test(article.innerText || ''), 1800);
+    if (!blocked) return { ok: false, reason: 'block_result_unverified' };
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'blocked' } });
     return { ok: true };
   }

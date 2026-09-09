@@ -4,6 +4,7 @@ import { nextStrike } from "./shared/strike.mjs";
 const OFFSCREEN_URL = "offscreen.html";
 let classifierReady = false;
 let classifierQueue = Promise.resolve();
+let strikeQueue = Promise.resolve();
 
 async function getSettings() {
   const saved = await chrome.storage.local.get("settings");
@@ -33,7 +34,7 @@ async function addEvent(event) {
   return next.at(-1);
 }
 
-async function recordStrike({ candidate, result }) {
+async function recordStrikeInternal({ candidate, result }) {
   const settings = await getSettings();
   const key = accountKey(candidate);
   const { accounts = {} } = await chrome.storage.local.get("accounts");
@@ -48,6 +49,11 @@ async function recordStrike({ candidate, result }) {
   await chrome.storage.local.set({ accounts });
   await addEvent({ handle: candidate.handle, postIdHash: await digest(candidate.postId), outcome: "strike_added", reasonCode: result.reasonCode, confidenceBand: result.confidence >= .9 ? "high" : result.confidence >= .82 ? "medium" : "low" });
   return { record, duplicate: false, thresholdReached: record.strikes > settings.threshold };
+}
+
+function recordStrike(message) {
+  strikeQueue = strikeQueue.catch(() => {}).then(() => recordStrikeInternal(message));
+  return strikeQueue;
 }
 
 async function digest(value) {
@@ -83,5 +89,3 @@ chrome.runtime.onInstalled.addListener(async () => {
   const existing = await chrome.storage.local.get("settings");
   if (!existing.settings) await chrome.storage.local.set({ settings: DEFAULT_SETTINGS, accounts: {}, events: [] });
 });
-
-export { recordStrike };
