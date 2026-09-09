@@ -1,0 +1,25 @@
+# VagueBlock support
+
+VagueBlock is an independent Chrome extension for x.com. It does not use X's private APIs and is not affiliated with X.
+
+## First run
+
+1. Open VagueBlock from the Chrome toolbar.
+2. Turn on **Enable VagueBlock**.
+3. Keep **Blur & Review** selected while you tune the experience.
+4. If Chrome reports that local AI is unavailable, automatic classification is disabled until a supported Chrome/device combination is available.
+
+## Actions
+
+- **Reveal post** restores one flagged post for the current session.
+- **Not vague** dismisses the flag without adding a strike.
+- **Allow** prevents future classification/action for an account.
+- **Block** uses the visible X block controls. It is hidden when the account is followed or when follow status cannot be verified.
+
+## If the king does not appear
+
+Check that the extension is enabled, the page is on `x.com`, the post is a quote-post, and local AI is available. Open the extension options to verify sensitivity and clear old records. X can change its page structure; VagueBlock is designed to fail safely rather than guess at a changed control.
+
+## Report a problem
+
+Before reporting, note the Chrome version, operating system, VagueBlock version, action mode, and whether the issue occurred in Review-only, Blur & Review, or Automatic block mode. Do not send private messages, cookies, or account credentials. Add the maintained support contact before publishing the Store listing.

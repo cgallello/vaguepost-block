@@ -1,0 +1,29 @@
+.vgb-overlay-host { position: relative !important; }
+.vgb-blurred > div:not(.vgb-overlay),
+.vgb-blurred > div:not(.vgb-overlay) * { filter: blur(8px) !important; }
+.vgb-overlay {
+  position: absolute; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center;
+  padding: 18px; box-sizing: border-box; background: rgba(255, 253, 247, .82); backdrop-filter: blur(3px);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #111; text-align: center;
+}
+.vgb-overlay.vgb-review-overlay { inset: auto 12px 12px auto; padding: 0; background: transparent; backdrop-filter: none; pointer-events: none; }
+.vgb-overlay.vgb-review-overlay .vgb-overlay-card { pointer-events: auto; grid-template-columns: 44px 1fr; gap: 7px; padding: 7px 9px; border: 2px solid #111; border-radius: 10px; background: #fffdf7; box-shadow: 3px 3px 0 #111; }
+.vgb-overlay.vgb-review-overlay img { width: 44px; max-height: 62px; }
+.vgb-overlay.vgb-review-overlay .vgb-overlay-title { font-size: 11px; }
+.vgb-overlay.vgb-review-overlay .vgb-overlay-reason { display: none; }
+.vgb-overlay.vgb-review-overlay .vgb-overlay-strike { font-size: 10px; margin-bottom: 4px; }
+.vgb-overlay.vgb-review-overlay .vgb-overlay-actions button { padding: 4px 7px; font-size: 10px; }
+.vgb-overlay-card { max-width: 430px; display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; }
+.vgb-overlay img { width: 92px; max-height: 142px; object-fit: contain; }
+.vgb-overlay-copy { min-width: 0; text-align: left; }
+.vgb-overlay-title { font-size: 15px; font-weight: 800; line-height: 1.2; margin-bottom: 5px; }
+.vgb-overlay-reason { font-size: 12px; line-height: 1.35; margin-bottom: 5px; }
+.vgb-overlay-strike { font-size: 11px; font-weight: 700; color: #087c2c; margin-bottom: 9px; }
+.vgb-overlay-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.vgb-overlay button { border: 2px solid #111; border-radius: 999px; padding: 6px 9px; background: #fffdf7; color: #111; cursor: pointer; font: 700 11px inherit; }
+.vgb-overlay button:hover, .vgb-overlay button:focus-visible { background: #00e848; outline: 3px solid #087c2c; outline-offset: 1px; }
+.vgb-overlay button.vgb-danger { background: #8e1532; color: #fff; }
+.vgb-overlay button.vgb-danger:hover, .vgb-overlay button.vgb-danger:focus-visible { background: #b21e40; }
+.vgb-overlay-status { grid-column: 1 / -1; font-size: 12px; font-weight: 700; }
+.vgb-toast { position: fixed; right: 18px; bottom: 18px; z-index: 10000; padding: 12px 15px; border: 2px solid #111; border-radius: 12px; background: #00e848; color: #111; box-shadow: 4px 4px 0 #111; font: 700 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+@media (prefers-reduced-motion: reduce) { .vgb-overlay *, .vgb-toast { animation: none !important; transition: none !important; } }

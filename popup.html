@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>VagueBlock</title><link rel="stylesheet" href="ui.css"></head>
+<body class="vgb-ui"><main>
+  <header><img src="assets/king-idle.png" alt="" class="vgb-mini-king"><div><p class="eyebrow">THE VAGUEPOST KING</p><h1>VagueBlock</h1><p class="sub">Demand context. Keep your peace.</p></div></header>
+  <label class="switch-row"><span><strong>Enable VagueBlock</strong><small>Scan your x.com timeline locally</small></span><input id="enabled" type="checkbox"><i aria-hidden="true"></i></label>
+  <section class="panel"><label for="actionMode">Action mode</label><select id="actionMode"><option value="blur">Blur &amp; Review (recommended)</option><option value="review">Review-only</option><option value="automatic">Automatic block</option></select><p id="modeHelp" class="hint">The King will cover likely vagueposts and let you decide.</p></section>
+  <section class="panel"><label for="threshold">Strikes allowed before block</label><select id="threshold"><option value="0">0 — block on first</option><option value="1">1 — block on second</option><option value="3">3 — block on fourth</option><option value="5">5 — block on sixth</option><option value="custom">Custom…</option></select><input id="customThreshold" class="hidden" type="number" min="0" max="10" aria-label="Custom strikes allowed" placeholder="0–10"></section>
+  <section class="panel stats"><div><strong id="flagCount">0</strong><small>flags</small></div><div><strong id="blockCount">0</strong><small>blocks</small></div><div><strong id="skipCount">0</strong><small>safe skips</small></div></section>
+  <footer><button id="options" class="link-button">Open settings</button><span><button id="prepareAi" class="link-button">Prepare local AI</button><span id="aiStatus" class="status">Checking local AI…</span></span></footer>
+</main><script src="popup.js"></script></body></html>

@@ -1,0 +1,11 @@
+{
+  "name": "vagueblock",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check background.js && node --check content.js && node --check classifier.js && node --check shared/policy.js && node --check shared/policy.mjs && node --check shared/strike.mjs && node --check popup.js && node --check options.js && node --check package-extension.mjs",
+    "package": "npm test && npm run check && node package-extension.mjs"
+  }
+}
