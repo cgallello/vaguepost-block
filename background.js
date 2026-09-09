@@ -11,6 +11,11 @@ async function getSettings() {
   return { ...DEFAULT_SETTINGS, ...(saved.settings || {}) };
 }
 
+async function broadcastSettings(settings) {
+  const tabs = await chrome.tabs.query({ url: ["https://x.com/*"] });
+  await Promise.allSettled(tabs.map((tab) => tab.id == null ? Promise.resolve() : chrome.tabs.sendMessage(tab.id, { type: "settings-changed", settings })));
+}
+
 async function ensureOffscreen() {
   const contexts = await chrome.runtime.getContexts?.({ contextTypes: ["OFFSCREEN_DOCUMENT"], documentUrls: [chrome.runtime.getURL(OFFSCREEN_URL)] });
   if (contexts?.length) return;
@@ -68,6 +73,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "save-settings") {
       const settings = { ...DEFAULT_SETTINGS, ...(message.settings || {}) };
       await chrome.storage.local.set({ settings });
+      await broadcastSettings(settings);
       return sendResponse(settings);
     }
     if (message.type === "classify-candidate") return sendResponse(await classify(message.candidate));

@@ -77,6 +77,10 @@
     article.querySelector('.vgb-overlay')?.remove();
   }
 
+  function clearAllOverlays() {
+    document.querySelectorAll('.vgb-overlay-host').forEach((article) => removeOverlay(article));
+  }
+
   function addOverlay(article, candidate, result, strikeInfo, blurred = true) {
     if (article.querySelector('.vgb-overlay')) return;
     article.classList.add('vgb-overlay-host');
@@ -124,6 +128,6 @@
   }
 
   async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); }
-  async function init() { settings = await send({ type: 'get-settings' }); await scan(); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; scan(); } }); }
+  async function init() { settings = await send({ type: 'get-settings' }); await scan(); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
   init();
 })();
