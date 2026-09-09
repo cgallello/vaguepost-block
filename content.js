@@ -14,6 +14,22 @@
     return 'unknown';
   }
 
+  function isProfilePage() {
+    const parts = location.pathname.split('/').filter(Boolean);
+    return parts.length === 1 && !['home', 'explore', 'notifications', 'messages', 'i', 'settings', 'compose'].includes(parts[0]);
+  }
+
+  function profileFollowState() {
+    const labels = [...document.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
+    if (labels.some((label) => /^following(?:\s|$)/i.test(label))) return 'following';
+    if (labels.some((label) => /^follow(?:\s|$)/i.test(label))) return 'not_following';
+    return 'unknown';
+  }
+
+  function reportProfileFollowState() {
+    chrome.runtime.sendMessage({ type: 'profile-state', state: profileFollowState() });
+  }
+
   function extract(article) {
     if (!article) return null;
     const links = [...article.querySelectorAll('a[href*="/status/"]')];
@@ -43,9 +59,12 @@
 
   async function blockAccount(article, candidate) {
     const current = extract(article);
-    if (!current || current.handle.toLowerCase() !== candidate.handle.toLowerCase() || statusFromArticle(article, candidate.handle) !== 'not_following') {
-      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: current?.followingState === 'following' ? 'skipped_followed' : 'skipped_unverified_follow_state' } });
-      return { ok: false, reason: current?.followingState === 'following' ? 'followed' : 'unverified' };
+    const localState = current ? statusFromArticle(article, candidate.handle) : 'unknown';
+    const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
+    if (!current || current.handle.toLowerCase() !== candidate.handle.toLowerCase() || localState === 'following' || profileState.state !== 'not_following') {
+      const followed = localState === 'following' || profileState.state === 'following';
+      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: followed ? 'skipped_followed' : 'skipped_unverified_follow_state' } });
+      return { ok: false, reason: followed ? 'followed' : 'unverified' };
     }
     const menu = findMenuButton(article);
     if (!menu) return { ok: false, reason: 'block_control_missing' };
@@ -53,10 +72,13 @@
     const item = await waitFor(() => [...document.querySelectorAll('[role="menuitem"], [data-testid="Dropdown"] button')].find((el) => new RegExp(`^block\\s+@?${candidate.handle}$`, 'i').test((el.textContent || '').trim())));
     if (!item) return { ok: false, reason: 'block_menu_item_missing' };
     const finalCheck = extract(article);
-    if (!finalCheck || finalCheck.handle.toLowerCase() !== candidate.handle.toLowerCase() || statusFromArticle(article, candidate.handle) !== 'not_following') {
+    const finalLocalState = finalCheck ? statusFromArticle(article, candidate.handle) : 'unknown';
+    const finalProfileState = await send({ type: 'check-follow-state', handle: candidate.handle });
+    if (!finalCheck || finalCheck.handle.toLowerCase() !== candidate.handle.toLowerCase() || finalLocalState === 'following' || finalProfileState.state !== 'not_following') {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
-      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: finalCheck?.followingState === 'following' ? 'skipped_followed' : 'skipped_unverified_follow_state' } });
-      return { ok: false, reason: finalCheck?.followingState === 'following' ? 'followed' : 'unverified' };
+      const followed = finalLocalState === 'following' || finalProfileState.state === 'following';
+      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: followed ? 'skipped_followed' : 'skipped_unverified_follow_state' } });
+      return { ok: false, reason: followed ? 'followed' : 'unverified' };
     }
     item.click();
     const confirm = await waitFor(() => [...document.querySelectorAll('[role="dialog"] button, [role="dialog"] [role="button"]')].find((el) => /^block$/i.test((el.textContent || '').trim()) || /^block\s+@/i.test((el.textContent || '').trim())));
@@ -118,6 +140,10 @@
     seen.add(candidate.postId); pending.add(candidate.postId);
     const response = await send({ type: 'classify-candidate', candidate }); pending.delete(candidate.postId);
     if (!response?.result || !VGBPolicy.confidenceGate(response.result, settings.sensitivity)) return;
+    if (candidate.followingState === 'unknown') {
+      const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
+      candidate.followingState = profileState.state || 'unknown';
+    }
     const strikeInfo = await send({ type: 'record-strike', candidate, result: response.result });
     if (settings.actionMode === 'blur' && (settings.blurTrigger === 'every_high_confidence_flag' || strikeInfo.thresholdReached)) addOverlay(article, candidate, response.result, strikeInfo, true);
     if (settings.actionMode === 'review') addOverlay(article, candidate, response.result, strikeInfo, false);
@@ -128,6 +154,6 @@
   }
 
   async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); }
-  async function init() { settings = await send({ type: 'get-settings' }); await scan(); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
+  async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
   init();
 })();

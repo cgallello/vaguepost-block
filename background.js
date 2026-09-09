@@ -5,6 +5,7 @@ const OFFSCREEN_URL = "offscreen.html";
 let classifierReady = false;
 let classifierQueue = Promise.resolve();
 let strikeQueue = Promise.resolve();
+const followChecks = new Map();
 
 async function getSettings() {
   const saved = await chrome.storage.local.get("settings");
@@ -14,6 +15,41 @@ async function getSettings() {
 async function broadcastSettings(settings) {
   const tabs = await chrome.tabs.query({ url: ["https://x.com/*"] });
   await Promise.allSettled(tabs.map((tab) => tab.id == null ? Promise.resolve() : chrome.tabs.sendMessage(tab.id, { type: "settings-changed", settings })));
+}
+
+function resolveFollowCheck(tabId, state) {
+  for (const [requestId, check] of followChecks) {
+    if (check.tabId !== tabId) continue;
+    clearTimeout(check.timeout);
+    followChecks.delete(requestId);
+    chrome.tabs.remove(tabId).catch(() => {});
+    check.resolve(state === "following" || state === "not_following" ? state : "unknown");
+    return true;
+  }
+  return false;
+}
+
+async function checkFollowState(handle) {
+  const requestId = crypto.randomUUID();
+  const promise = new Promise((resolve) => {
+    const timeout = setTimeout(() => {
+      const check = followChecks.get(requestId);
+      if (!check) return;
+      followChecks.delete(requestId);
+      if (check.tabId != null) chrome.tabs.remove(check.tabId).catch(() => {});
+      resolve("unknown");
+    }, 7000);
+    followChecks.set(requestId, { resolve, timeout, tabId: null });
+  });
+  try {
+    const tab = await chrome.tabs.create({ url: `https://x.com/${encodeURIComponent(String(handle).replace(/^@/, ""))}`, active: false });
+    const check = followChecks.get(requestId);
+    if (check) check.tabId = tab.id;
+  } catch {
+    const check = followChecks.get(requestId);
+    if (check) { clearTimeout(check.timeout); followChecks.delete(requestId); check.resolve("unknown"); }
+  }
+  return promise;
 }
 
 async function ensureOffscreen() {
@@ -77,6 +113,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return sendResponse(settings);
     }
     if (message.type === "classify-candidate") return sendResponse(await classify(message.candidate));
+    if (message.type === "check-follow-state") return sendResponse({ state: await checkFollowState(message.handle) });
+    if (message.type === "profile-state") { resolveFollowCheck(sender.tab?.id, message.state); return sendResponse({ ok: true }); }
     if (message.type === "record-strike") return sendResponse(await recordStrike(message));
     if (message.type === "record-event") return sendResponse(await addEvent(message.event));
     if (message.type === "get-log") {
@@ -94,4 +132,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 chrome.runtime.onInstalled.addListener(async () => {
   const existing = await chrome.storage.local.get("settings");
   if (!existing.settings) await chrome.storage.local.set({ settings: DEFAULT_SETTINGS, accounts: {}, events: [] });
+});
+
+chrome.tabs.onRemoved.addListener((tabId) => {
+  for (const [requestId, check] of followChecks) {
+    if (check.tabId !== tabId) continue;
+    clearTimeout(check.timeout);
+    followChecks.delete(requestId);
+    check.resolve("unknown");
+  }
 });
