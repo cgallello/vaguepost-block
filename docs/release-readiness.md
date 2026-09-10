@@ -9,7 +9,7 @@ Last verified: September 9, 2026
 - Per-account strike thresholds, duplicate suppression, dismissal, allowlist, local export/deletion, reduced-motion support, and separate followed/uncertain safety counters.
 - Fail-closed author binding and follow-state checks before opening and immediately before confirming X's visible block control.
 - Transparent King mascot PNGs, runtime icons, Store promo tile, and marquee artwork.
-- 39 Node tests, dependency-free runtime lint, syntax checks, classifier evaluation-gate tests, and a headless Chrome fixture smoke test covering the overlay, understandable-post skip, followed-account skip, fake menu/dialog block flow, and audit events.
+- 42 Node tests, dependency-free runtime lint, syntax checks, classifier evaluation-gate tests, and a headless Chrome fixture smoke test covering the overlay, understandable-post skip, followed-account skip, fake menu/dialog block flow, and audit events.
 - Release package verified at `vagueblock-0.1.0.zip` with 25 runtime entries. The package is local-only and contains no tests, docs, site, or Store artwork.
 
 Run the local verification set:
@@ -29,7 +29,7 @@ npm run release-audit
 
 These cannot be honestly marked complete from a repository-only test run:
 
-1. Chrome's on-device AI must report `available` or complete a model download on a supported desktop device. Live check completed on September 9, 2026: the supported Chrome session had the Prompt API flags enabled, **Settings → AI in Chrome → On-device AI** enabled, downloaded the required asset, and VagueBlock's **Prepare local AI** flow reached **Local AI ready**. Re-run this check on each supported Chrome release because Prompt API availability is browser-managed.
+1. Chrome's on-device AI must report `available` or complete a model download on a supported desktop device. Live check completed on September 9, 2026: the supported Chrome session had the Prompt API flags enabled, **Settings → AI in Chrome → On-device AI** enabled, downloaded the required asset, and VagueBlock's **Prepare local AI** flow reached **Local AI ready**. The evidence is recorded in [`docs/evidence/local-ai.json`](evidence/local-ai.json). Re-run this check on each supported Chrome release because Prompt API availability is browser-managed.
 2. Run the controlled two-account X test in `docs/live-test.md`, including a non-followed block and a followed-account skip, on the actual supported Chrome/model combination.
 3. Capture five real product screenshots after that live run. The Store promo and marquee are staged; fixture screenshots must not be used as Store evidence.
 4. Replace the support/privacy contact placeholders with a maintained HTTPS support URL and developer contact.
