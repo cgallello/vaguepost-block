@@ -120,6 +120,10 @@ test("follow-state checks cache account results to avoid tab churn", () => {
   assert.match(background, /if \(!fresh\) \{/);
 });
 
+test("classifier prompt revisions invalidate cached model decisions", () => {
+  assert.match(read("background.js"), /CLASSIFIER_CACHE_VERSION = 3/);
+});
+
 test("timeline follow checks use X's visible hover card before opening a profile tab", () => {
   const content = read("content.js");
   assert.match(content, /function statusFromVisibleHoverCard\(handle\)/);

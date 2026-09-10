@@ -3,7 +3,9 @@ import { dismissStrike, nextStrike } from "./shared/strike.mjs";
 
 const OFFSCREEN_URL = "offscreen.html";
 const CLASSIFIER_CACHE_TTL = 7 * 24 * 60 * 60 * 1000;
-const CLASSIFIER_CACHE_VERSION = 2;
+// Bump when the local prompt or response contract changes so stale model
+// decisions do not mask an improved classifier on the next scan.
+const CLASSIFIER_CACHE_VERSION = 3;
 const CLASSIFIER_CACHE_LIMIT = 300;
 const MAX_CLASSIFIER_WAITERS = 8;
 const AI_STATUS_TIMEOUT_MS = 8_000;
