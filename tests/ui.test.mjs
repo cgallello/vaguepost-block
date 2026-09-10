@@ -34,6 +34,15 @@ test("popup exposes the automatic-block acknowledgement in markup and logic", ()
   assert.match(read("content.js"), /settings\.automaticAck === true/);
 });
 
+test("popup exposes separate followed and uncertain safety counters", () => {
+  const popup = read("popup.html");
+  const logic = read("popup.js");
+  assert.match(popup, /id="followedSkipCount"/);
+  assert.match(popup, /id="uncertainSkipCount"/);
+  assert.match(logic, /event\.outcome === "skipped_followed"/);
+  assert.match(logic, /event\.outcome === "skipped_unverified_follow_state"/);
+});
+
 test("options exposes local-AI preparation and diagnostics", () => {
   assert.match(read("options.html"), /id="prepareAi"/);
   assert.match(read("options.html"), /id="aiDiagnostics"/);

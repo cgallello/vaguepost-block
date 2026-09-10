@@ -32,6 +32,6 @@ async function init() {
   });
   $("aiDiagnostics").addEventListener("click", () => chrome.tabs.create({ url: "chrome://on-device-internals" }));
   chrome.runtime.onMessage.addListener((message) => { if (message.type === "ai-progress") $("aiStatus").textContent = `Downloading local AI ${Math.round(Math.max(0, Math.min(1, Number(message.loaded) || 0)) * 100)}%`; });
-  const data = await send({ type: "get-log" }); const events = data.events || []; $("candidateCount").textContent = events.filter((event) => event.outcome === "candidate").length; $("flagCount").textContent = events.filter((event) => event.outcome === "flagged").length; $("blockCount").textContent = events.filter((event) => event.outcome === "blocked").length; $("skipCount").textContent = events.filter((event) => /skipped/.test(event.outcome)).length; await refreshAiStatus();
+  const data = await send({ type: "get-log" }); const events = data.events || []; $("candidateCount").textContent = events.filter((event) => event.outcome === "candidate").length; $("flagCount").textContent = events.filter((event) => event.outcome === "flagged").length; $("followedSkipCount").textContent = events.filter((event) => event.outcome === "skipped_followed").length; $("uncertainSkipCount").textContent = events.filter((event) => event.outcome === "skipped_unverified_follow_state").length; $("blockCount").textContent = events.filter((event) => event.outcome === "blocked").length; await refreshAiStatus();
 }
 init();
