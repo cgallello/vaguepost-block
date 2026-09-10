@@ -31,3 +31,18 @@ test("popup exposes the automatic-block acknowledgement in markup and logic", ()
   assert.match(read("popup.js"), /automaticAck/);
   assert.match(read("content.js"), /settings\.automaticAck === true/);
 });
+
+test("options exposes local-AI preparation and diagnostics", () => {
+  assert.match(read("options.html"), /id="prepareAi"/);
+  assert.match(read("options.html"), /id="aiDiagnostics"/);
+  assert.match(read("options.js"), /type: "prepare-ai"/);
+  assert.match(read("options.js"), /chrome:\/\/on-device-internals/);
+});
+
+test("block coordination scopes menu and result checks to explicit X controls", () => {
+  const content = read("content.js");
+  assert.match(content, /function findBlockMenuItem\(handle\)/);
+  assert.match(content, /function findBlockConfirmation\(handle\)/);
+  assert.match(content, /function blockResultConfirmed\(article, handle\)/);
+  assert.doesNotMatch(content, /document\.body\.innerText/);
+});

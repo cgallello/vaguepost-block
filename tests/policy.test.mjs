@@ -16,6 +16,9 @@ test("confidence thresholds vary for display but automatic blocks stay high conf
   assert.equal(confidenceGate(result, "conservative"), false);
   assert.equal(automaticBlockAllowed(result), false);
   assert.equal(automaticBlockAllowed({ ...result, confidence: 0.91 }), true);
+  assert.equal(confidenceGate({ ...result, confidence: 0.99, concreteSubjectPresent: true }, "aggressive"), false);
+  assert.equal(automaticBlockAllowed({ ...result, confidence: 0.99, concreteSubjectPresent: true }), false);
+  assert.equal(confidenceGate({ ...result, confidence: 0.99, reasonCode: "NOT_VAGUE" }, "aggressive"), false);
 });
 
 test("classifier response validation rejects unsafe or malformed output", () => {

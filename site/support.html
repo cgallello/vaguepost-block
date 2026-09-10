@@ -1,2 +1,42 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>VagueBlock support</title><link rel="stylesheet" href="styles.css"></head><body><div class="wrap"><header><a class="brand" href="index.html">VAGUEBLOCK</a><nav><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav></header><main class="doc"><div class="eyebrow">THE VAGUEPOST KING'S COURT</div><h1>Support</h1><h2>First run</h2><ol><li>Open VagueBlock from the Chrome toolbar.</li><li>Enable the extension and keep Blur &amp; Review selected while tuning it.</li><li>Enable both <code>chrome://flags/#optimization-guide-on-device-model</code> and <code>chrome://flags/#prompt-api-for-gemini-nano</code>, then relaunch Chrome.</li><li>Choose <strong>Prepare local AI</strong>. Use <code>chrome://on-device-internals</code> to inspect model status if it remains unavailable.</li></ol><h2>Chrome requirements</h2><p>Chrome's built-in model requires a supported desktop OS, at least 22 GB free on the volume containing the Chrome profile, and either 16 GB+ RAM with four CPU cores or a GPU with more than 4 GB VRAM. The one-time model download also needs an unmetered connection.</p><h2>Actions</h2><ul><li><strong>Reveal post</strong> restores a flagged post for the current session.</li><li><strong>Not vague</strong> dismisses the flag without keeping its strike.</li><li><strong>Allow</strong> prevents future classification/action for an account.</li><li><strong>Block</strong> uses X's visible controls and is hidden when follow status is followed or uncertain.</li></ul><h2>If the King does not appear</h2><p>Confirm the extension is enabled, the page is on x.com, the card is a quote-post, and local AI is available. X can change its page structure; VagueBlock records selector-health failures and fails safely rather than guessing.</p><h2>Report a problem</h2><p>Record the Chrome version, operating system, extension version, action mode, model availability, and the affected page. Do not send passwords, cookies, private messages, or real users' post text. A maintained support contact will be listed here before Store submission.</p></main><footer>Independent software; not affiliated with X. <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a></footer></div></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>VagueBlock support</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html">VAGUEBLOCK</a>
+      <nav><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
+    </header>
+    <main class="doc">
+      <div class="eyebrow">THE VAGUEPOST KING'S COURT</div>
+      <h1>Support</h1>
+      <h2>First run</h2>
+      <ol>
+        <li>Open VagueBlock from the Chrome toolbar.</li>
+        <li>Enable the extension and keep Blur &amp; Review selected while tuning it.</li>
+        <li>Enable Chrome's Prompt API flag at <code>chrome://flags/#prompt-api</code>. Older Chrome builds may also expose <code>chrome://flags/#optimization-guide-on-device-model</code> and <code>chrome://flags/#prompt-api-for-gemini-nano</code>; enable those when present, then relaunch Chrome.</li>
+        <li>Choose <strong>Prepare local AI</strong>. Use <code>chrome://on-device-internals</code> to inspect model status if it remains unavailable.</li>
+      </ol>
+      <h2>Chrome requirements</h2>
+      <p>Chrome's built-in model requires a supported desktop OS, at least 22 GB free on the volume containing the Chrome profile, and either 16 GB+ RAM with four CPU cores or a GPU with more than 4 GB VRAM. The one-time model download also needs an unmetered connection.</p>
+      <h2>Actions</h2>
+      <ul>
+        <li><strong>Reveal post</strong> restores a flagged post for the current session.</li>
+        <li><strong>Not vague</strong> dismisses the flag without keeping its strike.</li>
+        <li><strong>Allow</strong> prevents future classification/action for an account.</li>
+        <li><strong>Block</strong> uses X's visible controls and is hidden when follow status is followed or uncertain.</li>
+      </ul>
+      <h2>If the King does not appear</h2>
+      <p>Confirm the extension is enabled, the page is on x.com, the card is a quote-post, and local AI is available. X can change its page structure; VagueBlock records selector-health failures and fails safely rather than guessing.</p>
+      <h2>Report a problem</h2>
+      <p>Record the Chrome version, operating system, extension version, action mode, model availability, and the affected page. Do not send passwords, cookies, private messages, or real users' post text. A maintained support contact will be listed here before Store submission.</p>
+    </main>
+    <footer>Independent software; not affiliated with X. <a href="index.html">Home</a> · <a href="support.html">Support</a> · <a href="privacy.html">Privacy</a></footer>
+  </div>
+</body>
+</html>

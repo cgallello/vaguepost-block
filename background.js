@@ -11,8 +11,15 @@ let classifierWaiters = 0;
 let classifierUnavailableUntil = 0;
 const classifierMemory = new Map();
 let strikeQueue = Promise.resolve();
+let offscreenPromise;
 const followChecks = new Map();
 const followRequests = new Map();
+
+function rememberClassification(key, createdAt, response) {
+  classifierMemory.delete(key);
+  classifierMemory.set(key, { createdAt, response });
+  while (classifierMemory.size > CLASSIFIER_CACHE_LIMIT) classifierMemory.delete(classifierMemory.keys().next().value);
+}
 
 async function getSettings() {
   const saved = await chrome.storage.local.get("settings");
@@ -68,9 +75,13 @@ async function checkFollowState(handle, fresh = false) {
 }
 
 async function ensureOffscreen() {
-  const contexts = await chrome.runtime.getContexts?.({ contextTypes: ["OFFSCREEN_DOCUMENT"], documentUrls: [chrome.runtime.getURL(OFFSCREEN_URL)] });
-  if (contexts?.length) return;
-  await chrome.offscreen.createDocument({ url: OFFSCREEN_URL, reasons: ["DOM_PARSER"], justification: "Host the local Gemini Nano classifier in an extension document." });
+  if (offscreenPromise) return offscreenPromise;
+  offscreenPromise = (async () => {
+    const contexts = await chrome.runtime.getContexts?.({ contextTypes: ["OFFSCREEN_DOCUMENT"], documentUrls: [chrome.runtime.getURL(OFFSCREEN_URL)] });
+    if (contexts?.length) return;
+    await chrome.offscreen.createDocument({ url: OFFSCREEN_URL, reasons: ["DOM_PARSER"], justification: "Host the local Gemini Nano classifier in an extension document." });
+  })().finally(() => { offscreenPromise = undefined; });
+  return offscreenPromise;
 }
 
 async function localAiStatus() {
@@ -93,7 +104,7 @@ async function readCachedClassification(postId) {
   const cached = classifierCache[key];
   if (!cached || Date.now() - cached.createdAt >= CLASSIFIER_CACHE_TTL) return null;
   const response = { available: true, result: cached.result, cached: true };
-  classifierMemory.set(key, { createdAt: cached.createdAt, response });
+  rememberClassification(key, cached.createdAt, response);
   return response;
 }
 
@@ -103,7 +114,7 @@ async function writeCachedClassification(postId, response) {
   classifierCache[String(postId)] = { createdAt: Date.now(), result: response.result };
   const entries = Object.entries(classifierCache).sort(([, left], [, right]) => left.createdAt - right.createdAt).slice(-CLASSIFIER_CACHE_LIMIT);
   await chrome.storage.local.set({ classifierCache: Object.fromEntries(entries) });
-  classifierMemory.set(String(postId), { createdAt: Date.now(), response: { ...response, cached: true } });
+  rememberClassification(String(postId), Date.now(), { ...response, cached: true });
 }
 
 async function classify(candidate) {

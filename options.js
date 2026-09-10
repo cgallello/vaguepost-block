@@ -7,6 +7,21 @@ function thresholdValue() {
   return $("threshold").value === "custom" ? Math.max(0, Math.min(10, Math.round(Number($("customThreshold").value || 0)))) : Number($("threshold").value);
 }
 
+function showAiDiagnostics(show) { $("aiDiagnostics").classList.toggle("hidden", !show); }
+
+function renderAiStatus(response = {}) {
+  const availability = response.availability || "unavailable";
+  const labels = { available: "Local AI ready", downloadable: "Local AI download needed", downloading: "Downloading local AI…", unavailable: "Local AI unavailable on this device" };
+  $("aiStatus").textContent = labels[availability] || "Local AI status unknown";
+  showAiDiagnostics(availability === "unavailable");
+  return availability;
+}
+
+async function refreshAiStatus() {
+  const availability = renderAiStatus(await send({ type: "ai-status" }));
+  if (availability === "available" && settings.aiReady !== true) settings = await send({ type: "save-settings", settings: { ...settings, aiReady: true } });
+}
+
 async function save() {
   settings = await send({ type: "save-settings", settings: { ...settings, threshold: thresholdValue() } });
 }
@@ -59,11 +74,21 @@ async function init() {
   settings = await send({ type: "get-settings" }); data = await send({ type: "get-log" });
   $("sensitivity").value = settings.sensitivity; $("blurTrigger").value = settings.blurTrigger; $("mascotMotion").value = settings.mascotMotion;
   renderThreshold(); renderAllowlist(); renderLedger(); renderLog();
+  $("prepareAi").addEventListener("click", async () => {
+    $("prepareAi").disabled = true; $("aiStatus").textContent = "Preparing local model…";
+    const response = await send({ type: "prepare-ai" });
+    $("prepareAi").disabled = false;
+    if (response.available) { settings.aiReady = true; await save(); showAiDiagnostics(false); $("aiStatus").textContent = "Local AI ready"; }
+    else { settings.aiReady = false; await save(); showAiDiagnostics(true); $("aiStatus").textContent = "Local AI unavailable — check Chrome AI diagnostics"; }
+  });
+  $("aiDiagnostics").addEventListener("click", () => chrome.tabs.create({ url: "chrome://on-device-internals" }));
+  chrome.runtime.onMessage.addListener((message) => { if (message.type === "ai-progress") $("aiStatus").textContent = `Downloading local AI ${Math.round(Math.max(0, Math.min(1, Number(message.loaded) || 0)) * 100)}%`; });
   ["sensitivity", "blurTrigger", "mascotMotion"].forEach((id) => $(id).addEventListener("change", async () => { settings[id] = $(id).value; await save(); $("message").textContent = "Saved locally."; }));
   $("threshold").addEventListener("change", async () => { renderThreshold(); await save(); $("message").textContent = "Saved locally."; });
   $("customThreshold").addEventListener("change", async () => { await save(); $("message").textContent = "Saved locally."; });
   $("addAllow").addEventListener("click", async () => { const handle = $("allowInput").value.trim().replace(/^@/, "").toLowerCase(); if (handle && !settings.allowlist.includes(handle)) settings.allowlist.push(handle); await save(); $("allowInput").value = ""; renderAllowlist(); });
   $("export").addEventListener("click", () => { const blob = new Blob([JSON.stringify({ settings, events: data.events || [], accounts: data.accounts || {} }, null, 2)], { type: "application/json" }); const url = URL.createObjectURL(blob); const anchor = document.createElement("a"); anchor.href = url; anchor.download = "vagueblock-local-records.json"; anchor.click(); URL.revokeObjectURL(url); });
   $("clear").addEventListener("click", async () => { if (!confirm("Delete all VagueBlock records?")) return; await send({ type: "clear-data" }); data = { events: [], accounts: {} }; renderLedger(); renderLog(); $("message").textContent = "Deleted."; });
+  await refreshAiStatus();
 }
 init();

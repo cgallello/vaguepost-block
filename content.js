@@ -3,7 +3,9 @@
   const seenOrder = [];
   const pending = new Set();
   const lastModelRequestByAccount = new Map();
+  const requestAccountOrder = new Set();
   const ACCOUNT_MIN_INTERVAL_MS = 1500;
+  const REQUEST_ACCOUNT_LIMIT = 600;
   let settings = null;
   let selectorHealthReported = false;
   let scanScheduled = false;
@@ -12,6 +14,18 @@
   function rememberPost(postId) {
     seen.add(postId); seenOrder.push(postId);
     while (seenOrder.length > SEEN_LIMIT) seen.delete(seenOrder.shift());
+  }
+
+  function rememberAccountRequest(handle) {
+    lastModelRequestByAccount.delete(handle);
+    lastModelRequestByAccount.set(handle, Date.now());
+    requestAccountOrder.delete(handle);
+    requestAccountOrder.add(handle);
+    while (lastModelRequestByAccount.size > REQUEST_ACCOUNT_LIMIT) {
+      const oldest = requestAccountOrder.values().next().value;
+      requestAccountOrder.delete(oldest);
+      lastModelRequestByAccount.delete(oldest);
+    }
   }
 
   const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => {
@@ -44,6 +58,39 @@
     return article.querySelector('[data-testid="caret"]') || [...article.querySelectorAll('button,[role="button"]')].find((el) => /more|overflow/i.test(el.getAttribute('aria-label') || ''));
   }
 
+  function visibleMenu() {
+    return [...document.querySelectorAll('[role="menu"], [data-testid="Dropdown"]')]
+      .find((node) => node.getAttribute('aria-hidden') !== 'true');
+  }
+
+  function escapedHandle(handle) {
+    return String(handle).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function findBlockMenuItem(handle) {
+    const menu = visibleMenu();
+    if (!menu) return null;
+    const expected = new RegExp(`^block\\s+@?${escapedHandle(handle)}$`, 'i');
+    return [...menu.querySelectorAll('[role="menuitem"], button, [role="button"]')]
+      .find((el) => expected.test((el.textContent || '').trim()));
+  }
+
+  function findBlockConfirmation(handle) {
+    const dialog = [...document.querySelectorAll('[role="dialog"]')]
+      .find((node) => node.getAttribute('aria-hidden') !== 'true');
+    if (!dialog) return null;
+    const expected = new RegExp(`^block(?:\\s+@?${escapedHandle(handle)})?$`, 'i');
+    return [...dialog.querySelectorAll('button, [role="button"]')]
+      .find((el) => expected.test((el.textContent || '').trim()));
+  }
+
+  function blockResultConfirmed(article, handle) {
+    if (!document.contains(article)) return true;
+    const expected = new RegExp(`(?:you\\s+)?blocked\\s+@?${escapedHandle(handle)}\\b|unblock\\s+@?${escapedHandle(handle)}\\b`, 'i');
+    const notices = [...document.querySelectorAll('[role="status"], [role="alert"], [data-testid="toast"], [aria-label^="Unblock @"]')];
+    return notices.some((node) => expected.test(`${node.getAttribute('aria-label') || ''} ${node.textContent || ''}`));
+  }
+
   function waitFor(predicate, timeout = 1400) {
     return new Promise((resolve) => {
       const started = Date.now();
@@ -67,7 +114,7 @@
     const menu = findMenuButton(article);
     if (!menu) { await auditFailure('block_control_missing'); return { ok: false, reason: 'block_control_missing' }; }
     menu.click();
-    const item = await waitFor(() => [...document.querySelectorAll('[role="menuitem"], [data-testid="Dropdown"] button')].find((el) => new RegExp(`^block\\s+@?${candidate.handle}$`, 'i').test((el.textContent || '').trim())));
+    const item = await waitFor(() => findBlockMenuItem(candidate.handle));
     if (!item) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return { ok: false, reason: 'block_menu_item_missing' }; }
     const finalCheck = extract(article);
     const finalLocalState = finalCheck ? statusFromArticle(article, candidate.handle) : 'unknown';
@@ -79,10 +126,10 @@
       return { ok: false, reason: followed ? 'followed' : 'unverified' };
     }
     item.click();
-    const confirm = await waitFor(() => [...document.querySelectorAll('[role="dialog"] button, [role="dialog"] [role="button"]')].find((el) => /^block$/i.test((el.textContent || '').trim()) || /^block\s+@/i.test((el.textContent || '').trim())));
+    const confirm = await waitFor(() => findBlockConfirmation(candidate.handle));
     if (!confirm) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await auditFailure('block_confirmation_missing'); return { ok: false, reason: 'block_confirmation_missing' }; }
     confirm.click();
-    const blocked = await waitFor(() => /blocked/i.test(article.innerText || '') || /unblock\s+@?/i.test(document.body.innerText || '') || !document.contains(article), 2200);
+    const blocked = await waitFor(() => blockResultConfirmed(article, candidate.handle), 2200);
     if (!blocked) { await auditFailure('block_result_unverified'); return { ok: false, reason: 'block_result_unverified' }; }
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'blocked' } });
     return { ok: true };
@@ -144,7 +191,7 @@
     const account = VGBPolicy.normalizeHandle(candidate.handle);
     const lastRequest = lastModelRequestByAccount.get(account) || 0;
     if (Date.now() - lastRequest < ACCOUNT_MIN_INTERVAL_MS) { pending.delete(candidate.postId); return; }
-    lastModelRequestByAccount.set(account, Date.now());
+    rememberAccountRequest(account);
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'candidate' } });
     try {
       const response = await send({ type: 'classify-candidate', candidate });
@@ -183,6 +230,6 @@
   }
   async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); void reportSelectorHealth(); }
   function scheduleScan() { if (scanScheduled) return; scanScheduled = true; const run = () => { scanScheduled = false; void scan(); }; if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 500 }); else requestAnimationFrame(run); }
-    async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000); const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } }); }
+  async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000); const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); requestAccountOrder.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } }); }
   init();
 })();
