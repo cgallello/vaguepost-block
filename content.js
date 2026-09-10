@@ -133,7 +133,9 @@
     if (!item) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return { ok: false, reason: 'block_menu_item_missing' }; }
     const finalCheck = extract(article);
     const finalLocalState = finalCheck ? statusFromArticle(article, candidate.handle) : 'unknown';
-    const finalProfileState = await send({ type: 'check-follow-state', handle: candidate.handle, fresh: true });
+    // The account state was freshly verified immediately before opening the
+    // menu. Avoid a second slow profile-tab lookup while X's menu is open.
+    const finalProfileState = { state: candidate.followingState };
     if (!finalCheck || finalCheck.handle.toLowerCase() !== candidate.handle.toLowerCase() || finalLocalState === 'following' || finalProfileState.state !== 'not_following') {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
       const followed = finalLocalState === 'following' || finalProfileState.state === 'following';
