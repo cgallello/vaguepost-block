@@ -12,6 +12,7 @@ VagueBlock is an independent Chrome extension for x.com. It does not use X's pri
 6. If the extension says **Prompt API not exposed**, Chrome is not making the built-in API available to the extension document. This is a Chrome configuration or support issue, not an X selector issue; relaunch Chrome after changing the setting and check `chrome://on-device-internals` again.
    On newer Chrome builds, **On-device Internals → Broker State** may list the `prompt_api` use case as **Not Supported** and show no text-model asset. That is a Chrome rollout or build-capability limitation; VagueBlock cannot bypass it and will not send post text to a cloud service.
 7. During unpacked-extension development, reload VagueBlock from `chrome://extensions`, close any old popup, and reopen it after relaunching Chrome. An older popup or X tab can retain an invalidated extension context and display a stale unavailable message even after the model is ready.
+   Do not open the repository's `options.html` directly as a `file://` URL; it is source code, not the installed extension context. Open settings from the VagueBlock toolbar button or from `chrome://extensions` → VagueBlock → **Details** → **Extension options**.
 
 ## Actions
 
