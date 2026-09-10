@@ -20,7 +20,7 @@ const candidates = [
   "chromium-browser",
 ].filter(Boolean);
 
-function runChrome(binary) {
+function runChrome(binary, url = fixture) {
   return new Promise((resolveRun, reject) => {
     const profile = mkdtempSync(resolve(tmpdir(), "vagueblock-fixture-"));
     const args = [
@@ -30,9 +30,9 @@ function runChrome(binary) {
       "--disable-dev-shm-usage",
       `--user-data-dir=${profile}`,
       "--allow-file-access-from-files",
-      "--virtual-time-budget=2500",
+      "--virtual-time-budget=3500",
       "--dump-dom",
-      fixture,
+      url,
     ];
     const child = spawn(binary, args, { stdio: ["ignore", "pipe", "ignore"] });
     let output = "";
@@ -58,24 +58,37 @@ function runChrome(binary) {
   });
 }
 
-let dom;
-let lastError;
-for (const binary of candidates) {
-  try {
-    dom = await runChrome(binary);
-    break;
-  } catch (error) {
-    lastError = error;
+async function runWithFallback(url) {
+  let output;
+  let lastError;
+  for (const binary of candidates) {
+    try {
+      output = await runChrome(binary, url);
+      break;
+    } catch (error) {
+      lastError = error;
+    }
   }
+  if (!output) throw lastError || new Error("Set VGB_CHROME_BIN to a Chrome/Chromium executable");
+  return output;
 }
-if (!dom) throw lastError || new Error("Set VGB_CHROME_BIN to a Chrome/Chromium executable");
 
-function articleFor(handle) {
-  const match = [...dom.matchAll(/<article[^>]*>[\s\S]*?<\/article>/g)].map(([article]) => article).find((article) => article.includes(handle));
+const dom = await runWithFallback(fixture);
+const blockDom = await runWithFallback(`${fixture}?block=1`);
+function articleFor(source, handle) {
+  const match = [...source.matchAll(/<article[^>]*>[\s\S]*?<\/article>/g)].map(([article]) => article).find((article) => article.includes(handle));
   assert.ok(match, `fixture article missing: ${handle}`);
   return match;
 }
-assert.match(articleFor("fixture_author"), /vgb-overlay-host[\s\S]*Block @fixture_author/, "vague fixture should be blurred and actionable");
-assert.doesNotMatch(articleFor("concrete_author"), /vgb-overlay/, "understandable fixture must remain untouched");
-assert.doesNotMatch(articleFor("followed_author"), /vgb-overlay/, "followed fixture must remain untouched");
-console.log("Fixture smoke passed: vague overlay shown; understandable and followed posts untouched.");
+
+assert.match(articleFor(dom, "fixture_author"), /vgb-overlay-host[\s\S]*Block @fixture_author/, "vague fixture should be blurred and actionable");
+assert.doesNotMatch(articleFor(dom, "concrete_author"), /vgb-overlay/, "understandable fixture must remain untouched");
+assert.doesNotMatch(articleFor(dom, "followed_author"), /vgb-overlay/, "followed fixture must remain untouched");
+assert.match(blockDom, /Blocked @fixture_author/, "fake X block flow should report the blocked handle");
+const eventText = blockDom.match(/id="fixture-result"[^>]*>([\s\S]*?)<\/div>/)?.[1];
+assert.ok(eventText, "fixture should expose its audit events");
+const events = JSON.parse(eventText);
+assert.ok(events.some((event) => event.handle === "fixture_author" && event.outcome === "blocked"), "successful block should be audited");
+assert.ok(events.some((event) => event.handle === "followed_author" && event.outcome === "skipped_followed"), "followed fixture should be audited as skipped");
+assert.equal(events.some((event) => event.handle === "followed_author" && event.outcome === "blocked"), false, "followed fixture must never be audited as blocked");
+console.log("Fixture smoke passed: vague overlay shown; understandable and followed posts untouched; fake block flow verified.");

@@ -17,11 +17,12 @@
   </style>
 </head>
 <body>
-  <div class="fixture-header"><div class="fixture-note"><strong>Development fixture only.</strong> This page uses a fake classifier and fake Chrome runtime; it never calls X or a model.</div></div>
+  <div class="fixture-header"><div class="fixture-note"><strong>Development fixture only.</strong> This page uses a fake classifier and fake Chrome runtime; it never calls X or a model.</div><div id="fixture-result" aria-live="polite"></div></div>
   <main class="timeline">
     <article data-testid="tweet">
       <div data-testid="User-Name"><a href="/fixture_author">@fixture_author</a></div>
       <button aria-label="Follow @fixture_author">Follow</button>
+      <button data-testid="caret" aria-label="More">More</button>
       <div data-testid="tweetText">Can I say something without everyone getting mad?</div>
       <a href="https://x.com/fixture_author/status/111">post</a>
       <div class="quote"><a href="https://x.com/original/status/222">quoted</a><div data-testid="tweetText"><p class="quote">A completely ordinary post about a fictional committee report.</p></div></div>
@@ -29,6 +30,7 @@
     <article data-testid="tweet">
       <div data-testid="User-Name"><a href="/concrete_author">@concrete_author</a></div>
       <button aria-label="Follow @concrete_author">Follow</button>
+      <button data-testid="caret" aria-label="More">More</button>
       <div data-testid="tweetText">This is wild.</div>
       <a href="https://x.com/concrete_author/status/333">post</a>
       <div class="quote"><a href="https://x.com/original/status/444">quoted</a><div data-testid="tweetText"><p class="quote">A completely ordinary post about a fictional committee report.</p></div></div>
@@ -36,6 +38,7 @@
     <article data-testid="tweet">
       <div data-testid="User-Name"><a href="/followed_author">@followed_author</a></div>
       <button aria-label="Following">Following</button>
+      <button data-testid="caret" aria-label="More">More</button>
       <div data-testid="tweetText">Can I say something without everyone getting mad?</div>
       <a href="https://x.com/followed_author/status/555">post</a>
       <div class="quote"><a href="https://x.com/original/status/666">quoted</a><div data-testid="tweetText"><p class="quote">A completely ordinary post about a fictional committee report.</p></div></div>
@@ -44,6 +47,23 @@
   <script src="../shared/policy.js"></script>
   <script src="../shared/dom-adapter.js"></script>
   <script>
+    globalThis.fixtureEvents = [];
+    function fixtureHandle(article) { return article.querySelector('[data-testid="User-Name"] a').getAttribute('href').slice(1); }
+    function installFakeBlockControls() {
+      document.querySelectorAll('[data-testid="caret"]').forEach((button) => button.addEventListener('click', () => {
+        const article = button.closest('article');
+        const menu = document.createElement('div'); menu.setAttribute('role', 'menu');
+        const item = document.createElement('button'); item.setAttribute('role', 'menuitem'); item.textContent = `Block @${fixtureHandle(article)}`;
+        item.addEventListener('click', () => {
+          menu.remove();
+          const dialog = document.createElement('div'); dialog.setAttribute('role', 'dialog');
+          const confirm = document.createElement('button'); confirm.textContent = 'Block';
+          confirm.addEventListener('click', () => { dialog.remove(); article.remove(); const toast = document.createElement('div'); toast.setAttribute('role', 'status'); toast.textContent = `Blocked @${fixtureHandle(article)}`; document.body.append(toast); });
+          dialog.append(confirm); document.body.append(dialog);
+        });
+        menu.append(item); document.body.append(menu);
+      }));
+    }
     globalThis.chrome = { runtime: {
       getURL(path) { return `../${path}`; },
       lastError: undefined,
@@ -57,10 +77,15 @@
           : { available: true, result: { isVague: true, confidence: 0.96, reasonCode: 'UNSPECIFIED_REFERENT', explanation: 'The added text does not identify what is being discussed.', concreteSubjectPresent: false } };
         if (message.type === 'check-follow-state') response = { state: message.handle === 'followed_author' ? 'following' : 'not_following' };
         if (message.type === 'record-strike') response = { record: { strikes: 1 }, duplicate: false, skipped: false, dismissed: false, thresholdReached: true };
+        if (message.type === 'record-event') { globalThis.fixtureEvents.push(message.event); const result = document.querySelector('#fixture-result'); if (result) result.textContent = JSON.stringify(globalThis.fixtureEvents); }
         setTimeout(() => callback(response), 0);
       }
     } };
+    installFakeBlockControls();
   </script>
   <script src="../content.js"></script>
+  <script>
+    if (new URLSearchParams(location.search).has('block')) setTimeout(() => document.querySelector('[data-testid="tweet"] .vgb-danger')?.click(), 1800);
+  </script>
 </body>
 </html>

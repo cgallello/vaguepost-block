@@ -4,7 +4,7 @@ This checklist requires an unlocked desktop, Chrome, and two owned X test accoun
 
 For UI-only smoke testing when Chrome's local model is unavailable, open `tests/fixture.html` directly in Chrome. It loads the real content script against a synthetic quote-post and a fake classifier/runtime; it does not call X, create strikes in extension storage, or exercise the real model. Treat it as a development fixture, never as evidence of model accuracy or block safety.
 
-The same fixture can be checked headlessly with `npm run test:fixture` (set `VGB_CHROME_BIN` if Chrome is not installed in the default location). This verifies that the real content script renders the King overlay for the vague fixture while leaving the understandable and followed fixtures untouched.
+The same fixture can be checked headlessly with `npm run test:fixture` (set `VGB_CHROME_BIN` if Chrome is not installed in the default location). This verifies that the real content script renders the King overlay for the vague fixture, leaves the understandable and followed fixtures untouched, and completes a fake X menu/dialog block flow without ever blocking the followed fixture.
 
 ## Load the build
 
