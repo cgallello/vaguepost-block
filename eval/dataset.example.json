@@ -1,0 +1,10 @@
+[
+  {"id":"vague-001","label":"vague","added":"Can I say something without everyone getting mad?","quote":"A fictional committee report about a public dispute."},
+  {"id":"vague-002","label":"vague","added":"Not naming names, but wow.","quote":"A fictional announcement about a disputed decision."},
+  {"id":"understandable-001","label":"understandable","added":"This is wild.","quote":"A fictional committee report about a public dispute."},
+  {"id":"understandable-002","label":"understandable","added":"I disagree.","quote":"A fictional announcement about a disputed decision."},
+  {"id":"contextual-001","label":"contextual","added":"The budget vote failed because the committee published the report yesterday.","quote":"A fictional committee report."},
+  {"id":"contextual-002","label":"contextual","added":"The author identifies the topic and explains why the result matters.","quote":"A fictional announcement."},
+  {"id":"edge-001","label":"edge","added":"This is wild.","quote":"[image-only fictional post]"},
+  {"id":"edge-002","label":"edge","added":"Can I say something?","quote":"A fictional multilingual post."}
+]

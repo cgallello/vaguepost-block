@@ -1,0 +1,10 @@
+[
+  {"id":"vague-001","isVague":true,"confidence":0.96},
+  {"id":"vague-002","isVague":true,"confidence":0.93},
+  {"id":"understandable-001","isVague":false,"confidence":0.98},
+  {"id":"understandable-002","isVague":false,"confidence":0.97},
+  {"id":"contextual-001","isVague":false,"confidence":0.99},
+  {"id":"contextual-002","isVague":false,"confidence":0.98},
+  {"id":"edge-001","isVague":false,"confidence":0.61},
+  {"id":"edge-002","isVague":true,"confidence":0.76}
+]
