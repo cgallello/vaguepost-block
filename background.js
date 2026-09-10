@@ -197,6 +197,7 @@ async function digest(value) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
     if (message.type === "get-settings") return sendResponse(await getSettings());
+    if (message.type === "open-options") { await chrome.runtime.openOptionsPage(); return sendResponse({ ok: true }); }
     if (message.type === "save-settings") {
       const settings = normalizeSettings(message.settings || DEFAULT_SETTINGS);
       await chrome.storage.local.set({ settings });
