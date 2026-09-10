@@ -5,6 +5,8 @@ const OFFSCREEN_URL = "offscreen.html";
 const CLASSIFIER_CACHE_TTL = 7 * 24 * 60 * 60 * 1000;
 const CLASSIFIER_CACHE_LIMIT = 300;
 const MAX_CLASSIFIER_WAITERS = 8;
+const AI_STATUS_TIMEOUT_MS = 8_000;
+const AI_PREPARE_TIMEOUT_MS = 30_000;
 let classifierReady = false;
 let classifierQueue = Promise.resolve();
 let classifierWaiters = 0;
@@ -86,12 +88,12 @@ async function ensureOffscreen() {
 }
 
 async function localAiStatus() {
-  try { await ensureOffscreen(); return await chrome.runtime.sendMessage({ type: "offscreen-ai-status" }); }
+  try { await ensureOffscreen(); return await Promise.race([chrome.runtime.sendMessage({ type: "offscreen-ai-status" }), new Promise((resolve) => setTimeout(() => resolve({ availability: "unavailable", reason: "local_ai_status_timeout" }), AI_STATUS_TIMEOUT_MS))]); }
   catch (error) { return { availability: "unavailable", reason: "local_ai_status_error", message: String(error?.message || error) }; }
 }
 
 async function prepareLocalAi() {
-  try { await ensureOffscreen(); return await chrome.runtime.sendMessage({ type: "offscreen-prepare" }); }
+  try { await ensureOffscreen(); return await Promise.race([chrome.runtime.sendMessage({ type: "offscreen-prepare" }), new Promise((resolve) => setTimeout(() => resolve({ available: false, reason: "local_ai_prepare_timeout" }), AI_PREPARE_TIMEOUT_MS))]); }
   catch (error) { return { available: false, reason: "local_ai_prepare_error", message: String(error?.message || error) }; }
 }
 

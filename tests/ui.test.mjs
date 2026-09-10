@@ -53,3 +53,11 @@ test("background serializes activity writes and waits before deletion", () => {
   assert.match(background, /eventQueue = eventQueue\.catch/);
   assert.match(background, /Promise\.all\(\[eventQueue\.catch/);
 });
+
+test("AI readiness and preparation have bounded failure paths", () => {
+  const background = read("background.js");
+  assert.match(background, /AI_STATUS_TIMEOUT_MS/);
+  assert.match(background, /AI_PREPARE_TIMEOUT_MS/);
+  assert.match(background, /local_ai_status_timeout/);
+  assert.match(background, /local_ai_prepare_timeout/);
+});
