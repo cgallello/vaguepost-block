@@ -1,8 +1,19 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>VagueBlock evaluation runner</title><link rel="stylesheet" href="../ui.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>VagueBlock evaluation runner</title><link rel="stylesheet" href="../ui.css"><style>
+  .results-controls { display:grid; grid-template-columns:1fr 1fr 2fr auto; gap:8px; align-items:end; margin:12px 0; }
+  .results-controls label { display:grid; gap:4px; font-size:12px; }
+  .results-table-wrap { overflow:auto; max-height:620px; border:1px solid #d8d0c3; background:#fffdf8; }
+  .results-table { width:100%; border-collapse:collapse; font-size:12px; min-width:1120px; }
+  .results-table th, .results-table td { border-bottom:1px solid #e6dfd3; padding:8px; text-align:left; vertical-align:top; }
+  .results-table th { position:sticky; top:0; background:#f2eadc; z-index:1; }
+  .results-table td.text-cell { max-width:260px; white-space:pre-wrap; word-break:break-word; }
+  .results-table .score { font-weight:700; white-space:nowrap; }
+  @media (max-width:720px) { .results-controls { grid-template-columns:1fr 1fr; } }
+</style></head>
 <body class="vgb-ui"><main style="max-width:760px;margin:auto">
   <header><img src="../assets/king-point.png" alt="" class="vgb-mini-king"><div><p class="eyebrow">THE VAGUEPOST KING'S TRIALS</p><h1>Local evaluation runner</h1><p class="sub">Development-only tool. It sends sanitized benchmark rows to the installed local model and keeps the results on this device.</p></div></header>
   <section class="panel"><button id="prepare" class="link-button" type="button">Prepare local AI</button><button id="run" class="link-button" type="button" disabled>Run benchmark</button><button id="copy" class="link-button" type="button" disabled>Copy predictions JSON</button><button id="reset" class="link-button" type="button">Reset saved run</button><p id="status" class="hint" role="status">Loading benchmark…</p><progress id="progress" max="1" value="0" hidden></progress></section>
   <section class="panel"><label for="output">Predictions</label><textarea id="output" rows="18" style="width:100%;font:12px ui-monospace,monospace" readonly></textarea></section>
+  <section class="panel" aria-labelledby="resultsHeading"><h2 id="resultsHeading">Row-by-row results</h2><p id="scoreSummary" class="hint">Run the benchmark to populate this view.</p><div class="results-controls"><label for="labelFilter">Dataset group<select id="labelFilter"><option value="all">All groups</option><option value="vague">Vague</option><option value="understandable">Understandable</option><option value="contextual">Contextual</option><option value="edge">Edge</option></select></label><label for="decisionFilter">Scored result<select id="decisionFilter"><option value="all">All results</option><option value="tp">True positive</option><option value="fp">False positive</option><option value="fn">False negative</option><option value="tn">True negative</option></select></label><label for="resultSearch">Search text or ID<input id="resultSearch" type="search" placeholder="Search added text, quote, reason…"></label><button id="copyResults" class="link-button" type="button" disabled>Copy CSV</button></div><div class="results-table-wrap"><table class="results-table"><thead><tr><th>ID</th><th>Group</th><th>Added tweet</th><th>Quoted tweet</th><th>Expected</th><th>Scored</th><th>Confidence</th><th>Reason</th><th>Explanation</th></tr></thead><tbody id="resultsBody"></tbody></table></div></section>
 </main><script src="eval-runner.js"></script></body></html>

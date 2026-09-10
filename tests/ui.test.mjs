@@ -52,6 +52,16 @@ test("options exposes local-AI preparation and diagnostics", () => {
   assert.match(read("options.js"), /chrome:\/\/on-device-internals/);
 });
 
+test("evaluation runner exposes row-by-row benchmark results and export controls", () => {
+  const runner = read("tools/eval-runner.html");
+  const logic = read("tools/eval-runner.js");
+  for (const id of ["scoreSummary", "labelFilter", "decisionFilter", "resultSearch", "copyResults", "resultsBody"]) assert.match(runner, new RegExp(`id=["']${id}["']`));
+  for (const heading of ["Added tweet", "Quoted tweet", "Expected", "Scored", "Confidence", "Reason", "Explanation"]) assert.match(runner, new RegExp(`<th>${heading}</th>`));
+  assert.match(logic, /function renderResults\(\)/);
+  assert.match(logic, /function resultsCsv\(\)/);
+  assert.match(logic, /navigator\.clipboard\.writeText\(resultsCsv\(\)\)/);
+});
+
 test("popup keeps a separate local-AI diagnostic detail region", () => {
   assert.match(read("popup.html"), /id="aiStatus"[^>]*aria-live="polite"/);
   assert.match(read("popup.html"), /id="aiDetail"/);
