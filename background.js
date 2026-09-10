@@ -1,8 +1,9 @@
-import { DEFAULT_SETTINGS, accountKey, confidenceGate, normalizeHandle, normalizeSettings } from "./shared/policy.mjs";
+import { DEFAULT_SETTINGS, accountKey, confidenceGate, followSkipOutcome, normalizeHandle, normalizeSettings } from "./shared/policy.mjs";
 import { dismissStrike, nextStrike } from "./shared/strike.mjs";
 
 const OFFSCREEN_URL = "offscreen.html";
 const CLASSIFIER_CACHE_TTL = 7 * 24 * 60 * 60 * 1000;
+const CLASSIFIER_CACHE_VERSION = 2;
 const CLASSIFIER_CACHE_LIMIT = 300;
 const MAX_CLASSIFIER_WAITERS = 8;
 const AI_STATUS_TIMEOUT_MS = 8_000;
@@ -20,7 +21,7 @@ const followRequests = new Map();
 
 function rememberClassification(key, createdAt, response) {
   classifierMemory.delete(key);
-  classifierMemory.set(key, { createdAt, response });
+  classifierMemory.set(key, { createdAt, version: CLASSIFIER_CACHE_VERSION, response });
   while (classifierMemory.size > CLASSIFIER_CACHE_LIMIT) classifierMemory.delete(classifierMemory.keys().next().value);
 }
 
@@ -116,12 +117,12 @@ async function readCachedClassification(postId) {
   const key = String(postId || "");
   if (!key) return null;
   const memory = classifierMemory.get(key);
-  if (memory && Date.now() - memory.createdAt < CLASSIFIER_CACHE_TTL) return memory.response;
+  if (memory && memory.version === CLASSIFIER_CACHE_VERSION && Date.now() - memory.createdAt < CLASSIFIER_CACHE_TTL) return memory.response;
   if (memory) classifierMemory.delete(key);
   const { classifierCache = {} } = await chrome.storage.local.get("classifierCache");
   const cached = classifierCache[key];
   const createdAt = Number(cached?.createdAt);
-  if (!cached?.result || !Number.isFinite(createdAt) || Date.now() - createdAt >= CLASSIFIER_CACHE_TTL) return null;
+  if (!cached?.result || cached.version !== CLASSIFIER_CACHE_VERSION || !Number.isFinite(createdAt) || Date.now() - createdAt >= CLASSIFIER_CACHE_TTL) return null;
   const response = { available: true, result: cached.result, cached: true };
   rememberClassification(key, createdAt, response);
   return response;
@@ -130,9 +131,9 @@ async function readCachedClassification(postId) {
 async function writeCachedClassification(postId, response) {
   if (!postId || !response?.result) return;
   const { classifierCache = {} } = await chrome.storage.local.get("classifierCache");
-  classifierCache[String(postId)] = { createdAt: Date.now(), result: response.result };
+  classifierCache[String(postId)] = { createdAt: Date.now(), version: CLASSIFIER_CACHE_VERSION, result: response.result };
   const entries = Object.entries(classifierCache)
-    .filter(([, value]) => value && Number.isFinite(value.createdAt) && value.result)
+    .filter(([, value]) => value && value.version === CLASSIFIER_CACHE_VERSION && Number.isFinite(value.createdAt) && value.result)
     .sort(([, left], [, right]) => left.createdAt - right.createdAt)
     .slice(-CLASSIFIER_CACHE_LIMIT);
   await chrome.storage.local.set({ classifierCache: Object.fromEntries(entries) });
@@ -194,7 +195,17 @@ function addEvent(event) {
 async function recordStrikeInternal({ candidate, result }) {
   const settings = await getSettings();
   const reviewMayProceedWithoutFollowProof = candidate?.followingState === "unknown" && settings.actionMode !== "automatic";
-  if (!candidate || (candidate.followingState !== "not_following" && !reviewMayProceedWithoutFollowProof)) return { record: null, duplicate: false, skipped: true, thresholdReached: false };
+  if (!candidate || (candidate.followingState !== "not_following" && !reviewMayProceedWithoutFollowProof)) {
+    if (candidate?.handle) {
+      await addEvent({
+        handle: candidate.handle,
+        postIdHash: candidate.postId,
+        outcome: followSkipOutcome(candidate.followingState || "unknown"),
+        reasonCode: "record_strike_follow_state_gate",
+      });
+    }
+    return { record: null, duplicate: false, skipped: true, thresholdReached: false };
+  }
   if ((settings.allowlist || []).includes(normalizeHandle(candidate.handle))) return { record: null, duplicate: false, skipped: true, thresholdReached: false, reason: "allowlisted" };
   if (!confidenceGate(result, settings.sensitivity)) return { record: null, duplicate: false, skipped: true, thresholdReached: false, reason: "invalid_classifier_result" };
   const key = accountKey(candidate);
@@ -202,8 +213,8 @@ async function recordStrikeInternal({ candidate, result }) {
   const record = accounts[key] || { key, latestHandle: candidate.handle, strikes: 0, processedPostIds: [], dismissedPostIds: [], status: "active", updatedAt: new Date().toISOString() };
   if (record.status === "blocked" || record.status === "allowlisted") return { record, duplicate: true, skipped: true, thresholdReached: false, reason: record.status };
   const next = nextStrike(record, candidate.postId, settings.threshold);
-  if (next.dismissed) return { record, duplicate: true, dismissed: true, thresholdReached: next.thresholdReached };
-  if (next.duplicate) return { record, duplicate: true, thresholdReached: next.thresholdReached };
+  if (next.dismissed) return { record, duplicate: true, dismissed: true, skipped: false, thresholdReached: next.thresholdReached };
+  if (next.duplicate) return { record, duplicate: true, skipped: false, thresholdReached: next.thresholdReached };
   record.latestHandle = candidate.handle;
   record.strikes = next.strikes;
   record.processedPostIds = next.processedPostIds;
@@ -211,7 +222,7 @@ async function recordStrikeInternal({ candidate, result }) {
   accounts[key] = record;
   await chrome.storage.local.set({ accounts });
   await addEvent({ handle: candidate.handle, postIdHash: await digest(candidate.postId), outcome: "strike_added", reasonCode: result.reasonCode, confidenceBand: result.confidence >= .9 ? "high" : result.confidence >= .82 ? "medium" : "low" });
-  return { record, duplicate: false, thresholdReached: record.strikes > settings.threshold };
+  return { record, duplicate: false, skipped: false, dismissed: false, thresholdReached: record.strikes > settings.threshold };
 }
 
 function recordStrike(message) {

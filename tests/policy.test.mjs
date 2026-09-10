@@ -1,8 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import vm from "node:vm";
 import { confidenceGate, automaticBlockAllowed, followSkipOutcome, followStateAllowsAction, localCandidateGate, validateClassifierResult, normalizeSettings } from "../shared/policy.mjs";
 import { dismissStrike, nextStrike } from "../shared/strike.mjs";
 import cases from "./fixtures/candidate-cases.json" with { type: "json" };
+
+const browserPolicyContext = { globalThis: {} };
+vm.runInNewContext(readFileSync(new URL("../shared/policy.js", import.meta.url), "utf8"), browserPolicyContext);
+const browserPolicy = browserPolicyContext.globalThis.VGBPolicy;
 
 test("candidate gate nominates short context-free quote commentary", () => {
   assert.equal(localCandidateGate("Can I say something without everyone getting mad?", "A quoted post with context."), true);
@@ -19,6 +25,13 @@ test("confidence thresholds vary for display but automatic blocks stay high conf
   assert.equal(confidenceGate({ ...result, confidence: 0.99, concreteSubjectPresent: true }, "aggressive"), false);
   assert.equal(automaticBlockAllowed({ ...result, confidence: 0.99, concreteSubjectPresent: true }), false);
   assert.equal(confidenceGate({ ...result, confidence: 0.99, reasonCode: "NOT_VAGUE" }, "aggressive"), false);
+});
+
+test("browser policy keeps the same unsafe-result gate as the worker policy", () => {
+  const result = { isVague: true, confidence: 0.99, reasonCode: "NOT_VAGUE", concreteSubjectPresent: false };
+  assert.equal(browserPolicy.confidenceGate(result, "aggressive"), false);
+  assert.equal(browserPolicy.automaticBlockAllowed({ ...result, reasonCode: "UNSPECIFIED_REFERENT" }), true);
+  assert.equal(browserPolicy.confidenceGate({ ...result, reasonCode: "UNSPECIFIED_REFERENT", concreteSubjectPresent: true }, "aggressive"), false);
 });
 
 test("classifier response validation rejects unsafe or malformed output", () => {

@@ -9,7 +9,7 @@ Last verified: September 9, 2026
 - Per-account strike thresholds, duplicate suppression, dismissal, allowlist, local export/deletion, reduced-motion support, and separate followed/uncertain safety counters.
 - Fail-closed author binding and follow-state checks before opening and immediately before confirming X's visible block control.
 - Transparent King mascot PNGs, runtime icons, Store promo tile, and marquee artwork.
-- 42 Node tests, dependency-free runtime lint, syntax checks, classifier evaluation-gate tests, and a headless Chrome fixture smoke test covering the overlay, understandable-post skip, followed-account skip, fake menu/dialog block flow, and audit events.
+- 43 Node tests, dependency-free runtime lint, syntax checks, classifier evaluation-gate tests, and a headless Chrome fixture smoke test covering the overlay, understandable-post skip, followed-account skip, fake menu/dialog block flow, and audit events.
 - Release package verified at `vagueblock-0.1.0.zip` with 25 runtime entries. The package is local-only and contains no tests, docs, site, or Store artwork.
 
 Run the local verification set:

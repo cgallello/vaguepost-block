@@ -211,7 +211,19 @@
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'candidate' } });
     try {
       const response = await send({ type: 'classify-candidate', candidate });
-      if (!response?.result || !VGBPolicy.confidenceGate(response.result, settings.sensitivity)) return;
+      if (!response?.result) {
+        await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'error', reasonCode: response?.reason || 'classifier_no_result' } });
+        return;
+      }
+      if (!VGBPolicy.confidenceGate(response.result, settings.sensitivity)) {
+        const rejectionReason = response.result.concreteSubjectPresent === true
+          ? 'classifier_concrete_subject'
+          : response.result.reasonCode === 'NOT_VAGUE' || response.result.reasonCode === 'UNPARSEABLE'
+            ? `classifier_${response.result.reasonCode.toLowerCase()}`
+            : 'classifier_result_rejected';
+        await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'error', reasonCode: rejectionReason } });
+        return;
+      }
       await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'flagged', reasonCode: response.result.reasonCode, confidenceBand: response.result.confidence >= .9 ? 'high' : response.result.confidence >= .82 ? 'medium' : 'low' } });
       if (candidate.followingState === 'unknown' && settings.actionMode === 'automatic') {
         const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
@@ -231,7 +243,16 @@
         return;
       }
       const strikeInfo = await send({ type: 'record-strike', candidate, result: response.result });
-      if (strikeInfo.skipped || strikeInfo.dismissed || strikeInfo.duplicate) return;
+      if (!strikeInfo || typeof strikeInfo !== 'object' || !Object.hasOwn(strikeInfo, 'skipped')) {
+        await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'error', reasonCode: 'record_strike_no_response' } });
+        return;
+      }
+      if (strikeInfo.skipped || strikeInfo.dismissed || strikeInfo.duplicate) {
+        if (strikeInfo.skipped && !strikeInfo.dismissed && !strikeInfo.duplicate) {
+          await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'error', reasonCode: `record_strike_skipped_${strikeInfo.reason || 'unclassified'}` } });
+        }
+        return;
+      }
       if (settings.actionMode === 'blur' && (settings.blurTrigger === 'every_high_confidence_flag' || strikeInfo.thresholdReached)) addOverlay(article, candidate, response.result, strikeInfo, true);
       if (settings.actionMode === 'review') addOverlay(article, candidate, response.result, strikeInfo, false);
       if (settings.actionMode === 'automatic' && settings.automaticAck === true && strikeInfo.thresholdReached && VGBPolicy.automaticBlockAllowed(response.result) && candidate.followingState === 'not_following') {
