@@ -20,7 +20,10 @@ npm run lint
 npm run check
 npm run test:fixture
 npm run release-check
+npm run release-audit
 ```
+
+`release-audit` reports repository-ready checks and explicitly lists external gates. Use `npm run release-audit:strict` only when the support contact, full evaluation files, live screenshots, model check, controlled X run, and Store account are all complete.
 
 ## Required external launch gates
 

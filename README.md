@@ -32,6 +32,7 @@ npm run lint
 npm run test:fixture
 npm run eval:example
 npm run package
+npm run release-audit
 ```
 
 Load the repository directory (not the ZIP) from `chrome://extensions` with Developer mode enabled. The production ZIP is produced by `npm run package`.
