@@ -2,6 +2,8 @@
 
 This checklist requires an unlocked desktop, Chrome, and two owned X test accounts. Do not use a production account for the first run.
 
+For UI-only smoke testing when Chrome's local model is unavailable, open `tests/fixture.html` directly in Chrome. It loads the real content script against a synthetic quote-post and a fake classifier/runtime; it does not call X, create strikes in extension storage, or exercise the real model. Treat it as a development fixture, never as evidence of model accuracy or block safety.
+
 ## Load the build
 
 1. Run `npm run package` or use the repository directory.

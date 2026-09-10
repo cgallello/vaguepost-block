@@ -24,6 +24,7 @@
   function statusFromArticle(article, handle) { const labels = [...article.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim()); return VGBDom.followStateFromLabels(labels, handle); }
 
   function isProfilePage() {
+    if (location.hostname !== 'x.com') return false;
     const parts = location.pathname.split('/').filter(Boolean);
     return parts.length === 1 && !['home', 'explore', 'notifications', 'messages', 'i', 'settings', 'compose'].includes(parts[0]);
   }
