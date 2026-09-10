@@ -317,14 +317,14 @@
         await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'error', reasonCode: 'record_strike_no_response' } });
         return;
       }
-      if (strikeInfo.skipped || strikeInfo.dismissed || strikeInfo.duplicate) {
+      if (strikeInfo.skipped || strikeInfo.dismissed) {
         if (strikeInfo.skipped && !strikeInfo.dismissed && !strikeInfo.duplicate) {
           await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'error', reasonCode: `record_strike_skipped_${strikeInfo.reason || 'unclassified'}` } });
         }
         return;
       }
-      if (settings.actionMode === 'blur' && (settings.blurTrigger === 'every_high_confidence_flag' || strikeInfo.thresholdReached)) addOverlay(article, candidate, response.result, strikeInfo, true);
-      if (settings.actionMode === 'review') addOverlay(article, candidate, response.result, strikeInfo, false);
+      if (strikeInfo.duplicate && strikeInfo.record?.status !== 'active') return;
+      if (shouldCoverFlag(response.result, strikeInfo)) addOverlay(article, candidate, response.result, strikeInfo, settings.actionMode === 'blur');
       if (settings.actionMode === 'automatic' && settings.automaticAck === true && strikeInfo.thresholdReached && VGBPolicy.automaticBlockAllowed(response.result) && candidate.followingState === 'not_following') {
         const outcome = await blockAccount(article, candidate);
         if (outcome.ok) { removeOverlay(article); toast(`Blocked @${candidate.handle}.`, 'block', true); }
@@ -341,6 +341,17 @@
       scheduleScan();
     }, Math.max(50, delay));
     retryTimersByAccount.set(account, timer);
+  }
+
+  function shouldCoverFlag(result, strikeInfo) {
+    if (settings.actionMode === 'review') return true;
+    if (settings.actionMode !== 'blur') return false;
+    if (settings.blurTrigger === 'threshold_reached') return Boolean(strikeInfo.thresholdReached);
+    // The confidence gate has already applied the selected sensitivity. Use
+    // that same threshold for replayed flags so an accepted result can be
+    // covered again after navigation or a virtualized timeline re-render.
+    const threshold = VGBPolicy.CONFIDENCE_THRESHOLDS?.[settings.sensitivity] ?? 0.82;
+    return Number(result?.confidence) >= threshold || Boolean(strikeInfo.thresholdReached);
   }
 
   async function reportSelectorHealth() {
@@ -372,5 +383,9 @@
     const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true });
     chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); requestAccountOrder.clear(); retryTimersByAccount.forEach((timer) => clearTimeout(timer)); retryTimersByAccount.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } });
   }
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type !== 'vgb-ping') return;
+    sendResponse({ ok: true, enabled: settings?.enabled === true, url: location.href });
+  });
   init();
 })();

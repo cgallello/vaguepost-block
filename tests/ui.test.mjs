@@ -93,7 +93,8 @@ test("flagged review and blur cards obtain fresh follow proof before showing act
   const content = read("content.js");
   assert.match(content, /const needsFollowProof = settings\.actionMode === 'automatic'/);
   assert.match(content, /settings\.actionMode === 'review'/);
-  assert.match(content, /settings\.blurTrigger === 'every_high_confidence_flag'/);
+  assert.match(content, /function shouldCoverFlag\(result, strikeInfo\)/);
+  assert.match(content, /settings\.blurTrigger === 'threshold_reached'/);
 });
 
 test("block confirmation waits for X's delayed dialog and accepts aria-labelled controls", () => {
@@ -145,6 +146,12 @@ test("transient local-AI failures leave candidates eligible for a later scan", (
   assert.match(content, /if \(!response\?\.result\)/);
   assert.match(content, /seen\.delete\(candidate\.postId\)/);
   assert.match(content, /scheduleAccountRetry\(account, 5000\)/);
+});
+
+test("previously flagged posts can rebuild their veil after timeline reloads", () => {
+  const content = read("content.js");
+  assert.match(content, /if \(strikeInfo\.duplicate && strikeInfo\.record\?\.status !== 'active'\) return;/);
+  assert.match(content, /shouldCoverFlag\(response\.result, strikeInfo\)/);
 });
 
 test("background serializes activity writes and waits before deletion", () => {
