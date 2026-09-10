@@ -120,6 +120,15 @@ test("follow-state checks cache account results to avoid tab churn", () => {
   assert.match(background, /if \(!fresh\) \{/);
 });
 
+test("timeline follow checks use X's visible hover card before opening a profile tab", () => {
+  const content = read("content.js");
+  assert.match(content, /function statusFromVisibleHoverCard\(handle\)/);
+  assert.match(content, /async function localFollowState\(article, handle\)/);
+  assert.match(content, /dispatchEvent\(new MouseEvent\('mouseenter'/);
+  assert.match(content, /waitFor\(\(\) => statusFromVisibleHoverCard\(handle\), 650\)/);
+  assert.match(content, /const localState = await localFollowState\(article, candidate\.handle\)/);
+});
+
 test("background serializes activity writes and waits before deletion", () => {
   const background = read("background.js");
   assert.match(background, /let eventQueue = Promise\.resolve\(\)/);

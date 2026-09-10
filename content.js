@@ -39,6 +39,37 @@
 
   function statusFromArticle(article, handle) { const labels = [...article.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim()); return VGBDom.followStateFromLabels(labels, handle); }
 
+  function statusFromVisibleHoverCard(handle) {
+    const safeHandle = String(handle || '').replace(/[^a-z0-9_]/gi, '');
+    if (!safeHandle) return 'unknown';
+    const cards = [...document.querySelectorAll('[data-testid="HoverCard"], [data-testid*="HoverCard"], [role="dialog"]')]
+      .filter((node) => node.getAttribute('aria-hidden') !== 'true' && node.getClientRects().length);
+    for (const card of cards) {
+      const text = (card.textContent || '').toLowerCase();
+      if (!text.includes('@' + safeHandle.toLowerCase()) && !text.includes(safeHandle.toLowerCase())) continue;
+      const labels = [...card.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
+      const state = VGBDom.followStateFromLabels(labels, safeHandle);
+      if (state !== 'unknown') return state;
+    }
+    return 'unknown';
+  }
+
+  async function localFollowState(article, handle) {
+    const direct = statusFromArticle(article, handle);
+    if (direct !== 'unknown') return direct;
+    const expected = String(handle || '').toLowerCase();
+    const profileLink = [...article.querySelectorAll('a[href]')].find((link) => {
+      const raw = (link.getAttribute('href') || '').replace(/^\/+/, '').split(/[/?#]/)[0].toLowerCase();
+      return raw === expected;
+    });
+    if (!profileLink) return 'unknown';
+    profileLink.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+    profileLink.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    const hoverState = await waitFor(() => statusFromVisibleHoverCard(handle), 650);
+    profileLink.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+    return hoverState || 'unknown';
+  }
+
   function isProfilePage() {
     if (location.hostname !== 'x.com') return false;
     const parts = location.pathname.split('/').filter(Boolean);
@@ -120,8 +151,10 @@
       await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: followed ? 'skipped_followed' : 'error', reasonCode } });
     };
     const current = extract(article);
-    const localState = current ? statusFromArticle(article, candidate.handle) : 'unknown';
-    const profileState = await send({ type: 'check-follow-state', handle: candidate.handle, fresh: true });
+    const localState = current ? await localFollowState(article, candidate.handle) : 'unknown';
+    const profileState = localState === 'following' || localState === 'not_following'
+      ? { state: localState }
+      : await send({ type: 'check-follow-state', handle: candidate.handle, fresh: true });
     if (!current || current.handle.toLowerCase() !== candidate.handle.toLowerCase() || localState === 'following' || profileState.state !== 'not_following') {
       const followed = localState === 'following' || profileState.state === 'following';
       await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: VGBPolicy.followSkipOutcome(followed ? 'following' : 'unknown') } });
@@ -133,7 +166,7 @@
     const item = await waitFor(() => findBlockMenuItem(candidate.handle));
     if (!item) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return { ok: false, reason: 'block_menu_item_missing' }; }
     const finalCheck = extract(article);
-    const finalLocalState = finalCheck ? statusFromArticle(article, candidate.handle) : 'unknown';
+    const finalLocalState = finalCheck ? await localFollowState(article, candidate.handle) : 'unknown';
     // The account state was freshly verified immediately before opening the
     // menu. Avoid a second slow profile-tab lookup while X's menu is open.
     const finalProfileState = { state: candidate.followingState };
@@ -254,8 +287,12 @@
         || settings.actionMode === 'review'
         || (settings.actionMode === 'blur' && settings.blurTrigger === 'every_high_confidence_flag');
       if (candidate.followingState === 'unknown' && needsFollowProof) {
-        const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
-        candidate.followingState = profileState.state || 'unknown';
+        const localState = await localFollowState(article, candidate.handle);
+        if (localState !== 'unknown') candidate.followingState = localState;
+        else {
+          const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
+          candidate.followingState = profileState.state || 'unknown';
+        }
       }
       if (candidate.followingState === 'following') {
         // A definitive follow match is a hard safety stop: do not count,
