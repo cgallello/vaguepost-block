@@ -21,7 +21,7 @@ If Chrome reports local AI as unavailable, first turn on Chrome's **On-device AI
 
 ## Status
 
-Working MVP. The extension is loadable as an unpacked MV3 package, with local Gemini Nano classification when Chrome exposes the Prompt API, bounded candidate/result queues, Blur & Review overlays, local strike storage, strike dismissal, a fail-closed block coordinator, isolated X DOM adapters with fixtures, popup/options pages, tests, and a version-aware packaging script. Live X DOM extraction has been verified; the controlled two-account block test, screenshots, public support/privacy URLs, and Store submission remain launch gates.
+Working release candidate. The extension is loadable as an unpacked MV3 package, with local Gemini Nano classification when Chrome exposes the Prompt API, bounded candidate/result queues, Blur & Review overlays, local strike storage, strike dismissal, a fail-closed block coordinator, isolated X DOM adapters with fixtures, popup/options pages, tests, and a version-aware packaging script. Live X DOM extraction, public support/privacy URLs, Store artwork, and listing metadata are verified; the strict model evaluation, controlled two-account block test, and Store submission remain launch gates.
 
 ## Development
 
