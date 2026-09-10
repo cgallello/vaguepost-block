@@ -20,7 +20,7 @@
         <li>Open VagueBlock from the Chrome toolbar.</li>
         <li>Enable the extension and keep Blur &amp; Review selected while tuning it.</li>
         <li>In Chrome <strong>Settings → System</strong>, turn on <strong>On-device AI</strong>.</li>
-        <li>In Chrome <strong>Settings → AI in Chrome</strong>, turn on <strong>On-device AI</strong>. Then enable Chrome's Prompt API flag at <code>chrome://flags/#prompt-api</code>. Older Chrome builds may also expose <code>chrome://flags/#optimization-guide-on-device-model</code> and <code>chrome://flags/#prompt-api-for-gemini-nano</code>; enable those when present, then relaunch Chrome.</li>
+        <li>In Chrome <strong>Settings → AI in Chrome</strong>, turn on <strong>On-device AI</strong>. Some builds expose a Prompt API flag at <code>chrome://flags/#prompt-api</code>; enable it when present. Older Chrome builds may also expose <code>chrome://flags/#optimization-guide-on-device-model</code> and <code>chrome://flags/#prompt-api-for-gemini-nano</code>; enable those when present, then relaunch Chrome.</li>
         <li>Choose <strong>Prepare local AI</strong>. A first run may show <strong>Pending Assets</strong> while Chrome downloads the model; keep Chrome open until VagueBlock reports <strong>Local AI ready</strong>. Use <code>chrome://on-device-internals</code> to inspect model status if it remains unavailable. If the extension says <strong>Prompt API not exposed</strong>, Chrome is not making its built-in API available to the extension document; relaunch Chrome after changing the setting and check the model status again.</li>
       </ol>
       <h2>Chrome requirements</h2>

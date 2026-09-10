@@ -14,7 +14,7 @@ function thresholdValue() {
 function showAiDiagnostics(show) { $("aiDiagnostics").classList.toggle("hidden", !show); }
 function aiDetail(response = {}) {
   const details = {
-    prompt_api_not_exposed: "Chrome is not exposing the Prompt API here. Enable On-device AI in Settings → System, then relaunch Chrome.",
+    prompt_api_not_exposed: "Chrome is not exposing the Prompt API here. Enable On-device AI in Settings → AI in Chrome, then relaunch Chrome.",
     availability_error: `Chrome could not check the local model${response.error ? `: ${response.error}` : "."}`,
     local_ai_status_timeout: "Chrome did not answer the model check in time. Retry after relaunching Chrome.",
   };

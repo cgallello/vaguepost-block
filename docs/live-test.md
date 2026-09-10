@@ -12,7 +12,7 @@ The same fixture can be checked headlessly with `npm run test:fixture` (set `VGB
 2. Open `chrome://extensions`.
 3. Enable Developer mode.
 4. Choose **Load unpacked** and select the repository directory.
-5. In Chrome **Settings → System**, turn on **On-device AI**. Then enable Chrome's **Prompt API** flag at `chrome://flags/#prompt-api`. On older Chrome builds that still expose them, also enable `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`. Relaunch Chrome, then open the VagueBlock popup and choose **Prepare local AI**. Record the Chrome version and the availability result. If it reports unavailable after the applicable setting and flags are enabled, inspect `chrome://on-device-internals` → **Model Status** and record the error; do not treat the extension as classifier-tested until `LanguageModel.availability()` returns `available` or a download completes.
+5. In Chrome **Settings → AI in Chrome**, turn on **On-device AI**. Some Chrome builds expose a **Prompt API** flag at `chrome://flags/#prompt-api`; enable it when present. On older Chrome builds that still expose them, also enable `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`. Relaunch Chrome, then open the VagueBlock popup and choose **Prepare local AI**. Record the Chrome version and the availability result. If it reports unavailable after the applicable setting and flags are enabled, inspect `chrome://on-device-internals` → **Model Status** and record the error; do not treat the extension as classifier-tested until `LanguageModel.availability()` returns `available` or a download completes.
 
 ## Test account setup
 
