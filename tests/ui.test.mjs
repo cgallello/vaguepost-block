@@ -46,3 +46,10 @@ test("block coordination scopes menu and result checks to explicit X controls", 
   assert.match(content, /function blockResultConfirmed\(article, handle\)/);
   assert.doesNotMatch(content, /document\.body\.innerText/);
 });
+
+test("background serializes activity writes and waits before deletion", () => {
+  const background = read("background.js");
+  assert.match(background, /let eventQueue = Promise\.resolve\(\)/);
+  assert.match(background, /eventQueue = eventQueue\.catch/);
+  assert.match(background, /Promise\.all\(\[eventQueue\.catch/);
+});

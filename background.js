@@ -11,6 +11,7 @@ let classifierWaiters = 0;
 let classifierUnavailableUntil = 0;
 const classifierMemory = new Map();
 let strikeQueue = Promise.resolve();
+let eventQueue = Promise.resolve();
 let offscreenPromise;
 const followChecks = new Map();
 const followRequests = new Map();
@@ -102,9 +103,10 @@ async function readCachedClassification(postId) {
   if (memory) classifierMemory.delete(key);
   const { classifierCache = {} } = await chrome.storage.local.get("classifierCache");
   const cached = classifierCache[key];
-  if (!cached || Date.now() - cached.createdAt >= CLASSIFIER_CACHE_TTL) return null;
+  const createdAt = Number(cached?.createdAt);
+  if (!cached?.result || !Number.isFinite(createdAt) || Date.now() - createdAt >= CLASSIFIER_CACHE_TTL) return null;
   const response = { available: true, result: cached.result, cached: true };
-  rememberClassification(key, cached.createdAt, response);
+  rememberClassification(key, createdAt, response);
   return response;
 }
 
@@ -112,7 +114,10 @@ async function writeCachedClassification(postId, response) {
   if (!postId || !response?.result) return;
   const { classifierCache = {} } = await chrome.storage.local.get("classifierCache");
   classifierCache[String(postId)] = { createdAt: Date.now(), result: response.result };
-  const entries = Object.entries(classifierCache).sort(([, left], [, right]) => left.createdAt - right.createdAt).slice(-CLASSIFIER_CACHE_LIMIT);
+  const entries = Object.entries(classifierCache)
+    .filter(([, value]) => value && Number.isFinite(value.createdAt) && value.result)
+    .sort(([, left], [, right]) => left.createdAt - right.createdAt)
+    .slice(-CLASSIFIER_CACHE_LIMIT);
   await chrome.storage.local.set({ classifierCache: Object.fromEntries(entries) });
   rememberClassification(String(postId), Date.now(), { ...response, cached: true });
 }
@@ -141,7 +146,7 @@ async function classify(candidate) {
   return task;
 }
 
-async function addEvent(event) {
+async function addEventInternal(event) {
   const allowedOutcomes = new Set(["candidate", "flagged", "dismissed", "strike_added", "blocked", "skipped_followed", "skipped_unverified_follow_state", "error"]);
   const outcome = allowedOutcomes.has(event?.outcome) ? event.outcome : "error";
   const safeEvent = {
@@ -162,6 +167,11 @@ async function addEvent(event) {
     await chrome.storage.local.set({ accounts });
   }
   return next.at(-1);
+}
+
+function addEvent(event) {
+  eventQueue = eventQueue.catch(() => {}).then(() => addEventInternal(event));
+  return eventQueue;
 }
 
 async function recordStrikeInternal({ candidate, result }) {
@@ -235,6 +245,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "dismiss-strike") return sendResponse(await dismissRecordedStrike(message));
     if (message.type === "record-event") return sendResponse(await addEvent(message.event));
     if (message.type === "reset-strikes") {
+      await strikeQueue.catch(() => {});
       const handle = normalizeHandle(message.handle);
       const key = accountKey({ handle });
       const { accounts = {} } = await chrome.storage.local.get("accounts");
@@ -249,6 +260,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return sendResponse(data);
     }
     if (message.type === "clear-data") {
+      await Promise.all([eventQueue.catch(() => {}), strikeQueue.catch(() => {})]);
       const settings = await getSettings();
       await chrome.storage.local.clear();
       await chrome.storage.local.set({ settings, accounts: {}, events: [], classifierCache: {} });
