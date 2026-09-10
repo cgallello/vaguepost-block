@@ -6,6 +6,7 @@ VagueBlock identifies likely vague quote-posts in X's desktop timeline, keeps a 
 
 The product plan is in [PLAN.md](PLAN.md). The initial privacy-policy draft is in [docs/privacy-policy.md](docs/privacy-policy.md).
 Current engineering evidence and external launch gates are tracked in [docs/release-readiness.md](docs/release-readiness.md).
+Release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Product promise
 
