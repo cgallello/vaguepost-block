@@ -2,6 +2,7 @@
   const seen = new Set();
   const pending = new Set();
   let settings = null;
+  let selectorHealthReported = false;
 
   const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => {
     void chrome.runtime.lastError;
@@ -151,7 +152,17 @@
     }
   }
 
-  async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); }
-    async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); pending.clear(); if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
+  async function reportSelectorHealth() {
+    if (selectorHealthReported || !settings?.enabled) return;
+    const articles = [...document.querySelectorAll('article')];
+    if (articles.length < 3) return;
+    const hasTweetText = articles.some((article) => article.querySelector('[data-testid="tweetText"]'));
+    const hasStatusLink = articles.some((article) => article.querySelector('a[href*="/status/"]'));
+    if (hasTweetText && hasStatusLink) return;
+    selectorHealthReported = true;
+    await send({ type: 'record-event', event: { outcome: 'error', reasonCode: `selector_health_missing_${hasTweetText ? 'status_links' : 'tweet_text'}` } });
+  }
+  async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); void reportSelectorHealth(); }
+    async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); pending.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
   init();
 })();
