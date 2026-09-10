@@ -1,8 +1,11 @@
 (() => {
   const seen = new Set();
   const pending = new Set();
+  const lastModelRequestByAccount = new Map();
+  const ACCOUNT_MIN_INTERVAL_MS = 1500;
   let settings = null;
   let selectorHealthReported = false;
+  let scanScheduled = false;
 
   const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => {
     void chrome.runtime.lastError;
@@ -126,6 +129,10 @@
     if (!candidate || !VGBPolicy.localCandidateGate(candidate.addedText, candidate.quoteText) || seen.has(candidate.postId) || pending.has(candidate.postId)) return;
     if ((settings.allowlist || []).map(VGBPolicy.normalizeHandle).includes(VGBPolicy.normalizeHandle(candidate.handle))) return;
     seen.add(candidate.postId); pending.add(candidate.postId);
+    const account = VGBPolicy.normalizeHandle(candidate.handle);
+    const lastRequest = lastModelRequestByAccount.get(account) || 0;
+    if (Date.now() - lastRequest < ACCOUNT_MIN_INTERVAL_MS) { pending.delete(candidate.postId); return; }
+    lastModelRequestByAccount.set(account, Date.now());
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'candidate' } });
     try {
       const response = await send({ type: 'classify-candidate', candidate });
@@ -163,6 +170,7 @@
     await send({ type: 'record-event', event: { outcome: 'error', reasonCode: `selector_health_missing_${hasTweetText ? 'status_links' : 'tweet_text'}` } });
   }
   async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); void reportSelectorHealth(); }
-    async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); pending.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
+  function scheduleScan() { if (scanScheduled) return; scanScheduled = true; const run = () => { scanScheduled = false; void scan(); }; if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 500 }); else requestAnimationFrame(run); }
+    async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000); const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); pending.clear(); lastModelRequestByAccount.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } }); }
   init();
 })();
