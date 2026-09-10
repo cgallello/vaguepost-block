@@ -15,7 +15,7 @@ The product plan is in [PLAN.md](PLAN.md). The initial privacy-policy draft is i
 - The mascot is a packaged transparent PNG, not a remotely loaded image or tracking pixel.
 - Chrome Web Store promotional artwork is staged under `store-assets/`; it is intentionally kept out of the runtime extension package.
 
-If Chrome reports local AI as unavailable, enable both `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`, relaunch Chrome, and check `chrome://on-device-internals` for model status. VagueBlock never falls back to a cloud classifier.
+If Chrome reports local AI as unavailable, enable Chrome's **Prompt API** flag at `chrome://flags/#prompt-api` and, on older Chrome builds that still expose them, the on-device model and Gemini Nano flags at `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`. Relaunch Chrome and check `chrome://on-device-internals` for model status. VagueBlock never falls back to a cloud classifier.
 
 ## Status
 
