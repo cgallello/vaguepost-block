@@ -15,6 +15,8 @@ The product plan is in [PLAN.md](PLAN.md). The initial privacy-policy draft is i
 - The mascot is a packaged transparent PNG, not a remotely loaded image or tracking pixel.
 - Chrome Web Store promotional artwork is staged under `store-assets/`; it is intentionally kept out of the runtime extension package.
 
+If Chrome reports local AI as unavailable, enable both `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`, relaunch Chrome, and check `chrome://on-device-internals` for model status. VagueBlock never falls back to a cloud classifier.
+
 ## Status
 
 Working MVP. The extension is loadable as an unpacked MV3 package, with local Gemini Nano classification when Chrome exposes the Prompt API, bounded candidate/result queues, Blur & Review overlays, local strike storage, strike dismissal, a fail-closed block coordinator, popup/options pages, tests, and a packaging script. Live X DOM extraction has been verified; the controlled two-account block test and public Store submission remain launch gates.

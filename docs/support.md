@@ -7,7 +7,7 @@ VagueBlock is an independent Chrome extension for x.com. It does not use X's pri
 1. Open VagueBlock from the Chrome toolbar.
 2. Turn on **Enable VagueBlock**.
 3. Keep **Blur & Review** selected while you tune the experience.
-4. If Chrome reports that local AI is unavailable, automatic classification is disabled until a supported Chrome/device combination is available.
+4. If Chrome reports that local AI is unavailable, first enable both `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`, then relaunch Chrome. Automatic classification remains disabled until a supported model is available. Chrome also requires a supported desktop OS, at least 22 GB free on the volume containing the Chrome profile, and either at least 16 GB RAM plus four CPU cores or a GPU with more than 4 GB VRAM. Check `chrome://on-device-internals` for the model's exact download/error state, then restart Chrome and retry **Prepare local AI**.
 
 ## Actions
 

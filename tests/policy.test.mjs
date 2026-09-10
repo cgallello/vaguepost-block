@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { confidenceGate, automaticBlockAllowed, followSkipOutcome, followStateAllowsAction, localCandidateGate, validateClassifierResult } from "../shared/policy.mjs";
+import { confidenceGate, automaticBlockAllowed, followSkipOutcome, followStateAllowsAction, localCandidateGate, validateClassifierResult, normalizeSettings } from "../shared/policy.mjs";
 import { dismissStrike, nextStrike } from "../shared/strike.mjs";
 import cases from "./fixtures/candidate-cases.json" with { type: "json" };
 
@@ -59,6 +59,15 @@ test("follow safety allows only a positively verified not-following state", () =
   assert.equal(followStateAllowsAction("unknown"), false);
   assert.equal(followSkipOutcome("following"), "skipped_followed");
   assert.equal(followSkipOutcome("unknown"), "skipped_unverified_follow_state");
+});
+
+test("settings normalization clamps user-controlled values and allowlist handles", () => {
+  const settings = normalizeSettings({ enabled: 1, actionMode: "automatic", threshold: 999, sensitivity: "bogus", allowlist: [" @Alice", "alice", "", null] });
+  assert.equal(settings.enabled, false);
+  assert.equal(settings.actionMode, "automatic");
+  assert.equal(settings.threshold, 10);
+  assert.equal(settings.sensitivity, "standard");
+  assert.deepEqual(settings.allowlist, ["alice"]);
 });
 
 test("candidate gate matches the labeled regression fixtures", () => {

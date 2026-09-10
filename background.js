@@ -1,4 +1,4 @@
-import { DEFAULT_SETTINGS, accountKey, normalizeHandle } from "./shared/policy.mjs";
+import { DEFAULT_SETTINGS, accountKey, normalizeHandle, normalizeSettings } from "./shared/policy.mjs";
 import { dismissStrike, nextStrike } from "./shared/strike.mjs";
 
 const OFFSCREEN_URL = "offscreen.html";
@@ -16,7 +16,7 @@ const followRequests = new Map();
 
 async function getSettings() {
   const saved = await chrome.storage.local.get("settings");
-  return { ...DEFAULT_SETTINGS, ...(saved.settings || {}) };
+  return normalizeSettings(saved.settings || DEFAULT_SETTINGS);
 }
 
 async function broadcastSettings(settings) {
@@ -103,19 +103,33 @@ async function classify(candidate) {
   if (classifierWaiters >= MAX_CLASSIFIER_WAITERS) return { available: false, reason: "classifier_queue_full" };
   classifierWaiters += 1;
   const task = classifierQueue.catch(() => {}).then(async () => {
-    await ensureOffscreen();
-    const response = await chrome.runtime.sendMessage({ type: "offscreen-classify", candidate });
-    classifierReady = response?.available === true;
-    if (response?.available === false) classifierUnavailableUntil = Date.now() + 30_000;
-    if (response?.result) await writeCachedClassification(candidate.postId, response);
-    return response;
+    try {
+      await ensureOffscreen();
+      const response = await chrome.runtime.sendMessage({ type: "offscreen-classify", candidate });
+      classifierReady = response?.available === true;
+      if (response?.available === false || response?.error) classifierUnavailableUntil = Date.now() + 30_000;
+      if (response?.result) await writeCachedClassification(candidate.postId, response);
+      return response || { available: false, reason: "classifier_empty_response" };
+    } catch (error) {
+      classifierReady = false;
+      classifierUnavailableUntil = Date.now() + 30_000;
+      return { available: false, reason: "classifier_error", message: String(error?.message || error) };
+    }
   }).finally(() => { classifierWaiters -= 1; });
   classifierQueue = task;
   return task;
 }
 
 async function addEvent(event) {
-  const safeEvent = { ...event, handle: normalizeHandle(event?.handle) };
+  const allowedOutcomes = new Set(["candidate", "flagged", "dismissed", "strike_added", "blocked", "skipped_followed", "skipped_unverified_follow_state", "error"]);
+  const outcome = allowedOutcomes.has(event?.outcome) ? event.outcome : "error";
+  const safeEvent = {
+    handle: normalizeHandle(event?.handle),
+    outcome,
+    ...(event?.reasonCode ? { reasonCode: String(event.reasonCode).slice(0, 64) } : {}),
+    ...(event?.confidenceBand ? { confidenceBand: String(event.confidenceBand).slice(0, 16) } : {}),
+    ...(event?.postIdHash ? { postIdHash: String(event.postIdHash) } : {}),
+  };
   if (safeEvent.postIdHash && !/^[a-f0-9]{16}$/i.test(String(safeEvent.postIdHash))) safeEvent.postIdHash = await digest(safeEvent.postIdHash);
   const { events = [] } = await chrome.storage.local.get("events");
   const next = [...events, { id: crypto.randomUUID(), createdAt: new Date().toISOString(), ...safeEvent }].slice(-500);
@@ -175,7 +189,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
     if (message.type === "get-settings") return sendResponse(await getSettings());
     if (message.type === "save-settings") {
-      const settings = { ...DEFAULT_SETTINGS, ...(message.settings || {}) };
+      const settings = normalizeSettings(message.settings || DEFAULT_SETTINGS);
       await chrome.storage.local.set({ settings });
       try { await broadcastSettings(settings); } catch { /* The next X navigation will read storage. */ }
       return sendResponse(settings);
@@ -186,14 +200,27 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "record-strike") return sendResponse(await recordStrike(message));
     if (message.type === "dismiss-strike") return sendResponse(await dismissRecordedStrike(message));
     if (message.type === "record-event") return sendResponse(await addEvent(message.event));
+    if (message.type === "reset-strikes") {
+      const handle = normalizeHandle(message.handle);
+      const key = accountKey({ handle });
+      const { accounts = {} } = await chrome.storage.local.get("accounts");
+      if (accounts[key]) {
+        accounts[key] = { ...accounts[key], strikes: 0, processedPostIds: [], dismissedPostIds: [], updatedAt: new Date().toISOString() };
+        await chrome.storage.local.set({ accounts });
+      }
+      return sendResponse({ ok: true });
+    }
     if (message.type === "get-log") {
-      const data = await chrome.storage.local.get(["events", "accounts"]);
+      const data = await chrome.storage.local.get(["events", "accounts", "settings"]);
       return sendResponse(data);
     }
     if (message.type === "clear-data") {
       const settings = await getSettings();
       await chrome.storage.local.clear();
       await chrome.storage.local.set({ settings, accounts: {}, events: [], classifierCache: {} });
+      classifierMemory.clear();
+      classifierUnavailableUntil = 0;
+      classifierReady = false;
       return sendResponse({ ok: true });
     }
   })().catch((error) => sendResponse({ error: error.message }));

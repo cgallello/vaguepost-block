@@ -3,7 +3,10 @@
   const pending = new Set();
   let settings = null;
 
-  const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => resolve(response || {})));
+  const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => {
+    void chrome.runtime.lastError;
+    resolve(response || {});
+  }));
 
   function getArticleFor(node) { return node?.closest?.('article[data-testid="tweet"]') || node?.closest?.('article'); }
 
@@ -58,6 +61,9 @@
   }
 
   async function blockAccount(article, candidate) {
+    const auditFailure = async (reasonCode, followed = false) => {
+      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: followed ? 'skipped_followed' : 'error', reasonCode } });
+    };
     const current = extract(article);
     const localState = current ? statusFromArticle(article, candidate.handle) : 'unknown';
     const profileState = await send({ type: 'check-follow-state', handle: candidate.handle, fresh: true });
@@ -67,7 +73,7 @@
       return { ok: false, reason: followed ? 'followed' : 'unverified' };
     }
     const menu = findMenuButton(article);
-    if (!menu) return { ok: false, reason: 'block_control_missing' };
+    if (!menu) { await auditFailure('block_control_missing'); return { ok: false, reason: 'block_control_missing' }; }
     menu.click();
     const item = await waitFor(() => [...document.querySelectorAll('[role="menuitem"], [data-testid="Dropdown"] button')].find((el) => new RegExp(`^block\\s+@?${candidate.handle}$`, 'i').test((el.textContent || '').trim())));
     if (!item) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return { ok: false, reason: 'block_menu_item_missing' }; }
@@ -82,10 +88,10 @@
     }
     item.click();
     const confirm = await waitFor(() => [...document.querySelectorAll('[role="dialog"] button, [role="dialog"] [role="button"]')].find((el) => /^block$/i.test((el.textContent || '').trim()) || /^block\s+@/i.test((el.textContent || '').trim())));
-    if (!confirm) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return { ok: false, reason: 'block_confirmation_missing' }; }
+    if (!confirm) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await auditFailure('block_confirmation_missing'); return { ok: false, reason: 'block_confirmation_missing' }; }
     confirm.click();
     const blocked = await waitFor(() => /blocked/i.test(article.innerText || '') || /unblock\s+@?/i.test(document.body.innerText || '') || !document.contains(article), 2200);
-    if (!blocked) return { ok: false, reason: 'block_result_unverified' };
+    if (!blocked) { await auditFailure('block_result_unverified'); return { ok: false, reason: 'block_result_unverified' }; }
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'blocked' } });
     return { ok: true };
   }
@@ -138,23 +144,29 @@
     if (!candidate || !VGBPolicy.localCandidateGate(candidate.addedText, candidate.quoteText) || seen.has(candidate.postId) || pending.has(candidate.postId)) return;
     if ((settings.allowlist || []).map(VGBPolicy.normalizeHandle).includes(VGBPolicy.normalizeHandle(candidate.handle))) return;
     seen.add(candidate.postId); pending.add(candidate.postId);
-    const response = await send({ type: 'classify-candidate', candidate }); pending.delete(candidate.postId);
-    if (!response?.result || !VGBPolicy.confidenceGate(response.result, settings.sensitivity)) return;
-    if (candidate.followingState === 'unknown') {
-      const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
-      candidate.followingState = profileState.state || 'unknown';
-    }
-    if (!VGBPolicy.followStateAllowsAction(candidate.followingState)) {
-      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: VGBPolicy.followSkipOutcome(candidate.followingState) } });
-      return;
-    }
-    const strikeInfo = await send({ type: 'record-strike', candidate, result: response.result });
-    if (strikeInfo.skipped || strikeInfo.dismissed || strikeInfo.duplicate) return;
-    if (settings.actionMode === 'blur' && (settings.blurTrigger === 'every_high_confidence_flag' || strikeInfo.thresholdReached)) addOverlay(article, candidate, response.result, strikeInfo, true);
-    if (settings.actionMode === 'review') addOverlay(article, candidate, response.result, strikeInfo, false);
-    if (settings.actionMode === 'automatic' && strikeInfo.thresholdReached && VGBPolicy.automaticBlockAllowed(response.result) && candidate.followingState === 'not_following') {
-      const outcome = await blockAccount(article, candidate);
-      if (outcome.ok) toast(`Blocked @${candidate.handle}.`);
+    await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'candidate' } });
+    try {
+      const response = await send({ type: 'classify-candidate', candidate });
+      if (!response?.result || !VGBPolicy.confidenceGate(response.result, settings.sensitivity)) return;
+      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'flagged', reasonCode: response.result.reasonCode, confidenceBand: response.result.confidence >= .9 ? 'high' : response.result.confidence >= .82 ? 'medium' : 'low' } });
+      if (candidate.followingState === 'unknown') {
+        const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
+        candidate.followingState = profileState.state || 'unknown';
+      }
+      if (!VGBPolicy.followStateAllowsAction(candidate.followingState)) {
+        await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: VGBPolicy.followSkipOutcome(candidate.followingState) } });
+        return;
+      }
+      const strikeInfo = await send({ type: 'record-strike', candidate, result: response.result });
+      if (strikeInfo.skipped || strikeInfo.dismissed || strikeInfo.duplicate) return;
+      if (settings.actionMode === 'blur' && (settings.blurTrigger === 'every_high_confidence_flag' || strikeInfo.thresholdReached)) addOverlay(article, candidate, response.result, strikeInfo, true);
+      if (settings.actionMode === 'review') addOverlay(article, candidate, response.result, strikeInfo, false);
+      if (settings.actionMode === 'automatic' && settings.automaticAck === true && strikeInfo.thresholdReached && VGBPolicy.automaticBlockAllowed(response.result) && candidate.followingState === 'not_following') {
+        const outcome = await blockAccount(article, candidate);
+        if (outcome.ok) { removeOverlay(article); toast(`Blocked @${candidate.handle}.`); }
+      }
+    } finally {
+      pending.delete(candidate.postId);
     }
   }
 

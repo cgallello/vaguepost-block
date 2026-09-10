@@ -10,8 +10,14 @@ async function session() {
   if (!sessionPromise) {
     sessionPromise = (async () => {
       const availability = await LanguageModel.availability(AVAILABILITY_OPTIONS);
-      if (availability !== "available" && availability !== "downloadable") return null;
-      return LanguageModel.create({ initialPrompts: [{ role: "system", content: PROMPT }], temperature: 0.1, topK: 3 });
+      if (availability === "unavailable") return null;
+      return LanguageModel.create({
+        initialPrompts: [{ role: "system", content: PROMPT }],
+        expectedInputs: AVAILABILITY_OPTIONS.expectedInputs,
+        expectedOutputs: AVAILABILITY_OPTIONS.expectedOutputs,
+        temperature: 0.1,
+        topK: 3,
+      });
     })().catch(() => null);
   }
   const value = await sessionPromise;

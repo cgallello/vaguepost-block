@@ -8,7 +8,7 @@ This checklist requires an unlocked desktop, Chrome, and two owned X test accoun
 2. Open `chrome://extensions`.
 3. Enable Developer mode.
 4. Choose **Load unpacked** and select the repository directory.
-5. Open the VagueBlock popup and choose **Prepare local AI**. Record the Chrome version and the availability result.
+5. Enable both `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`, relaunch Chrome, then open the VagueBlock popup and choose **Prepare local AI**. Record the Chrome version and the availability result. If it reports unavailable after both flags are enabled, inspect `chrome://on-device-internals` → **Model Status** and record the error; do not treat the extension as classifier-tested until `LanguageModel.availability()` returns `available` or a download completes.
 
 ## Test account setup
 

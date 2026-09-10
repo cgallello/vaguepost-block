@@ -1,6 +1,56 @@
-const $ = (id) => document.getElementById(id); const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => resolve(response || {}))); let settings; let data;
-async function save() { settings = await send({ type: "save-settings", settings }); }
-function renderAllowlist() { $("allowlist").innerHTML = ""; (settings.allowlist || []).forEach((handle) => { const row = document.createElement("div"); row.textContent = `@${handle}`; const button = document.createElement("button"); button.className = "link-button"; button.textContent = "remove"; button.addEventListener("click", async () => { settings.allowlist = settings.allowlist.filter((item) => item !== handle); await save(); renderAllowlist(); }); row.append(" ", button); $("allowlist").append(row); }); }
-function renderLog() { const target = $("activityLog"); target.innerHTML = ""; const events = [...(data.events || [])].reverse().slice(0, 25); if (!events.length) { target.textContent = "No local activity yet."; return; } for (const event of events) { const row = document.createElement("div"); row.className = "activity-row"; const when = document.createElement("time"); when.dateTime = event.createdAt; when.textContent = new Date(event.createdAt).toLocaleString(); const detail = document.createElement("span"); detail.textContent = `${event.outcome.replaceAll("_", " ")} · @${event.handle || "unknown"}${event.reasonCode ? ` · ${event.reasonCode}` : ""}`; row.append(when, detail); target.append(row); } }
-async function init() { settings = await send({ type: "get-settings" }); data = await send({ type: "get-log" }); $("sensitivity").value = settings.sensitivity; $("blurTrigger").value = settings.blurTrigger; $("mascotMotion").value = settings.mascotMotion; renderAllowlist(); renderLog(); ["sensitivity", "blurTrigger", "mascotMotion"].forEach((id) => $(id).addEventListener("change", async () => { settings[id] = $(id).value; await save(); $("message").textContent = "Saved locally."; })); $("addAllow").addEventListener("click", async () => { const handle = $("allowInput").value.trim().replace(/^@/, "").toLowerCase(); if (handle && !settings.allowlist.includes(handle)) settings.allowlist.push(handle); await save(); $("allowInput").value = ""; renderAllowlist(); }); $("export").addEventListener("click", () => { const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }); const url = URL.createObjectURL(blob); const anchor = document.createElement("a"); anchor.href = url; anchor.download = "vagueblock-local-records.json"; anchor.click(); URL.revokeObjectURL(url); }); $("clear").addEventListener("click", async () => { if (!confirm("Delete all VagueBlock records?")) return; await send({ type: "clear-data" }); data = { events: [], accounts: {} }; renderLog(); $("message").textContent = "Deleted."; }); }
+const $ = (id) => document.getElementById(id);
+const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => { void chrome.runtime.lastError; resolve(response || {}); }));
+let settings;
+let data;
+
+function thresholdValue() {
+  return $("threshold").value === "custom" ? Math.max(0, Math.min(10, Math.round(Number($("customThreshold").value || 0)))) : Number($("threshold").value);
+}
+
+async function save() {
+  settings = await send({ type: "save-settings", settings: { ...settings, threshold: thresholdValue() } });
+}
+
+function renderAllowlist() {
+  $("allowlist").innerHTML = "";
+  (settings.allowlist || []).forEach((handle) => {
+    const row = document.createElement("div"); row.className = "activity-row";
+    const label = document.createElement("span"); label.textContent = `@${handle}`;
+    const reset = document.createElement("button"); reset.className = "link-button"; reset.textContent = "reset strikes";
+    reset.addEventListener("click", async () => { await send({ type: "reset-strikes", handle }); $("message").textContent = `Reset strikes for @${handle}.`; });
+    const remove = document.createElement("button"); remove.className = "link-button"; remove.textContent = "remove";
+    remove.addEventListener("click", async () => { settings.allowlist = settings.allowlist.filter((item) => item !== handle); await save(); renderAllowlist(); });
+    row.append(label, reset, remove); $("allowlist").append(row);
+  });
+}
+
+function renderLog() {
+  const target = $("activityLog"); target.innerHTML = "";
+  const events = [...(data.events || [])].reverse().slice(0, 25);
+  if (!events.length) { target.textContent = "No local activity yet."; return; }
+  for (const event of events) {
+    const row = document.createElement("div"); row.className = "activity-row";
+    const when = document.createElement("time"); when.dateTime = event.createdAt; when.textContent = new Date(event.createdAt).toLocaleString();
+    const detail = document.createElement("span"); detail.textContent = `${event.outcome.replaceAll("_", " ")} · @${event.handle || "unknown"}${event.reasonCode ? ` · ${event.reasonCode}` : ""}`;
+    row.append(when, detail); target.append(row);
+  }
+}
+
+function renderThreshold() {
+  $("threshold").value = [0, 1, 3, 5].includes(Number(settings.threshold)) ? String(settings.threshold) : "custom";
+  $("customThreshold").value = settings.threshold;
+  $("customThreshold").classList.toggle("hidden", $("threshold").value !== "custom");
+}
+
+async function init() {
+  settings = await send({ type: "get-settings" }); data = await send({ type: "get-log" });
+  $("sensitivity").value = settings.sensitivity; $("blurTrigger").value = settings.blurTrigger; $("mascotMotion").value = settings.mascotMotion;
+  renderThreshold(); renderAllowlist(); renderLog();
+  ["sensitivity", "blurTrigger", "mascotMotion"].forEach((id) => $(id).addEventListener("change", async () => { settings[id] = $(id).value; await save(); $("message").textContent = "Saved locally."; }));
+  $("threshold").addEventListener("change", async () => { renderThreshold(); await save(); $("message").textContent = "Saved locally."; });
+  $("customThreshold").addEventListener("change", async () => { await save(); $("message").textContent = "Saved locally."; });
+  $("addAllow").addEventListener("click", async () => { const handle = $("allowInput").value.trim().replace(/^@/, "").toLowerCase(); if (handle && !settings.allowlist.includes(handle)) settings.allowlist.push(handle); await save(); $("allowInput").value = ""; renderAllowlist(); });
+  $("export").addEventListener("click", () => { const blob = new Blob([JSON.stringify({ settings, events: data.events || [], accounts: data.accounts || {} }, null, 2)], { type: "application/json" }); const url = URL.createObjectURL(blob); const anchor = document.createElement("a"); anchor.href = url; anchor.download = "vagueblock-local-records.json"; anchor.click(); URL.revokeObjectURL(url); });
+  $("clear").addEventListener("click", async () => { if (!confirm("Delete all VagueBlock records?")) return; await send({ type: "clear-data" }); data = { events: [], accounts: {} }; renderLog(); $("message").textContent = "Deleted."; });
+}
 init();
