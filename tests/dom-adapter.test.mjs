@@ -34,3 +34,9 @@ test("quote-post adapter truncates model input to bounded lengths", () => {
   assert.equal(result.addedText.length, 420);
   assert.equal(result.quoteText.length, 1600);
 });
+
+test("quote-post adapter fails closed when the author identity selector is missing", () => {
+  const candidate = article({});
+  candidate.querySelector = () => null;
+  assert.equal(extractQuoteCandidate(candidate), null);
+});

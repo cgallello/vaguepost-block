@@ -170,7 +170,7 @@ The test suite includes a dedicated followed account posting a deliberately qual
 
 Vagueposting depends on whether the author's added text gives sufficient context without requiring the reader to open the quoted post. This is a semantic judgment that keyword matching alone cannot make reliably.
 
-Chrome's Prompt API uses Gemini Nano locally. The model is downloaded separately when needed, but subsequent inference sends no content to Google or another provider. On current Chrome builds, local setup may require both `#optimization-guide-on-device-model` and `#prompt-api-for-gemini-nano` enabled before the model becomes downloadable. The Prompt API is available to Chrome extensions from Chrome 138. [Chrome Prompt API](https://developer.chrome.com/docs/ai/prompt-api) and [built-in AI API status](https://developer.chrome.com/docs/ai/built-in-apis).
+Chrome's Prompt API uses Gemini Nano locally. The model is downloaded separately when needed, but subsequent inference sends no content to Google or another provider. Current Chrome builds require the user's **Settings → System → On-device AI** setting to be enabled and may expose the `#prompt-api` flag; older builds may additionally expose `#optimization-guide-on-device-model` and `#prompt-api-for-gemini-nano`. The Prompt API is available to Chrome extensions on supported desktop Chrome builds. [Chrome Prompt API](https://developer.chrome.com/docs/ai/prompt-api) and [built-in AI API status](https://developer.chrome.com/docs/ai/built-in-apis).
 
 ### Eligibility and fallback
 
@@ -265,7 +265,7 @@ TypeScript, React, Vite, and Playwright remain reasonable post-MVP hardening opt
 ```json
 {
   "manifest_version": 3,
-  "permissions": ["storage"],
+  "permissions": ["storage", "offscreen"],
   "host_permissions": ["https://x.com/*"]
 }
 ```

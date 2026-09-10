@@ -13,7 +13,7 @@ export function extractQuoteCandidate(article) {
   const links = [...article.querySelectorAll('a[href*="/status/"]')];
   const ids = [...new Set(links.map((link) => link.href.match(/\/status\/(\d+)/)?.[1]).filter(Boolean))];
   if (ids.length < 2) return null;
-  const authorLink = article.querySelector('[data-testid="User-Name"] a[href^="/"]') || article.querySelector('a[href^="/"][role="link"]');
+    const authorLink = article.querySelector('[data-testid="User-Name"] a[href^="/"]');
   const handle = authorLink?.getAttribute('href')?.split('/').filter(Boolean)[0];
   if (!handle) return null;
   const textNodes = [...article.querySelectorAll('[data-testid="tweetText"]')].map((node) => node.innerText?.trim()).filter(Boolean);
