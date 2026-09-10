@@ -332,7 +332,7 @@ background.js                 # service worker and action coordinator
 content.js / content.css      # X adapter and Blur & Review overlay
 classifier.js / offscreen.html # local Prompt API host
 popup.{html,js} / options.{html,js}
-shared/                       # policy, strike, and storage helpers
+shared/                       # policy, strike, storage, and DOM adapter helpers
 assets/                       # icons and transparent mascot PNGs
 tests/                        # unit and fixture tests
 docs/                         # privacy, support, listing, and live-test docs

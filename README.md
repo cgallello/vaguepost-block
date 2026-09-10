@@ -19,7 +19,7 @@ If Chrome reports local AI as unavailable, enable both `chrome://flags/#optimiza
 
 ## Status
 
-Working MVP. The extension is loadable as an unpacked MV3 package, with local Gemini Nano classification when Chrome exposes the Prompt API, bounded candidate/result queues, Blur & Review overlays, local strike storage, strike dismissal, a fail-closed block coordinator, popup/options pages, tests, and a packaging script. Live X DOM extraction has been verified; the controlled two-account block test and public Store submission remain launch gates.
+Working MVP. The extension is loadable as an unpacked MV3 package, with local Gemini Nano classification when Chrome exposes the Prompt API, bounded candidate/result queues, Blur & Review overlays, local strike storage, strike dismissal, a fail-closed block coordinator, isolated X DOM adapters with fixtures, popup/options pages, tests, and a version-aware packaging script. Live X DOM extraction has been verified; the controlled two-account block test, screenshots, public support/privacy URLs, and Store submission remain launch gates.
 
 ## Development
 
