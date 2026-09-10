@@ -14,7 +14,9 @@
 .vgb-overlay.vgb-review-overlay .vgb-overlay-reason { display: none; }
 .vgb-overlay.vgb-review-overlay .vgb-overlay-strike { font-size: 10px; margin-bottom: 4px; }
 .vgb-overlay.vgb-review-overlay .vgb-overlay-actions button { padding: 4px 7px; font-size: 10px; }
-.vgb-overlay-card { max-width: 430px; display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; }
+.vgb-overlay-card { max-width: 430px; display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: center; animation: vgb-pop .18s ease-out; }
+@keyframes vgb-pop { from { opacity: 0; transform: translateY(4px) scale(.98); } to { opacity: 1; transform: none; } }
+.vgb-motion-reduced .vgb-overlay-card { animation: none; }
 .vgb-overlay img { width: 92px; max-height: 142px; object-fit: contain; }
 .vgb-overlay-copy { min-width: 0; text-align: left; }
 .vgb-overlay-title { font-size: 15px; font-weight: 800; line-height: 1.2; margin-bottom: 5px; }

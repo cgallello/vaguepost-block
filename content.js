@@ -158,6 +158,7 @@
     article.classList.add('vgb-overlay-host');
     if (blurred) article.classList.add('vgb-blurred');
     const overlay = document.createElement('div'); overlay.className = 'vgb-overlay'; overlay.setAttribute('role', 'region'); overlay.setAttribute('aria-live', 'polite'); overlay.setAttribute('aria-label', 'Vaguepost King review');
+    if (settings.mascotMotion === 'reduced') overlay.classList.add('vgb-motion-reduced');
     if (!blurred) overlay.classList.add('vgb-review-overlay');
     const card = document.createElement('div'); card.className = 'vgb-overlay-card';
     const image = document.createElement('img'); image.src = chrome.runtime.getURL('assets/king-point.png'); image.alt = '';

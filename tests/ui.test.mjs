@@ -24,6 +24,8 @@ test("blur overlay CSS prevents clicks through the veil and respects reduced mot
   assert.match(css, /\.vgb-blurred[^{}]*\{[^}]*pointer-events:\s*none/i);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /\.vgb-overlay[^{}]*\{[^}]*z-index/);
+  assert.match(css, /@keyframes vgb-pop/);
+  assert.match(css, /\.vgb-motion-reduced \.vgb-overlay-card[^{}]*\{[^}]*animation:\s*none/i);
 });
 
 test("popup exposes the automatic-block acknowledgement in markup and logic", () => {
