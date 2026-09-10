@@ -46,8 +46,16 @@ test("popup exposes separate followed and uncertain safety counters", () => {
 test("options exposes local-AI preparation and diagnostics", () => {
   assert.match(read("options.html"), /id="prepareAi"/);
   assert.match(read("options.html"), /id="aiDiagnostics"/);
+  assert.match(read("options.html"), /id="aiDetail"/);
   assert.match(read("options.js"), /type: "prepare-ai"/);
+  assert.match(read("options.js"), /prompt_api_not_exposed/);
   assert.match(read("options.js"), /chrome:\/\/on-device-internals/);
+});
+
+test("popup keeps a separate local-AI diagnostic detail region", () => {
+  assert.match(read("popup.html"), /id="aiStatus"[^>]*aria-live="polite"/);
+  assert.match(read("popup.html"), /id="aiDetail"/);
+  assert.match(read("popup.js"), /prompt_api_not_exposed/);
 });
 
 test("block coordination scopes menu and result checks to explicit X controls", () => {
