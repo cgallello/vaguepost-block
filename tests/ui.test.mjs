@@ -76,6 +76,10 @@ test("block coordination scopes menu and result checks to explicit X controls", 
   assert.doesNotMatch(content, /document\.body\.innerText/);
 });
 
+test("profile follow-state parsing recognizes X's Follow back label as not-following", () => {
+  assert.ok(read("content.js").includes("(?:\\\\s+back)?"));
+});
+
 test("background serializes activity writes and waits before deletion", () => {
   const background = read("background.js");
   assert.match(background, /let eventQueue = Promise\.resolve\(\)/);

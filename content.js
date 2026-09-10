@@ -47,7 +47,7 @@
   function profileFollowState(handle) {
     const safeHandle = String(handle || '').replace(/[^a-z0-9_]/gi, '');
     if (!safeHandle) return 'unknown';
-    const followPattern = new RegExp(`^follow(?: @?${safeHandle})?$`, 'i');
+    const followPattern = new RegExp(`^follow(?:\\s+back)?(?: @?${safeHandle})?$`, 'i');
     const labels = [...document.querySelectorAll('button,[role="button"]')]
       .filter((el) => {
         const label = (el.getAttribute('aria-label') || el.textContent || '').trim();
