@@ -1,10 +1,11 @@
-import { cpSync, existsSync, mkdirSync, rmSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname);
 const dist = resolve(root, "dist");
-const zipPath = resolve(root, "vagueblock-0.1.0.zip");
+const manifest = JSON.parse(readFileSync(resolve(root, "manifest.json"), "utf8"));
+const zipPath = resolve(root, `vagueblock-${manifest.version}.zip`);
 rmSync(dist, { recursive: true, force: true });
 rmSync(zipPath, { force: true });
 mkdirSync(dist, { recursive: true });

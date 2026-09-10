@@ -13,6 +13,7 @@ test("manifest stays narrowly scoped to the single purpose", () => {
   assert.equal(manifest.background.service_worker, "background.js");
   assert.equal(manifest.options_page, "options.html");
   assert.equal(manifest.content_scripts[0].matches[0], "https://x.com/*");
+  assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
 });
 
 test("runtime manifest references resolve to files", () => {
