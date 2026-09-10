@@ -5,6 +5,7 @@ Local-first Chrome extension planning repository.
 VagueBlock identifies likely vague quote-posts in X's desktop timeline, keeps a per-account strike count, and either blocks accounts after the configured threshold or places a playful “Vaguepost King” review overlay on the post. It blocks only when it can positively verify that the user does not follow the account.
 
 The product plan is in [PLAN.md](PLAN.md). The initial privacy-policy draft is in [docs/privacy-policy.md](docs/privacy-policy.md).
+Current engineering evidence and external launch gates are tracked in [docs/release-readiness.md](docs/release-readiness.md).
 
 ## Product promise
 
