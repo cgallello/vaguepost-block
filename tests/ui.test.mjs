@@ -87,6 +87,12 @@ test("flagged review and blur cards obtain fresh follow proof before showing act
   assert.match(content, /settings\.blurTrigger === 'every_high_confidence_flag'/);
 });
 
+test("block confirmation waits for X's delayed dialog and accepts aria-labelled controls", () => {
+  const content = read("content.js");
+  assert.match(content, /findBlockConfirmation\(candidate\.handle\), 3000/);
+  assert.match(content, /el\.getAttribute\('aria-label'\)/);
+});
+
 test("background serializes activity writes and waits before deletion", () => {
   const background = read("background.js");
   assert.match(background, /let eventQueue = Promise\.resolve\(\)/);

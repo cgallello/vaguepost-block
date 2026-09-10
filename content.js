@@ -96,7 +96,7 @@
     if (!dialog) return null;
     const expected = new RegExp(`^block(?:\\s+@?${escapedHandle(handle)})?$`, 'i');
     return [...dialog.querySelectorAll('button, [role="button"]')]
-      .find((el) => expected.test((el.textContent || '').trim()));
+      .find((el) => expected.test((el.textContent || el.getAttribute('aria-label') || '').trim()));
   }
 
   function blockResultConfirmed(article, handle) {
@@ -141,7 +141,7 @@
       return { ok: false, reason: followed ? 'followed' : 'unverified' };
     }
     item.click();
-    const confirm = await waitFor(() => findBlockConfirmation(candidate.handle));
+    const confirm = await waitFor(() => findBlockConfirmation(candidate.handle), 3000);
     if (!confirm) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await auditFailure('block_confirmation_missing'); return { ok: false, reason: 'block_confirmation_missing' }; }
     confirm.click();
     const blocked = await waitFor(() => blockResultConfirmed(article, candidate.handle), 2200);
