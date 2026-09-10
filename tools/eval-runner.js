@@ -104,8 +104,11 @@ $("run").addEventListener("click", async () => {
       $("run").disabled = false;
       return;
     }
-    if (!evalSession) evalSession = await LanguageModel.create({ initialPrompts: [{ role: "system", content: SYSTEM_PROMPT }], expectedInputs: [{ type: "text", languages: ["en"] }], expectedOutputs: [{ type: "text", languages: ["en"] }], temperature: 0.1, topK: 3 });
+    const createEvalSession = () => LanguageModel.create({ initialPrompts: [{ role: "system", content: SYSTEM_PROMPT }], expectedInputs: [{ type: "text", languages: ["en"] }], expectedOutputs: [{ type: "text", languages: ["en"] }], temperature: 0.1, topK: 3 });
     for (let start = predictions.length; start < dataset.length; start += batchSize) {
+      // Keep the prompt history bounded. The local model session remembers every
+      // prior batch, and an 850-row run otherwise becomes progressively slower.
+      if (!evalSession || start % 32 === 0) evalSession = await createEvalSession();
       const batch = dataset.slice(start, start + batchSize);
       const responses = await promptRows(batch);
       responses.forEach((result, offset) => {
