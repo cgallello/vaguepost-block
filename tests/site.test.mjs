@@ -17,3 +17,17 @@ test("public support and privacy pages are self-contained and present", () => {
   assert.match(support, /optimization-guide-on-device-model/);
   assert.match(support, /prompt-api-for-gemini-nano/);
 });
+
+test("support issue templates avoid requesting sensitive post data", () => {
+  const templates = [
+    ".github/ISSUE_TEMPLATE/ui-regression.md",
+    ".github/ISSUE_TEMPLATE/false-positive.md",
+    ".github/ISSUE_TEMPLATE/follow-safety.md",
+    ".github/ISSUE_TEMPLATE/accessibility.md",
+  ];
+  for (const file of templates) {
+    const content = readFileSync(resolve(root, file), "utf8");
+    assert.match(content, /Chrome version/);
+    assert.match(content, /Do not include|Do not paste/);
+  }
+});
