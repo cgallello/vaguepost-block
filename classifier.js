@@ -6,11 +6,8 @@ const RESPONSE_CONSTRAINT = { type: "object", properties: { isVague: { type: "bo
 const PROMPT_TIMEOUT_MS = 20_000;
 
 let sessionPromise;
-let progressSink = () => {};
 
-export function setDownloadProgressSink(sink) { progressSink = typeof sink === "function" ? sink : () => {}; }
-
-export async function availability() {
+async function availability() {
   if (!globalThis.LanguageModel) return "unavailable";
   try { return await LanguageModel.availability(AVAILABILITY_OPTIONS); } catch { return "unavailable"; }
 }
@@ -27,7 +24,7 @@ async function session() {
         expectedOutputs: AVAILABILITY_OPTIONS.expectedOutputs,
         temperature: 0.1,
         topK: 3,
-        monitor(monitor) { monitor.addEventListener("downloadprogress", (event) => progressSink(Number(event.loaded) || 0)); },
+        monitor(monitor) { monitor.addEventListener("downloadprogress", (event) => { const result = chrome.runtime.sendMessage({ type: "ai-download-progress", loaded: event.loaded }); result?.catch?.(() => {}); }); },
       });
     })().catch(() => null);
   }
@@ -36,23 +33,22 @@ async function session() {
   return value;
 }
 
-export async function prepare() {
-  const model = await session();
-  return model ? { available: true, availability: "available" } : { available: false, reason: "local_ai_unavailable" };
-}
-
-export async function classify(candidate) {
-  const model = await session();
-  if (!model) return { available: false, reason: "local_ai_unavailable" };
-  const { addedText, quoteText } = candidate || {};
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), PROMPT_TIMEOUT_MS);
-  try {
-    const raw = await model.prompt(`ADDED TEXT:\n---\n${addedText}\n---\nQUOTED TEXT:\n---\n${quoteText}\n---`, { responseConstraint: RESPONSE_CONSTRAINT, signal: controller.signal });
-    return { available: true, result: validateClassifierResult(raw) };
-  } catch (error) {
-    return { available: true, error: error?.message || String(error) };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (!["offscreen-classify", "offscreen-ai-status", "offscreen-prepare"].includes(message.type)) return;
+  (async () => {
+    if (message.type === "offscreen-ai-status") return sendResponse({ availability: await availability() });
+    const model = await session();
+    if (!model) return sendResponse({ available: false, reason: "local_ai_unavailable" });
+    if (message.type === "offscreen-prepare") return sendResponse({ available: true, availability: "available" });
+    const { addedText, quoteText } = message.candidate;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), PROMPT_TIMEOUT_MS);
+    try {
+      const raw = await model.prompt(`ADDED TEXT:\n---\n${addedText}\n---\nQUOTED TEXT:\n---\n${quoteText}\n---`, { responseConstraint: RESPONSE_CONSTRAINT, signal: controller.signal });
+      return sendResponse({ available: true, result: validateClassifierResult(raw) });
+    } finally {
+      clearTimeout(timeout);
+    }
+  })().catch((error) => sendResponse({ available: true, error: error.message }));
+  return true;
+});

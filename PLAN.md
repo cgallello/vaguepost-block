@@ -232,7 +232,7 @@ Use constrained output validation. Invalid JSON, an unexpected reason code, a mo
 - A review-mode approval can add a strike; a dismissal never does.
 - Model output is never treated as instruction. Quoted text is data, delimitated from the system instruction, and cannot alter the action policy.
 
-Current Chrome exposes the Prompt API in extension service workers, so the classifier session lives in the MV3 service worker and shares its lifecycle with the action coordinator. The technical spike must verify `LanguageModel.availability()` in that service-worker context before release. [Chrome Prompt API](https://developer.chrome.com/docs/ai/prompt-api).
+The Prompt API is not available in Web Workers, so the implementation must host model inference in a document-based extension context and use message passing with the service worker. Validate the exact supported host during the technical spike. [Prompt API limitations](https://developer.chrome.com/docs/ai/prompt-api).
 
 ## 6. Extension architecture
 
@@ -265,7 +265,7 @@ TypeScript, React, Vite, and Playwright remain reasonable post-MVP hardening opt
 ```json
 {
   "manifest_version": 3,
-  "permissions": ["storage"],
+  "permissions": ["storage", "offscreen"],
   "host_permissions": ["https://x.com/*"]
 }
 ```
@@ -330,7 +330,7 @@ All DOM queries must be scoped to the target article/modal. No global “first b
 manifest.json
 background.js                 # service worker and action coordinator
 content.js / content.css      # X adapter and Blur & Review overlay
-classifier.js                  # service-worker Prompt API host
+classifier.js / offscreen.html # local Prompt API host
 popup.{html,js} / options.{html,js}
 shared/                       # policy, strike, storage, and DOM adapter helpers
 assets/                       # icons and transparent mascot PNGs
@@ -383,7 +383,7 @@ If the safety invariant fails, automatic mode is removed from the release candid
 
 ### Phase 0 — feasibility spike
 
-1. Build a minimal MV3 extension that reports Prompt API availability from the service worker context used for inference.
+1. Build a minimal MV3 extension that reports Prompt API availability in an extension document.
 2. Test supported Chrome versions and hardware states: available, downloadable, downloading, unavailable.
 3. Verify local-only traffic using browser network inspection.
 4. Inspect current X desktop DOM with two controlled accounts and document all needed selector/follow-state evidence.
