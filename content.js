@@ -12,8 +12,10 @@
 
   function statusFromArticle(article, handle) {
     const labels = [...article.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
-    if (labels.some((label) => /following/i.test(label) && !/followers/i.test(label))) return 'following';
-    if (labels.some((label) => new RegExp(`^follow(?: @?${handle})?$`, 'i').test(label) || /^follow$/i.test(label))) return 'not_following';
+    const following = labels.filter((label) => /^following(?:\s|$)/i.test(label));
+    const follow = labels.filter((label) => new RegExp(`^follow(?: @?${handle})?$`, 'i').test(label) || /^follow$/i.test(label));
+    if (following.length === 1 && follow.length === 0) return 'following';
+    if (follow.length === 1 && following.length === 0) return 'not_following';
     return 'unknown';
   }
 
@@ -24,8 +26,10 @@
 
   function profileFollowState() {
     const labels = [...document.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
-    if (labels.some((label) => /^following(?:\s|$)/i.test(label))) return 'following';
-    if (labels.some((label) => /^follow(?:\s|$)/i.test(label))) return 'not_following';
+    const following = labels.filter((label) => /^following(?:\s|$)/i.test(label));
+    const follow = labels.filter((label) => /^follow(?:\s|$)/i.test(label));
+    if (following.length === 1 && follow.length === 0) return 'following';
+    if (follow.length === 1 && following.length === 0) return 'not_following';
     return 'unknown';
   }
 
