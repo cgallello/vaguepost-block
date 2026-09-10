@@ -68,6 +68,15 @@ test("popup keeps a separate local-AI diagnostic detail region", () => {
   assert.match(read("popup.js"), /prompt_api_not_exposed/);
 });
 
+test("popup footer keeps AI actions and status in a compact aligned block", () => {
+  const popup = read("popup.html");
+  const css = read("ui.css");
+  assert.match(popup, /class="ai-status-block"/);
+  assert.match(popup, /class="ai-actions"/);
+  assert.match(css, /\.ai-status-block/);
+  assert.match(css, /\.switch-row i \{[^}]*display:\s*block/);
+});
+
 test("block coordination scopes menu and result checks to explicit X controls", () => {
   const content = read("content.js");
   assert.match(content, /function findBlockMenuItem\(handle\)/);
@@ -92,6 +101,23 @@ test("block confirmation waits for X's delayed dialog and accepts aria-labelled 
   assert.match(content, /findBlockConfirmation\(candidate\.handle\), 8000/);
   assert.match(content, /\[role="dialog"\], \[role="alertdialog"\]/);
   assert.match(content, /el\.getAttribute\('aria-label'\)/);
+});
+
+test("revealed posts retain a path back to VagueBlock actions", () => {
+  const content = read("content.js");
+  const css = read("content.css");
+  assert.match(content, /vgb-revisit/);
+  assert.match(content, /VagueBlock actions/);
+  assert.match(content, /removeOverlay\(article, true, true\)/);
+  assert.match(content, /addOverlay\(article, review\.candidate/);
+  assert.match(css, /\.vgb-revisit/);
+});
+
+test("follow-state checks cache account results to avoid tab churn", () => {
+  const background = read("background.js");
+  assert.match(background, /FOLLOW_CACHE_TTL_MS/);
+  assert.match(background, /followStateCache/);
+  assert.match(background, /if \(!fresh\) \{/);
 });
 
 test("background serializes activity writes and waits before deletion", () => {

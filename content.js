@@ -4,6 +4,7 @@
   const pending = new Set();
   const lastModelRequestByAccount = new Map();
   const requestAccountOrder = new Set();
+  const retryTimersByAccount = new Map();
   const ACCOUNT_MIN_INTERVAL_MS = 1500;
   const REQUEST_ACCOUNT_LIMIT = 600;
   let settings = null;
@@ -162,9 +163,23 @@
     document.body.append(node); setTimeout(() => node.remove(), 4000);
   }
 
-  function removeOverlay(article, restoreFocus = false) {
+  function removeOverlay(article, restoreFocus = false, addRevisit = false) {
     article.classList.remove('vgb-blurred', 'vgb-overlay-host');
     article.querySelector('.vgb-overlay')?.remove();
+    article.querySelector('.vgb-revisit')?.remove();
+    if (restoreFocus && addRevisit && article.__vgbReview) {
+      article.classList.add('vgb-overlay-host');
+      const revisit = document.createElement('button');
+      revisit.type = 'button';
+      revisit.className = 'vgb-revisit';
+      revisit.textContent = 'VagueBlock actions';
+      revisit.addEventListener('click', () => {
+        revisit.remove();
+        const review = article.__vgbReview;
+        addOverlay(article, review.candidate, review.result, review.strikeInfo, settings.actionMode === 'blur');
+      });
+      article.append(revisit);
+    }
     if (restoreFocus) { article.setAttribute('tabindex', '-1'); article.focus({ preventScroll: true }); setTimeout(() => article.removeAttribute('tabindex'), 0); }
   }
 
@@ -174,6 +189,8 @@
 
   function addOverlay(article, candidate, result, strikeInfo, blurred = true) {
     if (article.querySelector('.vgb-overlay')) return;
+    article.querySelector('.vgb-revisit')?.remove();
+    article.__vgbReview = { candidate, result, strikeInfo };
     article.classList.add('vgb-overlay-host');
     if (blurred) article.classList.add('vgb-blurred');
     const overlay = document.createElement('div'); overlay.className = 'vgb-overlay'; overlay.setAttribute('role', 'region'); overlay.setAttribute('aria-live', 'polite'); overlay.setAttribute('aria-label', 'Vaguepost King review');
@@ -187,7 +204,7 @@
     const strike = document.createElement('div'); strike.className = 'vgb-overlay-strike'; strike.textContent = `Strike ${strikeInfo.record.strikes} · ${candidate.handle}`;
     const actions = document.createElement('div'); actions.className = 'vgb-overlay-actions';
     const button = (label, handler, danger = false) => { const el = document.createElement('button'); el.type = 'button'; el.textContent = label; if (danger) el.className = 'vgb-danger'; el.addEventListener('click', handler); return el; };
-    actions.append(button('Reveal post', () => removeOverlay(article, true)));
+    actions.append(button('Reveal post', () => removeOverlay(article, true, true)));
     actions.append(button('Not vague', async () => { removeOverlay(article, true); await send({ type: 'dismiss-strike', candidate }); await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'dismissed', reasonCode: result.reasonCode } }); }));
     actions.append(button(`Allow @${candidate.handle}`, async () => { const next = { ...settings, allowlist: [...new Set([...(settings.allowlist || []), candidate.handle.toLowerCase()])] }; settings = await send({ type: 'save-settings', settings: next }); removeOverlay(article, true); }));
     if (candidate.followingState === 'not_following') {
@@ -207,10 +224,14 @@
     const candidate = extract(article);
     if (!candidate || !VGBPolicy.localCandidateGate(candidate.addedText, candidate.quoteText) || seen.has(candidate.postId) || pending.has(candidate.postId)) return;
     if ((settings.allowlist || []).map(VGBPolicy.normalizeHandle).includes(VGBPolicy.normalizeHandle(candidate.handle))) return;
-    rememberPost(candidate.postId); pending.add(candidate.postId);
     const account = VGBPolicy.normalizeHandle(candidate.handle);
     const lastRequest = lastModelRequestByAccount.get(account) || 0;
-    if (Date.now() - lastRequest < ACCOUNT_MIN_INTERVAL_MS) { pending.delete(candidate.postId); return; }
+    const wait = ACCOUNT_MIN_INTERVAL_MS - (Date.now() - lastRequest);
+    if (wait > 0) {
+      scheduleAccountRetry(account, wait);
+      return;
+    }
+    rememberPost(candidate.postId); pending.add(candidate.postId);
     rememberAccountRequest(account);
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'candidate' } });
     try {
@@ -271,6 +292,15 @@
     }
   }
 
+  function scheduleAccountRetry(account, delay) {
+    if (retryTimersByAccount.has(account)) return;
+    const timer = setTimeout(() => {
+      retryTimersByAccount.delete(account);
+      scheduleScan();
+    }, Math.max(50, delay));
+    retryTimersByAccount.set(account, timer);
+  }
+
   async function reportSelectorHealth() {
     if (selectorHealthReported || !settings?.enabled) return;
     const articles = [...document.querySelectorAll(POST_SELECTOR)];
@@ -298,7 +328,7 @@
     }
     settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000);
     const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true });
-    chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); requestAccountOrder.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } });
+    chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); requestAccountOrder.clear(); retryTimersByAccount.forEach((timer) => clearTimeout(timer)); retryTimersByAccount.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } });
   }
   init();
 })();

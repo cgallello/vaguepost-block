@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "VagueBlock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minimum_chrome_version": "138",
   "description": "Let the Vaguepost King flag and blur vague quote-posts on X.",
   "permissions": ["storage", "offscreen"],

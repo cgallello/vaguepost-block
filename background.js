@@ -8,6 +8,7 @@ const CLASSIFIER_CACHE_LIMIT = 300;
 const MAX_CLASSIFIER_WAITERS = 8;
 const AI_STATUS_TIMEOUT_MS = 8_000;
 const AI_PREPARE_TIMEOUT_MS = 30_000;
+const FOLLOW_CACHE_TTL_MS = 5 * 60 * 1000;
 let classifierReady = false;
 let classifierQueue = Promise.resolve();
 let classifierWaiters = 0;
@@ -18,6 +19,7 @@ let eventQueue = Promise.resolve();
 let offscreenPromise;
 const followChecks = new Map();
 const followRequests = new Map();
+const followStateCache = new Map();
 
 function rememberClassification(key, createdAt, response) {
   classifierMemory.delete(key);
@@ -41,6 +43,7 @@ function resolveFollowCheck(tabId, state) {
     clearTimeout(check.timeout);
     followChecks.delete(requestId);
     chrome.tabs.remove(tabId).catch(() => {});
+    if (state === "following" || state === "not_following") followStateCache.set(check.normalized, { state, expiresAt: Date.now() + FOLLOW_CACHE_TTL_MS });
     check.resolve(state === "following" || state === "not_following" ? state : "unknown");
     return true;
   }
@@ -50,6 +53,11 @@ function resolveFollowCheck(tabId, state) {
 async function checkFollowState(handle, fresh = false) {
   const normalized = normalizeHandle(handle);
   if (!fresh && followRequests.has(normalized)) return followRequests.get(normalized);
+  if (!fresh) {
+    const cached = followStateCache.get(normalized);
+    if (cached && cached.expiresAt > Date.now()) return cached.state;
+    followStateCache.delete(normalized);
+  }
   const requestId = crypto.randomUUID();
   const promise = new Promise((resolve) => {
     const timeout = setTimeout(() => {
@@ -57,9 +65,10 @@ async function checkFollowState(handle, fresh = false) {
       if (!check) return;
       followChecks.delete(requestId);
       if (check.tabId != null) chrome.tabs.remove(check.tabId).catch(() => {});
+      followStateCache.set(normalized, { state: "unknown", expiresAt: Date.now() + 15_000 });
       resolve("unknown");
     }, 7000);
-    followChecks.set(requestId, { resolve, timeout, tabId: null });
+    followChecks.set(requestId, { resolve, timeout, tabId: null, normalized });
   });
   const request = (async () => {
   try {
@@ -264,6 +273,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "save-settings") {
       const settings = normalizeSettings(message.settings || DEFAULT_SETTINGS);
       await chrome.storage.local.set({ settings });
+      followStateCache.clear();
       try { await broadcastSettings(settings); } catch { /* The next X navigation will read storage. */ }
       return sendResponse(settings);
     }
