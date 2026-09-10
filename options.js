@@ -31,8 +31,21 @@ function renderLog() {
   for (const event of events) {
     const row = document.createElement("div"); row.className = "activity-row";
     const when = document.createElement("time"); when.dateTime = event.createdAt; when.textContent = new Date(event.createdAt).toLocaleString();
-    const detail = document.createElement("span"); detail.textContent = `${event.outcome.replaceAll("_", " ")} · @${event.handle || "unknown"}${event.reasonCode ? ` · ${event.reasonCode}` : ""}`;
+    const detail = document.createElement("span"); detail.textContent = `${event.outcome.replaceAll("_", " ")} · @${event.handle || "unknown"}${event.confidenceBand ? ` · ${event.confidenceBand} confidence` : ""}${event.reasonCode ? ` · ${event.reasonCode}` : ""}`;
     row.append(when, detail); target.append(row);
+  }
+}
+
+function renderLedger() {
+  const target = $("accountLedger"); target.innerHTML = "";
+  const accounts = Object.values(data.accounts || {}).sort((left, right) => String(left.latestHandle || "").localeCompare(String(right.latestHandle || "")));
+  if (!accounts.length) { target.textContent = "No account strikes yet."; return; }
+  for (const account of accounts) {
+    const row = document.createElement("div"); row.className = "activity-row";
+    const detail = document.createElement("span"); detail.textContent = `@${account.latestHandle || account.key} · ${account.strikes || 0} strike${account.strikes === 1 ? "" : "s"} · ${account.status || "active"}`;
+    const reset = document.createElement("button"); reset.className = "link-button"; reset.textContent = "reset";
+    reset.addEventListener("click", async () => { await send({ type: "reset-strikes", handle: account.latestHandle || account.key }); data = await send({ type: "get-log" }); renderLedger(); $("message").textContent = `Reset strikes for @${account.latestHandle || account.key}.`; });
+    row.append(detail, reset); target.append(row);
   }
 }
 
@@ -45,12 +58,12 @@ function renderThreshold() {
 async function init() {
   settings = await send({ type: "get-settings" }); data = await send({ type: "get-log" });
   $("sensitivity").value = settings.sensitivity; $("blurTrigger").value = settings.blurTrigger; $("mascotMotion").value = settings.mascotMotion;
-  renderThreshold(); renderAllowlist(); renderLog();
+  renderThreshold(); renderAllowlist(); renderLedger(); renderLog();
   ["sensitivity", "blurTrigger", "mascotMotion"].forEach((id) => $(id).addEventListener("change", async () => { settings[id] = $(id).value; await save(); $("message").textContent = "Saved locally."; }));
   $("threshold").addEventListener("change", async () => { renderThreshold(); await save(); $("message").textContent = "Saved locally."; });
   $("customThreshold").addEventListener("change", async () => { await save(); $("message").textContent = "Saved locally."; });
   $("addAllow").addEventListener("click", async () => { const handle = $("allowInput").value.trim().replace(/^@/, "").toLowerCase(); if (handle && !settings.allowlist.includes(handle)) settings.allowlist.push(handle); await save(); $("allowInput").value = ""; renderAllowlist(); });
   $("export").addEventListener("click", () => { const blob = new Blob([JSON.stringify({ settings, events: data.events || [], accounts: data.accounts || {} }, null, 2)], { type: "application/json" }); const url = URL.createObjectURL(blob); const anchor = document.createElement("a"); anchor.href = url; anchor.download = "vagueblock-local-records.json"; anchor.click(); URL.revokeObjectURL(url); });
-  $("clear").addEventListener("click", async () => { if (!confirm("Delete all VagueBlock records?")) return; await send({ type: "clear-data" }); data = { events: [], accounts: {} }; renderLog(); $("message").textContent = "Deleted."; });
+  $("clear").addEventListener("click", async () => { if (!confirm("Delete all VagueBlock records?")) return; await send({ type: "clear-data" }); data = { events: [], accounts: {} }; renderLedger(); renderLog(); $("message").textContent = "Deleted."; });
 }
 init();
