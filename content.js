@@ -143,7 +143,9 @@
       return { ok: false, reason: followed ? 'followed' : 'unverified' };
     }
     item.click();
-    const confirm = await waitFor(() => findBlockConfirmation(candidate.handle), 3000);
+    // X may animate the confirmation dialog after the menu item click. Keep
+    // polling long enough to cover slow-but-valid renders without guessing.
+    const confirm = await waitFor(() => findBlockConfirmation(candidate.handle), 8000);
     if (!confirm) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await auditFailure('block_confirmation_missing'); return { ok: false, reason: 'block_confirmation_missing' }; }
     confirm.click();
     const blocked = await waitFor(() => blockResultConfirmed(article, candidate.handle), 2200);

@@ -89,7 +89,7 @@ test("flagged review and blur cards obtain fresh follow proof before showing act
 
 test("block confirmation waits for X's delayed dialog and accepts aria-labelled controls", () => {
   const content = read("content.js");
-  assert.match(content, /findBlockConfirmation\(candidate\.handle\), 3000/);
+  assert.match(content, /findBlockConfirmation\(candidate\.handle\), 8000/);
   assert.match(content, /el\.getAttribute\('aria-label'\)/);
 });
 
