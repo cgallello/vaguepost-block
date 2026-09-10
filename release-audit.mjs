@@ -53,10 +53,19 @@ else {
 const screenshots = readdirSync(resolve(root, "store-assets")).filter((name) => /^screenshot-\d+\.png$/.test(name));
 check("real Store screenshots", screenshots.length >= 5, `${screenshots.length}/5 staged; capture from live Chrome/X, not fixtures`);
 for (const [name, detail] of [
-  ["Chrome local model", "Prepare Gemini Nano on a supported unlocked Chrome profile"],
   ["controlled X safety run", "Run the two-account followed/non-followed block test"],
   ["Web Store submission", "Use an authenticated developer account with 2-step verification"],
 ]) check(name, false, detail);
+
+const localAiEvidencePath = resolve(root, "docs/evidence/local-ai.json");
+if (!existsSync(localAiEvidencePath)) check("Chrome local model", false, "Prepare Gemini Nano on a supported unlocked Chrome profile");
+else {
+  try {
+    const evidence = JSON.parse(readFileSync(localAiEvidencePath, "utf8"));
+    const valid = evidence.promptApiAvailability === "available" && evidence.prepareResult === "available" && evidence.extensionStatus === "Local AI ready" && evidence.networkFallback === false && typeof evidence.chromeVersion === "string";
+    check("Chrome local model", valid, valid ? `Verified on Chrome ${evidence.chromeVersion}` : "Evidence is incomplete or does not prove local readiness");
+  } catch (error) { check("Chrome local model", false, `Invalid evidence: ${error.message}`); }
+}
 
 const pending = checks.filter((item) => item.status === "pending");
 console.log(JSON.stringify({ version: manifest.version, status: pending.length ? "pending" : "ready", checks, pending: pending.length }, null, 2));

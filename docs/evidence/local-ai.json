@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-09-09T00:00:00-07:00",
+  "chromeVersion": "152.0.7977.83",
+  "platform": "macOS desktop",
+  "promptApiAvailability": "available",
+  "prepareResult": "available",
+  "extensionStatus": "Local AI ready",
+  "networkFallback": false,
+  "notes": "Verified in the installed unpacked VagueBlock extension. Chrome Settings → AI in Chrome was enabled, the Prompt API flag was enabled, and the on-device model returned a structured classifier response from the extension offscreen document."
+}
