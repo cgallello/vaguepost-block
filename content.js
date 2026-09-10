@@ -91,7 +91,7 @@
   }
 
   function findBlockConfirmation(handle) {
-    const dialog = [...document.querySelectorAll('[role="dialog"]')]
+    const dialog = [...document.querySelectorAll('[role="dialog"], [role="alertdialog"]')]
       .find((node) => node.getAttribute('aria-hidden') !== 'true');
     if (!dialog) return null;
     const expected = new RegExp(`^block(?:\\s+@?${escapedHandle(handle)})?$`, 'i');
