@@ -1,5 +1,6 @@
 const $ = (id) => document.getElementById(id);
 const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => resolve(response || {})));
+const AI_AVAILABILITY_OPTIONS = { expectedInputs: [{ type: "text", languages: ["en"] }], expectedOutputs: [{ type: "text", languages: ["en"] }] };
 let settings;
 
 function updateModeHelp() {
@@ -17,9 +18,9 @@ async function init() {
     if (!globalThis.LanguageModel) { $("aiStatus").textContent = "Chrome local AI API unavailable"; return; }
     $("aiStatus").textContent = "Preparing local model…";
     try {
-      const availability = await LanguageModel.availability({ languages: ["en"] });
+      const availability = await LanguageModel.availability(AI_AVAILABILITY_OPTIONS);
       if (availability === "unavailable") throw new Error("unsupported");
-      const session = await LanguageModel.create({ temperature: 0.1, topK: 3 });
+      const session = await LanguageModel.create({ temperature: 0.1, topK: 3, monitor(monitor) { monitor.addEventListener("downloadprogress", (event) => { $("aiStatus").textContent = `Downloading local AI ${Math.round(event.loaded * 100)}%`; }); } });
       session?.destroy?.(); settings.aiReady = true; await save(); $("aiStatus").textContent = "Local AI ready";
     } catch { $("aiStatus").textContent = "Local AI unavailable on this device"; }
   });
