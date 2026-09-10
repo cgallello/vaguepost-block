@@ -27,4 +27,4 @@ Check that the extension is enabled, the page is on `x.com`, the post is a quote
 
 ## Report a problem
 
-Before reporting, note the Chrome version, operating system, VagueBlock version, action mode, and whether the issue occurred in Review-only, Blur & Review, or Automatic block mode. Do not send private messages, cookies, or account credentials. Add the maintained support contact before publishing the Store listing.
+Before reporting, note the Chrome version, operating system, VagueBlock version, action mode, and whether the issue occurred in Review-only, Blur & Review, or Automatic block mode. Do not send private messages, cookies, or account credentials. The published support page links to the maintained GitHub issue contact.

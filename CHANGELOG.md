@@ -7,4 +7,4 @@
 - Added per-account strike thresholds, allowlist, local activity log, export/deletion controls, reduced-motion support, and separate followed/uncertain safety counters.
 - Added exact X menu/dialog matching, final follow-state verification, and safe audit events.
 - Added original transparent Vaguepost King assets, toolbar icons, Store promo artwork, public support/privacy pages, CI packaging, evaluation gates, and headless Chrome fixture coverage.
-- Known release gates remain documented in [docs/release-readiness.md](docs/release-readiness.md): supported-device model availability, controlled X accounts, real Store screenshots, maintained support contact, full labeled evaluation data, and Web Store submission.
+- Known release gates remain documented in [docs/release-readiness.md](docs/release-readiness.md): controlled X accounts, full labeled evaluation data, and Web Store submission. Supported-device model availability, real Store screenshots, and the hosted support contact are verified.
