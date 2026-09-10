@@ -26,6 +26,8 @@ Working MVP. The extension is loadable as an unpacked MV3 package, with local Ge
 ```sh
 npm test
 npm run check
+npm run test:fixture
+npm run eval:example
 npm run package
 ```
 

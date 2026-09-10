@@ -20,6 +20,22 @@ function validateDataset(rows) {
   return rows;
 }
 
+function validatePredictions(rows, dataset) {
+  if (!Array.isArray(rows) || !rows.length) throw new Error("Predictions must be a non-empty array");
+  const datasetIds = new Set(dataset.map((row) => row.id));
+  const ids = new Set();
+  for (const row of rows) {
+    if (!row || typeof row.id !== "string" || ids.has(row.id)) throw new Error("Prediction IDs must be unique strings");
+    if (!datasetIds.has(row.id)) throw new Error(`Prediction has unknown dataset ID: ${row.id}`);
+    if (typeof row.isVague !== "boolean") throw new Error(`Prediction isVague must be boolean: ${row.id}`);
+    const confidence = Number(row.confidence);
+    if (!Number.isFinite(confidence) || confidence < 0 || confidence > 1) throw new Error(`Prediction confidence must be between 0 and 1: ${row.id}`);
+    ids.add(row.id);
+  }
+  if (ids.size !== datasetIds.size) throw new Error("Predictions must contain exactly one row for every dataset ID");
+  return rows;
+}
+
 function score(dataset, predictions, threshold = 0.9) {
   const byId = new Map(predictions.map((prediction) => [prediction.id, prediction]));
   const counts = Object.fromEntries(Object.keys(minimumCounts).map((label) => [label, dataset.filter((row) => row.label === label).length]));
@@ -39,8 +55,7 @@ function score(dataset, predictions, threshold = 0.9) {
 }
 
 const dataset = validateDataset(readJson(datasetPath));
-const predictions = readJson(predictionsPath);
-if (!Array.isArray(predictions)) throw new Error("Predictions must be an array");
+const predictions = validatePredictions(readJson(predictionsPath), dataset);
 const result = score(dataset, predictions, Number(process.env.VAGUEBLOCK_EVAL_THRESHOLD || 0.9));
 console.log(JSON.stringify(result, null, 2));
 if (process.argv.includes("--strict") && !result.eligible) process.exitCode = 1;
