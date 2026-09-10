@@ -34,4 +34,4 @@ Productivity
 
 - Support: publish `site/support.html` at a maintained HTTPS URL before submission.
 - Privacy policy: publish `site/privacy.html` at a maintained HTTPS URL before submission.
-- Developer contact: add the maintained support email before Store submission.
+- Developer contact: keep the linked issue tracker monitored before Store submission.
