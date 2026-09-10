@@ -43,3 +43,7 @@ test("runtime source contains no remote model or telemetry transport", () => {
     assert.deepEqual(externalUrls, [], file);
   }
 });
+
+test("lint policy is part of the repository", () => {
+  assert.equal(existsSync(new URL("lint.mjs", root)), true);
+});
