@@ -17,7 +17,7 @@ Release history is in [CHANGELOG.md](CHANGELOG.md).
 - The mascot is a packaged transparent PNG, not a remotely loaded image or tracking pixel.
 - Chrome Web Store promotional artwork is staged under `store-assets/`; it is intentionally kept out of the runtime extension package.
 
-If Chrome reports local AI as unavailable, first turn on Chrome's **On-device AI** setting in **Settings → System**, then enable the current **Prompt API** flag at `chrome://flags/#prompt-api` and relaunch Chrome. On older Chrome builds that still expose them, also enable the on-device model and Gemini Nano flags at `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`. Check `chrome://on-device-internals` for model status. VagueBlock never falls back to a cloud classifier.
+If Chrome reports local AI as unavailable, first turn on Chrome's **On-device AI** setting in **Settings → System**, then enable the current **Prompt API** flag at `chrome://flags/#prompt-api` and relaunch Chrome. On older Chrome builds that still expose them, also enable the on-device model and Gemini Nano flags at `chrome://flags/#optimization-guide-on-device-model` and `chrome://flags/#prompt-api-for-gemini-nano`. Check `chrome://on-device-internals` for model status. If VagueBlock says **Prompt API not exposed**, Chrome is not exposing the API to the extension document; relaunch Chrome after changing the setting. VagueBlock never falls back to a cloud classifier.
 
 ## Status
 
