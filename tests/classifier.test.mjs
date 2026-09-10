@@ -32,6 +32,7 @@ test("classifier host uses the same English text contract for availability and s
   assert.equal(createOptions.topK, 3);
   assert.equal(promptOptions.responseConstraint.type, "object");
   assert.deepEqual(promptOptions.responseConstraint.required, ["isVague", "confidence", "reasonCode", "explanation", "concreteSubjectPresent"]);
+  assert.equal(promptOptions.signal instanceof AbortSignal, true);
 });
 
 test("classifier host fails closed when the model is unavailable", async () => {
