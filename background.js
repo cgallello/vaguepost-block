@@ -1,4 +1,4 @@
-import { DEFAULT_SETTINGS, accountKey, normalizeHandle, normalizeSettings } from "./shared/policy.mjs";
+import { DEFAULT_SETTINGS, accountKey, confidenceGate, normalizeHandle, normalizeSettings } from "./shared/policy.mjs";
 import { dismissStrike, nextStrike } from "./shared/strike.mjs";
 
 const OFFSCREEN_URL = "offscreen.html";
@@ -134,15 +134,24 @@ async function addEvent(event) {
   const { events = [] } = await chrome.storage.local.get("events");
   const next = [...events, { id: crypto.randomUUID(), createdAt: new Date().toISOString(), ...safeEvent }].slice(-500);
   await chrome.storage.local.set({ events: next });
+  if (outcome === "blocked" && safeEvent.handle) {
+    const { accounts = {} } = await chrome.storage.local.get("accounts");
+    const key = accountKey({ handle: safeEvent.handle });
+    accounts[key] = { ...(accounts[key] || { key, strikes: 0, processedPostIds: [], dismissedPostIds: [] }), latestHandle: safeEvent.handle, status: "blocked", updatedAt: new Date().toISOString() };
+    await chrome.storage.local.set({ accounts });
+  }
   return next.at(-1);
 }
 
 async function recordStrikeInternal({ candidate, result }) {
   if (!candidate || candidate.followingState !== "not_following") return { record: null, duplicate: false, skipped: true, thresholdReached: false };
   const settings = await getSettings();
+  if ((settings.allowlist || []).includes(normalizeHandle(candidate.handle))) return { record: null, duplicate: false, skipped: true, thresholdReached: false, reason: "allowlisted" };
+  if (!confidenceGate(result, settings.sensitivity)) return { record: null, duplicate: false, skipped: true, thresholdReached: false, reason: "invalid_classifier_result" };
   const key = accountKey(candidate);
   const { accounts = {} } = await chrome.storage.local.get("accounts");
   const record = accounts[key] || { key, latestHandle: candidate.handle, strikes: 0, processedPostIds: [], dismissedPostIds: [], status: "active", updatedAt: new Date().toISOString() };
+  if (record.status === "blocked" || record.status === "allowlisted") return { record, duplicate: true, skipped: true, thresholdReached: false, reason: record.status };
   const next = nextStrike(record, candidate.postId, settings.threshold);
   if (next.dismissed) return { record, duplicate: true, dismissed: true, thresholdReached: next.thresholdReached };
   if (next.duplicate) return { record, duplicate: true, thresholdReached: next.thresholdReached };
@@ -162,7 +171,7 @@ function recordStrike(message) {
 }
 
 async function dismissStrikeInternal({ candidate }) {
-  if (!candidate?.postId || candidate.followingState !== "not_following") return { dismissed: false };
+  if (!candidate?.postId) return { dismissed: false };
   const key = accountKey(candidate);
   const { accounts = {} } = await chrome.storage.local.get("accounts");
   const record = accounts[key];

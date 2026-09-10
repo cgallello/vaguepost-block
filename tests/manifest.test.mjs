@@ -31,3 +31,12 @@ test("web accessible resources are limited to bundled mascot assets", () => {
   assert.deepEqual(manifest.web_accessible_resources[0].resources, ["assets/*"]);
   assert.deepEqual(manifest.web_accessible_resources[0].matches, ["https://x.com/*"]);
 });
+
+test("runtime source contains no remote model or telemetry transport", () => {
+  for (const file of ["background.js", "classifier.js", "content.js", "popup.js", "options.js"]) {
+    const source = readFileSync(new URL(file, root), "utf8");
+    assert.doesNotMatch(source, /\b(?:fetch|XMLHttpRequest|WebSocket)\s*\(/, file);
+    const externalUrls = [...source.matchAll(/https?:\/\/[^'"`\s)]+/g)].map(([url]) => url).filter((url) => !url.startsWith("https://x.com/"));
+    assert.deepEqual(externalUrls, [], file);
+  }
+});

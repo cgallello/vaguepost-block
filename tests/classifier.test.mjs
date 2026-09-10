@@ -4,13 +4,14 @@ import assert from "node:assert/strict";
 let listener;
 let availabilityOptions;
 let createOptions;
+let promptOptions;
 
 globalThis.chrome = { runtime: { onMessage: { addListener(callback) { listener = callback; } } } };
 globalThis.LanguageModel = {
   availability: async (options) => { availabilityOptions = options; return "available"; },
   create: async (options) => {
     createOptions = options;
-    return { prompt: async () => JSON.stringify({ isVague: true, confidence: 0.94, reasonCode: "UNSPECIFIED_REFERENT", explanation: "The reaction does not name the subject.", concreteSubjectPresent: false }) };
+    return { prompt: async (_text, options) => { promptOptions = options; return JSON.stringify({ isVague: true, confidence: 0.94, reasonCode: "UNSPECIFIED_REFERENT", explanation: "The reaction does not name the subject.", concreteSubjectPresent: false }); } };
   },
 };
 
@@ -29,6 +30,8 @@ test("classifier host uses the same English text contract for availability and s
   assert.deepEqual(createOptions.expectedOutputs, availabilityOptions.expectedOutputs);
   assert.equal(createOptions.temperature, 0.1);
   assert.equal(createOptions.topK, 3);
+  assert.equal(promptOptions.responseConstraint.type, "object");
+  assert.deepEqual(promptOptions.responseConstraint.required, ["isVague", "confidence", "reasonCode", "explanation", "concreteSubjectPresent"]);
 });
 
 test("classifier host fails closed when the model is unavailable", async () => {
