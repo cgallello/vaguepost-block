@@ -33,7 +33,8 @@
     resolve(response || {});
   }));
 
-  function getArticleFor(node) { return node?.closest?.('article[data-testid="tweet"]') || node?.closest?.('article'); }
+  const POST_SELECTOR = 'article[data-testid="tweet"], article, [role="article"]';
+  function getArticleFor(node) { return node?.closest?.(POST_SELECTOR); }
 
   function statusFromArticle(article, handle) { const labels = [...article.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim()); return VGBDom.followStateFromLabels(labels, handle); }
 
@@ -43,13 +44,27 @@
     return parts.length === 1 && !['home', 'explore', 'notifications', 'messages', 'i', 'settings', 'compose'].includes(parts[0]);
   }
 
-  function profileFollowState() {
-    const labels = [...document.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
-    return VGBDom.followStateFromLabels(labels);
+  function profileFollowState(handle) {
+    const safeHandle = String(handle || '').replace(/[^a-z0-9_]/gi, '');
+    if (!safeHandle) return 'unknown';
+    const followPattern = new RegExp(`^follow(?: @?${safeHandle})?$`, 'i');
+    const labels = [...document.querySelectorAll('button,[role="button"]')]
+      .filter((el) => {
+        const label = (el.getAttribute('aria-label') || el.textContent || '').trim();
+        return /^following(?:\s|$)/i.test(label) || followPattern.test(label);
+      })
+      .map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
+    return VGBDom.followStateFromLabels(labels, safeHandle);
   }
 
   function reportProfileFollowState() {
-    chrome.runtime.sendMessage({ type: 'profile-state', state: profileFollowState() });
+    const handle = location.pathname.split('/').filter(Boolean)[0] || '';
+    const state = profileFollowState(handle);
+    // X renders the profile action asynchronously. Do not resolve a follow
+    // check with an early unknown state; the background worker will close the
+    // tab as soon as it receives a response. Wait for a definitive label or
+    // let the worker's timeout fail closed.
+    if (state !== 'unknown') chrome.runtime.sendMessage({ type: 'profile-state', state });
   }
 
   function extract(article) { return VGBDom.extractQuoteCandidate(article); }
@@ -221,7 +236,7 @@
 
   async function reportSelectorHealth() {
     if (selectorHealthReported || !settings?.enabled) return;
-    const articles = [...document.querySelectorAll('article')];
+    const articles = [...document.querySelectorAll(POST_SELECTOR)];
     if (articles.length < 3) return;
     const hasTweetText = articles.some((article) => article.querySelector('[data-testid="tweetText"]'));
     const hasStatusLink = articles.some((article) => article.querySelector('a[href*="/status/"]'));
@@ -229,7 +244,7 @@
     selectorHealthReported = true;
     await send({ type: 'record-event', event: { outcome: 'error', reasonCode: `selector_health_missing_${hasTweetText ? 'status_links' : 'tweet_text'}` } });
   }
-  async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); void reportSelectorHealth(); }
+  async function scan() { if (!settings?.enabled) return; document.querySelectorAll(POST_SELECTOR).forEach(processArticle); void reportSelectorHealth(); }
   function scheduleScan() { if (scanScheduled) return; scanScheduled = true; const run = () => { scanScheduled = false; void scan(); }; if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 500 }); else requestAnimationFrame(run); }
   async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000); const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); requestAccountOrder.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } }); }
   init();
