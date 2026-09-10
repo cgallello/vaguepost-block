@@ -19,6 +19,7 @@ function article({ labels = ["Follow"], added = "Can I say something?", quote = 
 test("follow-state adapter is fail-closed when evidence is ambiguous", () => {
   assert.equal(followStateFromLabels(["Following"], "author"), "following");
   assert.equal(followStateFromLabels(["Follow @author"], "author"), "not_following");
+  assert.equal(followStateFromLabels(["Follow back @author"], "author"), "not_following");
   assert.equal(followStateFromLabels(["Follow", "Following"], "author"), "unknown");
   assert.equal(followStateFromLabels([], "author"), "unknown");
 });

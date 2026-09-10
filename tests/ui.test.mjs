@@ -80,6 +80,13 @@ test("profile follow-state parsing recognizes X's Follow back label as not-follo
   assert.ok(read("content.js").includes("(?:\\\\s+back)?"));
 });
 
+test("flagged review and blur cards obtain fresh follow proof before showing actions", () => {
+  const content = read("content.js");
+  assert.match(content, /const needsFollowProof = settings\.actionMode === 'automatic'/);
+  assert.match(content, /settings\.actionMode === 'review'/);
+  assert.match(content, /settings\.blurTrigger === 'every_high_confidence_flag'/);
+});
+
 test("background serializes activity writes and waits before deletion", () => {
   const background = read("background.js");
   assert.match(background, /let eventQueue = Promise\.resolve\(\)/);

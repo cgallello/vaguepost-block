@@ -3,7 +3,7 @@
     const values = (labels || []).map((label) => String(label || "").trim()).filter(Boolean);
     const following = values.filter((label) => /^following(?:\s|$)/i.test(label));
     const safeHandle = String(handle).replace(/[^a-z0-9_]/gi, "");
-    const followPattern = handle ? new RegExp(`^follow(?: @?${safeHandle})?$`, "i") : /^follow(?:\s|$)/i;
+    const followPattern = handle ? new RegExp(`^follow(?:\\s+back)?(?: @?${safeHandle})?$`, "i") : /^follow(?:\s|$)/i;
     const follow = values.filter((label) => followPattern.test(label) || /^follow$/i.test(label));
     if (following.length === 1 && follow.length === 0) return "following";
     if (follow.length === 1 && following.length === 0) return "not_following";

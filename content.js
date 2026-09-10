@@ -225,7 +225,10 @@
         return;
       }
       await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'flagged', reasonCode: response.result.reasonCode, confidenceBand: response.result.confidence >= .9 ? 'high' : response.result.confidence >= .82 ? 'medium' : 'low' } });
-      if (candidate.followingState === 'unknown' && settings.actionMode === 'automatic') {
+      const needsFollowProof = settings.actionMode === 'automatic'
+        || settings.actionMode === 'review'
+        || (settings.actionMode === 'blur' && settings.blurTrigger === 'every_high_confidence_flag');
+      if (candidate.followingState === 'unknown' && needsFollowProof) {
         const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
         candidate.followingState = profileState.state || 'unknown';
       }

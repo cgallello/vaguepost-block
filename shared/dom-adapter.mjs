@@ -1,7 +1,7 @@
 export function followStateFromLabels(labels, handle = "") {
   const values = (labels || []).map((label) => String(label || "").trim()).filter(Boolean);
   const following = values.filter((label) => /^following(?:\s|$)/i.test(label));
-  const followPattern = handle ? new RegExp(`^follow(?: @?${String(handle).replace(/[^a-z0-9_]/gi, "")})?$`, "i") : /^follow(?:\s|$)/i;
+  const followPattern = handle ? new RegExp(`^follow(?:\\s+back)?(?: @?${String(handle).replace(/[^a-z0-9_]/gi, "")})?$`, "i") : /^follow(?:\s|$)/i;
   const follow = values.filter((label) => followPattern.test(label) || /^follow$/i.test(label));
   if (following.length === 1 && follow.length === 0) return "following";
   if (follow.length === 1 && following.length === 0) return "not_following";
