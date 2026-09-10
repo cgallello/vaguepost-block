@@ -30,6 +30,24 @@ function renderSavedProgress() {
   $("copy").disabled = predictions.length === 0;
 }
 
+function makePrompt(rows) {
+  return rows.map((row, offset) => `ROW ${offset + 1}\nADDED TEXT:\n---\n${row.added}\n---\nQUOTED TEXT:\n---\n${row.quote}\n---`).join("\n\n");
+}
+
+async function promptRows(rows) {
+  const raw = await evalSession.prompt(makePrompt(rows), { responseConstraint: BATCH_CONSTRAINT });
+  const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
+  const responses = parsed?.results;
+  if (Array.isArray(responses) && responses.length === rows.length) return responses;
+  if (rows.length > 1) {
+    const midpoint = Math.ceil(rows.length / 2);
+    const left = await promptRows(rows.slice(0, midpoint));
+    const right = await promptRows(rows.slice(midpoint));
+    return left.concat(right);
+  }
+  throw new Error(`Model returned ${responses?.length || 0} results for ${rows.length} row`);
+}
+
 async function loadDataset() {
   const response = await fetch(chrome.runtime.getURL("eval/dataset.json"));
   if (!response.ok) throw new Error(`Dataset request failed (${response.status})`);
@@ -74,11 +92,7 @@ $("run").addEventListener("click", async () => {
     if (!evalSession) evalSession = await LanguageModel.create({ initialPrompts: [{ role: "system", content: SYSTEM_PROMPT }], expectedInputs: [{ type: "text", languages: ["en"] }], expectedOutputs: [{ type: "text", languages: ["en"] }], temperature: 0.1, topK: 3 });
     for (let start = predictions.length; start < dataset.length; start += batchSize) {
       const batch = dataset.slice(start, start + batchSize);
-      const prompt = batch.map((row, offset) => `ROW ${offset + 1}\nADDED TEXT:\n---\n${row.added}\n---\nQUOTED TEXT:\n---\n${row.quote}\n---`).join("\n\n");
-      const raw = await evalSession.prompt(prompt, { responseConstraint: BATCH_CONSTRAINT });
-      const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
-      const responses = parsed?.results;
-      if (!Array.isArray(responses) || responses.length !== batch.length) throw new Error(`Model returned ${responses?.length || 0} results for ${batch.length} rows`);
+      const responses = await promptRows(batch);
       responses.forEach((result, offset) => {
         const row = batch[offset];
         predictions.push({ id: row.id, isVague: result.isVague === true, confidence: Number(result.confidence) || 0, reasonCode: result.reasonCode || "UNPARSEABLE", explanation: result.explanation || "", concreteSubjectPresent: result.concreteSubjectPresent === true });
