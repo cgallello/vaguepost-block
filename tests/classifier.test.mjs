@@ -28,6 +28,9 @@ test("classifier host uses the same English text contract for availability and s
   assert.deepEqual(availabilityOptions, { expectedInputs: [{ type: "text", languages: ["en"] }], expectedOutputs: [{ type: "text", languages: ["en"] }] });
   assert.deepEqual(createOptions.expectedInputs, availabilityOptions.expectedInputs);
   assert.deepEqual(createOptions.expectedOutputs, availabilityOptions.expectedOutputs);
+  assert.match(createOptions.initialPrompts[0].content, /Can i say something,,/);
+  assert.match(createOptions.initialPrompts[0].content, /concreteSubjectPresent MUST be false/);
+  assert.match(createOptions.initialPrompts[0].content, /Can I say something about the budget vote/);
   assert.equal(createOptions.temperature, 0.1);
   assert.equal(createOptions.topK, 3);
   assert.equal(promptOptions.responseConstraint.type, "object");
