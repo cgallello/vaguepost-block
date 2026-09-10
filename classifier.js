@@ -7,10 +7,16 @@ const PROMPT_TIMEOUT_MS = 20_000;
 
 let sessionPromise;
 
-async function availability() {
-  if (!globalThis.LanguageModel) return "unavailable";
-  try { return await LanguageModel.availability(AVAILABILITY_OPTIONS); } catch { return "unavailable"; }
+async function availabilityDetails() {
+  if (!globalThis.LanguageModel) return { availability: "unavailable", reason: "prompt_api_not_exposed" };
+  try {
+    return { availability: await LanguageModel.availability(AVAILABILITY_OPTIONS) };
+  } catch (error) {
+    return { availability: "unavailable", reason: "availability_error", error: String(error?.message || error).slice(0, 180) };
+  }
 }
+
+async function availability() { return (await availabilityDetails()).availability; }
 
 async function session() {
   if (!globalThis.LanguageModel) return null;
@@ -36,7 +42,7 @@ async function session() {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!["offscreen-classify", "offscreen-ai-status", "offscreen-prepare"].includes(message.type)) return;
   (async () => {
-    if (message.type === "offscreen-ai-status") return sendResponse({ availability: await availability() });
+    if (message.type === "offscreen-ai-status") return sendResponse(await availabilityDetails());
     const model = await session();
     if (!model) return sendResponse({ available: false, reason: "local_ai_unavailable" });
     if (message.type === "offscreen-prepare") return sendResponse({ available: true, availability: "available" });

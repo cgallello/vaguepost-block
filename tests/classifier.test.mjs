@@ -38,6 +38,7 @@ test("classifier host uses the same English text contract for availability and s
 test("classifier host exposes readiness from the same offscreen context used for inference", async () => {
   const status = await invoke({ type: "offscreen-ai-status" });
   assert.equal(status.availability, "available");
+  assert.equal("reason" in status, false);
   const prepared = await invoke({ type: "offscreen-prepare" });
   assert.deepEqual(prepared, { available: true, availability: "available" });
 });
@@ -52,4 +53,15 @@ test("classifier host fails closed when the model is unavailable", async () => {
   const response = await new Promise((resolve) => unavailableListener({ type: "offscreen-classify", candidate: { addedText: "Maybe.", quoteText: "Context." } }, {}, resolve));
   assert.deepEqual(response, { available: false, reason: "local_ai_unavailable" });
   LanguageModel.availability = original;
+});
+
+test("classifier diagnostics explain when Chrome does not expose the Prompt API", async () => {
+  const original = globalThis.LanguageModel;
+  globalThis.LanguageModel = undefined;
+  let diagnosticsListener;
+  globalThis.chrome = { runtime: { onMessage: { addListener(callback) { diagnosticsListener = callback; } } } };
+  await import("../classifier.js?test=diagnostics");
+  const response = await new Promise((resolve) => diagnosticsListener({ type: "offscreen-ai-status" }, {}, resolve));
+  assert.deepEqual(response, { availability: "unavailable", reason: "prompt_api_not_exposed" });
+  globalThis.LanguageModel = original;
 });
