@@ -66,6 +66,21 @@ async function checkFollowState(handle, fresh = false) {
     const check = followChecks.get(requestId);
     if (check) check.tabId = tab.id;
     else if (tab.id != null) chrome.tabs.remove(tab.id).catch(() => {});
+    if (tab.id != null) {
+      const poll = async () => {
+        const current = followChecks.get(requestId);
+        if (!current) return;
+        try {
+          const response = await chrome.tabs.sendMessage(tab.id, { type: "profile-state-check" });
+          if (response?.state === "following" || response?.state === "not_following") {
+            resolveFollowCheck(tab.id, response.state);
+            return;
+          }
+        } catch { /* The profile document may still be loading. */ }
+        if (followChecks.has(requestId)) setTimeout(poll, 500);
+      };
+      setTimeout(poll, 1200);
+    }
   } catch {
     const check = followChecks.get(requestId);
     if (check) { clearTimeout(check.timeout); followChecks.delete(requestId); check.resolve("unknown"); }
@@ -177,8 +192,9 @@ function addEvent(event) {
 }
 
 async function recordStrikeInternal({ candidate, result }) {
-  if (!candidate || candidate.followingState !== "not_following") return { record: null, duplicate: false, skipped: true, thresholdReached: false };
   const settings = await getSettings();
+  const reviewMayProceedWithoutFollowProof = candidate?.followingState === "unknown" && settings.actionMode !== "automatic";
+  if (!candidate || (candidate.followingState !== "not_following" && !reviewMayProceedWithoutFollowProof)) return { record: null, duplicate: false, skipped: true, thresholdReached: false };
   if ((settings.allowlist || []).includes(normalizeHandle(candidate.handle))) return { record: null, duplicate: false, skipped: true, thresholdReached: false, reason: "allowlisted" };
   if (!confidenceGate(result, settings.sensitivity)) return { record: null, duplicate: false, skipped: true, thresholdReached: false, reason: "invalid_classifier_result" };
   const key = accountKey(candidate);

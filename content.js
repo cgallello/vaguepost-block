@@ -213,12 +213,21 @@
       const response = await send({ type: 'classify-candidate', candidate });
       if (!response?.result || !VGBPolicy.confidenceGate(response.result, settings.sensitivity)) return;
       await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'flagged', reasonCode: response.result.reasonCode, confidenceBand: response.result.confidence >= .9 ? 'high' : response.result.confidence >= .82 ? 'medium' : 'low' } });
-      if (candidate.followingState === 'unknown') {
+      if (candidate.followingState === 'unknown' && settings.actionMode === 'automatic') {
         const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
         candidate.followingState = profileState.state || 'unknown';
       }
-      if (!VGBPolicy.followStateAllowsAction(candidate.followingState)) {
-        await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: VGBPolicy.followSkipOutcome(candidate.followingState) } });
+      if (candidate.followingState === 'following') {
+        // A definitive follow match is a hard safety stop: do not count,
+        // cover, or action posts from accounts the user follows.
+        await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'skipped_followed' } });
+        return;
+      }
+      if (candidate.followingState === 'unknown' && settings.actionMode === 'automatic') {
+        // Automatic blocking must fail closed when X has not exposed a
+        // definitive follow label. Review modes may still cover the post,
+        // but the overlay will omit all blocking controls.
+        await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'skipped_unverified_follow_state' } });
         return;
       }
       const strikeInfo = await send({ type: 'record-strike', candidate, result: response.result });
@@ -246,6 +255,22 @@
   }
   async function scan() { if (!settings?.enabled) return; document.querySelectorAll(POST_SELECTOR).forEach(processArticle); void reportSelectorHealth(); }
   function scheduleScan() { if (scanScheduled) return; scanScheduled = true; const run = () => { scanScheduled = false; void scan(); }; if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 500 }); else requestAnimationFrame(run); }
-  async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000); const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); requestAccountOrder.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } }); }
+  async function init() {
+    if (isProfilePage()) {
+      const handle = location.pathname.split('/').filter(Boolean)[0] || '';
+      chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (message.type !== 'profile-state-check') return;
+        sendResponse({ state: profileFollowState(handle) });
+      });
+      const observer = new MutationObserver(reportProfileFollowState);
+      observer.observe(document.body, { childList: true, subtree: true });
+      reportProfileFollowState();
+      setTimeout(reportProfileFollowState, 900);
+      return;
+    }
+    settings = await send({ type: 'get-settings' }); await scan(); setTimeout(reportSelectorHealth, 2000);
+    const observer = new MutationObserver(scheduleScan); observer.observe(document.body, { childList: true, subtree: true });
+    chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); seenOrder.length = 0; pending.clear(); lastModelRequestByAccount.clear(); requestAccountOrder.clear(); selectorHealthReported = false; if (!settings.enabled) clearAllOverlays(); else scheduleScan(); } });
+  }
   init();
 })();
