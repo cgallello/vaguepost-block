@@ -40,6 +40,14 @@ async function promptRows(rows) {
   let raw;
   try {
     raw = await evalSession.prompt(makePrompt(rows), { responseConstraint: BATCH_CONSTRAINT, signal: controller.signal });
+  } catch (error) {
+    if (rows.length > 1) {
+      const midpoint = Math.ceil(rows.length / 2);
+      const left = await promptRows(rows.slice(0, midpoint));
+      const right = await promptRows(rows.slice(midpoint));
+      return left.concat(right);
+    }
+    throw error;
   } finally {
     clearTimeout(timeout);
   }
