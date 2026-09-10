@@ -35,7 +35,14 @@ function makePrompt(rows) {
 }
 
 async function promptRows(rows) {
-  const raw = await evalSession.prompt(makePrompt(rows), { responseConstraint: BATCH_CONSTRAINT });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20_000);
+  let raw;
+  try {
+    raw = await evalSession.prompt(makePrompt(rows), { responseConstraint: BATCH_CONSTRAINT, signal: controller.signal });
+  } finally {
+    clearTimeout(timeout);
+  }
   const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
   const responses = parsed?.results;
   if (Array.isArray(responses) && responses.length === rows.length) return responses;
