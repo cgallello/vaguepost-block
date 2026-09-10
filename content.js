@@ -42,8 +42,8 @@
     const handle = authorLink?.getAttribute('href')?.split('/').filter(Boolean)[0];
     if (!handle) return null;
     const textNodes = [...article.querySelectorAll('[data-testid="tweetText"]')].map((node) => node.innerText?.trim()).filter(Boolean);
-    const addedText = textNodes[0] || '';
-    const quoteText = textNodes[1] || '';
+    const addedText = (textNodes[0] || '').slice(0, 420);
+    const quoteText = (textNodes[1] || '').slice(0, 1600);
     const followingState = statusFromArticle(article, handle);
     return { postId: ids[0], quotedPostId: ids[1], handle, addedText, quoteText, followingState };
   }
@@ -100,9 +100,10 @@
     const node = document.createElement('div'); node.className = 'vgb-toast'; node.textContent = message; node.setAttribute('role', 'status'); document.body.append(node); setTimeout(() => node.remove(), 4000);
   }
 
-  function removeOverlay(article) {
+  function removeOverlay(article, restoreFocus = false) {
     article.classList.remove('vgb-blurred', 'vgb-overlay-host');
     article.querySelector('.vgb-overlay')?.remove();
+    if (restoreFocus) { article.setAttribute('tabindex', '-1'); article.focus({ preventScroll: true }); setTimeout(() => article.removeAttribute('tabindex'), 0); }
   }
 
   function clearAllOverlays() {
@@ -113,7 +114,7 @@
     if (article.querySelector('.vgb-overlay')) return;
     article.classList.add('vgb-overlay-host');
     if (blurred) article.classList.add('vgb-blurred');
-    const overlay = document.createElement('div'); overlay.className = 'vgb-overlay'; overlay.setAttribute('role', 'region'); overlay.setAttribute('aria-label', 'Vaguepost King review');
+    const overlay = document.createElement('div'); overlay.className = 'vgb-overlay'; overlay.setAttribute('role', 'region'); overlay.setAttribute('aria-live', 'polite'); overlay.setAttribute('aria-label', 'Vaguepost King review');
     if (!blurred) overlay.classList.add('vgb-review-overlay');
     const card = document.createElement('div'); card.className = 'vgb-overlay-card';
     const image = document.createElement('img'); image.src = chrome.runtime.getURL('assets/king-point.png'); image.alt = '';
@@ -123,9 +124,9 @@
     const strike = document.createElement('div'); strike.className = 'vgb-overlay-strike'; strike.textContent = `Strike ${strikeInfo.record.strikes} · ${candidate.handle}`;
     const actions = document.createElement('div'); actions.className = 'vgb-overlay-actions';
     const button = (label, handler, danger = false) => { const el = document.createElement('button'); el.type = 'button'; el.textContent = label; if (danger) el.className = 'vgb-danger'; el.addEventListener('click', handler); return el; };
-    actions.append(button('Reveal post', () => removeOverlay(article)));
-    actions.append(button('Not vague', async () => { removeOverlay(article); await send({ type: 'dismiss-strike', candidate }); await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'dismissed', reasonCode: result.reasonCode } }); }));
-    actions.append(button(`Allow @${candidate.handle}`, async () => { const next = { ...settings, allowlist: [...new Set([...(settings.allowlist || []), candidate.handle.toLowerCase()])] }; settings = await send({ type: 'save-settings', settings: next }); removeOverlay(article); }));
+    actions.append(button('Reveal post', () => removeOverlay(article, true)));
+    actions.append(button('Not vague', async () => { removeOverlay(article, true); await send({ type: 'dismiss-strike', candidate }); await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'dismissed', reasonCode: result.reasonCode } }); }));
+    actions.append(button(`Allow @${candidate.handle}`, async () => { const next = { ...settings, allowlist: [...new Set([...(settings.allowlist || []), candidate.handle.toLowerCase()])] }; settings = await send({ type: 'save-settings', settings: next }); removeOverlay(article, true); }));
     if (candidate.followingState === 'not_following') {
       actions.append(button(strikeInfo.thresholdReached ? `Block @${candidate.handle}` : 'Block now', async () => {
         const outcome = await blockAccount(article, candidate);
