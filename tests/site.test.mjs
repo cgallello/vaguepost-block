@@ -12,6 +12,8 @@ test("public support and privacy pages are self-contained and present", () => {
   assert.match(privacy, /No transmission or sale/);
   assert.match(privacy, /https:\/\/x\.com/);
   assert.match(support, /chrome:\/\/flags\/#prompt-api/);
+  assert.match(support, /Settings → System/);
+  assert.match(support, /On-device AI/);
   assert.match(support, /optimization-guide-on-device-model/);
   assert.match(support, /prompt-api-for-gemini-nano/);
 });
