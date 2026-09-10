@@ -1,7 +1,7 @@
 import { DEFAULT_SETTINGS, accountKey, confidenceGate, normalizeHandle, normalizeSettings } from "./shared/policy.mjs";
 import { dismissStrike, nextStrike } from "./shared/strike.mjs";
+import { availability as classifierAvailability, classify as classifierClassify, prepare as classifierPrepare, setDownloadProgressSink } from "./classifier.js";
 
-const OFFSCREEN_URL = "offscreen.html";
 const CLASSIFIER_CACHE_TTL = 7 * 24 * 60 * 60 * 1000;
 const CLASSIFIER_CACHE_LIMIT = 300;
 const MAX_CLASSIFIER_WAITERS = 8;
@@ -14,9 +14,13 @@ let classifierUnavailableUntil = 0;
 const classifierMemory = new Map();
 let strikeQueue = Promise.resolve();
 let eventQueue = Promise.resolve();
-let offscreenPromise;
 const followChecks = new Map();
 const followRequests = new Map();
+
+setDownloadProgressSink((loaded) => {
+  const broadcast = chrome.runtime.sendMessage({ type: "ai-progress", loaded });
+  broadcast?.catch?.(() => {});
+});
 
 function rememberClassification(key, createdAt, response) {
   classifierMemory.delete(key);
@@ -77,23 +81,13 @@ async function checkFollowState(handle, fresh = false) {
   return request;
 }
 
-async function ensureOffscreen() {
-  if (offscreenPromise) return offscreenPromise;
-  offscreenPromise = (async () => {
-    const contexts = await chrome.runtime.getContexts?.({ contextTypes: ["OFFSCREEN_DOCUMENT"], documentUrls: [chrome.runtime.getURL(OFFSCREEN_URL)] });
-    if (contexts?.length) return;
-    await chrome.offscreen.createDocument({ url: OFFSCREEN_URL, reasons: ["DOM_PARSER"], justification: "Host the local Gemini Nano classifier in an extension document." });
-  })().finally(() => { offscreenPromise = undefined; });
-  return offscreenPromise;
-}
-
 async function localAiStatus() {
-  try { await ensureOffscreen(); return await Promise.race([chrome.runtime.sendMessage({ type: "offscreen-ai-status" }), new Promise((resolve) => setTimeout(() => resolve({ availability: "unavailable", reason: "local_ai_status_timeout" }), AI_STATUS_TIMEOUT_MS))]); }
+  try { return await Promise.race([classifierAvailability().then((value) => ({ availability: value })), new Promise((resolve) => setTimeout(() => resolve({ availability: "unavailable", reason: "local_ai_status_timeout" }), AI_STATUS_TIMEOUT_MS))]); }
   catch (error) { return { availability: "unavailable", reason: "local_ai_status_error", message: String(error?.message || error) }; }
 }
 
 async function prepareLocalAi() {
-  try { await ensureOffscreen(); return await Promise.race([chrome.runtime.sendMessage({ type: "offscreen-prepare" }), new Promise((resolve) => setTimeout(() => resolve({ available: false, reason: "local_ai_prepare_timeout" }), AI_PREPARE_TIMEOUT_MS))]); }
+  try { return await Promise.race([classifierPrepare(), new Promise((resolve) => setTimeout(() => resolve({ available: false, reason: "local_ai_prepare_timeout" }), AI_PREPARE_TIMEOUT_MS))]); }
   catch (error) { return { available: false, reason: "local_ai_prepare_error", message: String(error?.message || error) }; }
 }
 
@@ -132,8 +126,7 @@ async function classify(candidate) {
   classifierWaiters += 1;
   const task = classifierQueue.catch(() => {}).then(async () => {
     try {
-      await ensureOffscreen();
-      const response = await chrome.runtime.sendMessage({ type: "offscreen-classify", candidate });
+      const response = await classifierClassify(candidate);
       classifierReady = response?.available === true;
       if (response?.available === false || response?.error) classifierUnavailableUntil = Date.now() + 30_000;
       if (response?.result) await writeCachedClassification(candidate.postId, response);
@@ -228,7 +221,6 @@ async function digest(value) {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === "ai-download-progress") { const broadcast = chrome.runtime.sendMessage({ type: "ai-progress", loaded: Number(message.loaded) || 0 }); broadcast?.catch?.(() => {}); sendResponse({ ok: true }); return false; }
   (async () => {
     if (message.type === "get-settings") return sendResponse(await getSettings());
     if (message.type === "open-options") { await chrome.runtime.openOptionsPage(); return sendResponse({ ok: true }); }

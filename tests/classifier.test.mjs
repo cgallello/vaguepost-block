@@ -1,12 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-let listener;
 let availabilityOptions;
 let createOptions;
 let promptOptions;
 
-globalThis.chrome = { runtime: { onMessage: { addListener(callback) { listener = callback; } } } };
+globalThis.chrome = { runtime: { sendMessage() { return Promise.resolve(); } } };
 globalThis.LanguageModel = {
   availability: async (options) => { availabilityOptions = options; return "available"; },
   create: async (options) => {
@@ -15,14 +14,10 @@ globalThis.LanguageModel = {
   },
 };
 
-await import("../classifier.js?test=contract");
-
-function invoke(message) {
-  return new Promise((resolve) => listener(message, {}, resolve));
-}
+const classifier = await import("../classifier.js?test=service-worker");
 
 test("classifier host uses the same English text contract for availability and session creation", async () => {
-  const response = await invoke({ type: "offscreen-classify", candidate: { addedText: "Can I say something?", quoteText: "A quoted post." } });
+  const response = await classifier.classify({ addedText: "Can I say something?", quoteText: "A quoted post." });
   assert.equal(response.available, true);
   assert.equal(response.result.reasonCode, "UNSPECIFIED_REFERENT");
   assert.deepEqual(availabilityOptions, { expectedInputs: [{ type: "text", languages: ["en"] }], expectedOutputs: [{ type: "text", languages: ["en"] }] });
@@ -35,21 +30,15 @@ test("classifier host uses the same English text contract for availability and s
   assert.equal(promptOptions.signal instanceof AbortSignal, true);
 });
 
-test("classifier host exposes readiness from the same offscreen context used for inference", async () => {
-  const status = await invoke({ type: "offscreen-ai-status" });
-  assert.equal(status.availability, "available");
-  const prepared = await invoke({ type: "offscreen-prepare" });
-  assert.deepEqual(prepared, { available: true, availability: "available" });
+test("classifier host exposes readiness from the service-worker context used for inference", async () => {
+  assert.equal(await classifier.availability(), "available");
+  assert.deepEqual(await classifier.prepare(), { available: true, availability: "available" });
 });
 
 test("classifier host fails closed when the model is unavailable", async () => {
   const original = LanguageModel.availability;
   LanguageModel.availability = async () => "unavailable";
-  // The existing session is intentionally reused; create a fresh module host to exercise the unavailable branch.
-  let unavailableListener;
-  globalThis.chrome = { runtime: { onMessage: { addListener(callback) { unavailableListener = callback; } } } };
-  await import("../classifier.js?test=unavailable");
-  const response = await new Promise((resolve) => unavailableListener({ type: "offscreen-classify", candidate: { addedText: "Maybe.", quoteText: "Context." } }, {}, resolve));
-  assert.deepEqual(response, { available: false, reason: "local_ai_unavailable" });
+  const fresh = await import("../classifier.js?test=unavailable-service-worker");
+  assert.deepEqual(await fresh.classify({ addedText: "Maybe.", quoteText: "Context." }), { available: false, reason: "local_ai_unavailable" });
   LanguageModel.availability = original;
 });

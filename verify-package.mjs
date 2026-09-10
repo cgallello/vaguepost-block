@@ -18,7 +18,6 @@ const required = new Set([
   ...manifest.content_scripts[0].css,
   ...Object.values(manifest.action.default_icon),
   ...Object.values(manifest.icons),
-  "offscreen.html",
 ]);
 for (const file of required) if (!entrySet.has(file)) throw new Error(`Package is missing ${file}`);
 for (const entry of entries) {

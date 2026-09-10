@@ -4,7 +4,7 @@ Last verified: September 9, 2026
 
 ## Verified in this repository
 
-- Manifest V3 package with Chrome 138+ baseline, narrow `x.com` host access, local storage, and offscreen Prompt API host.
+- Manifest V3 package with Chrome 138+ baseline, narrow `x.com` host access, local storage, and service-worker Prompt API host.
 - Blur & Review, Review-only, and acknowledged Automatic block modes.
 - Per-account strike thresholds, duplicate suppression, dismissal, allowlist, local export/deletion, reduced-motion support, and separate followed/uncertain safety counters.
 - Fail-closed author binding and follow-state checks before opening and immediately before confirming X's visible block control.
