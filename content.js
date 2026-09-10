@@ -240,8 +240,10 @@
     actions.append(button('Reveal post', () => removeOverlay(article, true, true)));
     actions.append(button('Not vague', async () => { removeOverlay(article, true); await send({ type: 'dismiss-strike', candidate }); await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'dismissed', reasonCode: result.reasonCode } }); }));
     actions.append(button(`Allow @${candidate.handle}`, async () => { const next = { ...settings, allowlist: [...new Set([...(settings.allowlist || []), candidate.handle.toLowerCase()])] }; settings = await send({ type: 'save-settings', settings: next }); removeOverlay(article, true); }));
-    if (candidate.followingState === 'not_following') {
-      actions.append(button(strikeInfo.thresholdReached ? `Block @${candidate.handle}` : 'Block now', async () => {
+    if (candidate.followingState !== 'following') {
+      actions.append(button(candidate.followingState === 'not_following'
+        ? (strikeInfo.thresholdReached ? `Block @${candidate.handle}` : 'Block now')
+        : 'Check & block', async () => {
         const outcome = await blockAccount(article, candidate);
         if (outcome.ok) { removeOverlay(article); toast(`Blocked @${candidate.handle}.`, 'block', true); }
         else if (outcome.reason === 'followed' || outcome.reason === 'unverified') { removeOverlay(article); toast('Block skipped: follow status could not be verified safely.'); }
@@ -271,6 +273,11 @@
       const response = await send({ type: 'classify-candidate', candidate });
       if (!response?.result) {
         await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'error', reasonCode: response?.reason || 'classifier_no_result' } });
+        // A transient local-AI timeout or queue-full response must not make a
+        // real quote-post disappear from future scans. Keep the per-account
+        // backoff, but allow this post to be retried once the model recovers.
+        seen.delete(candidate.postId);
+        scheduleAccountRetry(account, 5000);
         return;
       }
       if (!VGBPolicy.confidenceGate(response.result, settings.sensitivity)) {
@@ -283,9 +290,7 @@
         return;
       }
       await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'flagged', reasonCode: response.result.reasonCode, confidenceBand: response.result.confidence >= .9 ? 'high' : response.result.confidence >= .82 ? 'medium' : 'low' } });
-      const needsFollowProof = settings.actionMode === 'automatic'
-        || settings.actionMode === 'review'
-        || (settings.actionMode === 'blur' && settings.blurTrigger === 'every_high_confidence_flag');
+      const needsFollowProof = settings.actionMode === 'automatic';
       if (candidate.followingState === 'unknown' && needsFollowProof) {
         const localState = await localFollowState(article, candidate.handle);
         if (localState !== 'unknown') candidate.followingState = localState;
@@ -302,8 +307,8 @@
       }
       if (candidate.followingState === 'unknown' && settings.actionMode === 'automatic') {
         // Automatic blocking must fail closed when X has not exposed a
-        // definitive follow label. Review modes may still cover the post,
-        // but the overlay will omit all blocking controls.
+        // definitive follow label. Review modes may still cover or flag the
+        // post; an explicit block click performs its own fresh safety check.
         await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'skipped_unverified_follow_state' } });
         return;
       }

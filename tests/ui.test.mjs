@@ -129,6 +129,20 @@ test("timeline follow checks use X's visible hover card before opening a profile
   assert.match(content, /const localState = await localFollowState\(article, candidate\.handle\)/);
 });
 
+test("review and blur modes defer follow checks until an explicit block action", () => {
+  const content = read("content.js");
+  assert.match(content, /const needsFollowProof = settings\.actionMode === 'automatic';/);
+  assert.match(content, /: 'Check & block'/);
+  assert.match(content, /async function blockAccount\(article, candidate\)/);
+});
+
+test("transient local-AI failures leave candidates eligible for a later scan", () => {
+  const content = read("content.js");
+  assert.match(content, /if \(!response\?\.result\)/);
+  assert.match(content, /seen\.delete\(candidate\.postId\)/);
+  assert.match(content, /scheduleAccountRetry\(account, 5000\)/);
+});
+
 test("background serializes activity writes and waits before deletion", () => {
   const background = read("background.js");
   assert.match(background, /let eventQueue = Promise\.resolve\(\)/);
