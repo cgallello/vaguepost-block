@@ -42,12 +42,16 @@ for (const page of ["site/support.html", "site/privacy.html"]) {
 
 const datasetPath = resolve(root, "eval/dataset.json");
 const predictionPath = resolve(root, "eval/predictions.json");
-if (!existsSync(datasetPath) || !existsSync(predictionPath)) check("strict evaluation set", false, "Add eval/dataset.json and eval/predictions.json with the required labeled coverage");
+if (!existsSync(datasetPath) || !existsSync(predictionPath)) check("strict evaluation set", false, "Generate eval/dataset.json, then capture eval/predictions.json from the installed local model");
 else {
-  const rows = JSON.parse(readFileSync(datasetPath, "utf8"));
-  const counts = Object.fromEntries(["vague", "understandable", "contextual", "edge"].map((label) => [label, rows.filter((row) => row.label === label).length]));
-  const eligible = counts.vague >= 250 && counts.understandable >= 250 && counts.contextual >= 250 && counts.edge >= 100;
-  check("strict evaluation set", eligible, JSON.stringify(counts));
+  try {
+    const output = execFileSync(process.execPath, [resolve(root, "eval/score.mjs"), datasetPath, predictionPath], { cwd: root, encoding: "utf8" });
+    const result = JSON.parse(output);
+    check("strict evaluation set", result.eligible === true, `counts=${JSON.stringify(result.counts)} precision=${result.precision}`);
+  } catch (error) {
+    const detail = String(error.stdout || error.message).trim().slice(0, 500);
+    check("strict evaluation set", false, `Evaluation data or predictions are invalid: ${detail}`);
+  }
 }
 
 const screenshots = readdirSync(resolve(root, "store-assets")).filter((name) => /^screenshot-\d+\.png$/.test(name));

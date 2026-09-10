@@ -12,3 +12,5 @@ node eval/score.mjs eval/dataset.json eval/predictions.json --strict
 ```
 
 The example data is intentionally too small for release eligibility. `--strict` must fail until the required coverage and precision gates are met.
+
+The repository's sanitized benchmark is generated from author-labeled fictional templates with `node tools/generate-eval-data.mjs`. It contains no real handles, URLs, private messages, or production posts. Generate it only when the source template changes, then capture predictions from the installed extension's local Prompt API; do not hand-edit predictions to match labels.

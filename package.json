@@ -7,12 +7,13 @@
     "test": "node --test",
     "test:fixture": "node tests/fixture-smoke.mjs",
     "lint": "node lint.mjs",
-    "check": "node --check background.js && node --check content.js && node --check classifier.js && node --check shared/policy.js && node --check shared/policy.mjs && node --check shared/strike.mjs && node --check popup.js && node --check options.js && node --check package-extension.mjs && node --check release-audit.mjs && npm run lint",
+    "check": "node --check background.js && node --check content.js && node --check classifier.js && node --check shared/policy.js && node --check shared/policy.mjs && node --check shared/strike.mjs && node --check popup.js && node --check options.js && node --check package-extension.mjs && node --check release-audit.mjs && node --check tools/eval-runner.js && node --check tools/generate-eval-data.mjs && npm run lint",
     "package": "npm test && npm run check && node package-extension.mjs",
     "verify-package": "node verify-package.mjs",
     "release-check": "npm run package && node verify-package.mjs",
     "release-audit": "node release-audit.mjs",
     "release-audit:strict": "node release-audit.mjs --strict",
-    "eval:example": "node eval/score.mjs eval/dataset.example.json eval/predictions.example.json"
+    "eval:example": "node eval/score.mjs eval/dataset.example.json eval/predictions.example.json",
+    "eval:generate": "node tools/generate-eval-data.mjs"
   }
 }
