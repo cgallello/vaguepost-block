@@ -8,7 +8,7 @@ The product plan is in [PLAN.md](PLAN.md). The initial privacy-policy draft is i
 
 ## Product promise
 
-- Classification runs locally using Chrome's built-in Gemini Nano Prompt API when it is available.
+- Classification runs locally using Chrome's built-in Gemini Nano Prompt API when it is available; the extension passes explicit English text input/output descriptors and never falls back to a cloud model.
 - No tweet text, account data, or credentials leave the device in the standard product.
 - The extension never intentionally blocks an account the user follows. If follow status is uncertain, it does nothing.
 - It uses X's visible interface for the block action; it does not call private X APIs.
@@ -17,7 +17,7 @@ The product plan is in [PLAN.md](PLAN.md). The initial privacy-policy draft is i
 
 ## Status
 
-Working MVP scaffold. The extension is loadable as an unpacked MV3 package, with local Gemini Nano classification when Chrome exposes the Prompt API, Blur & Review overlays, local strike storage, a fail-closed block coordinator, popup/options pages, tests, and a packaging script. Live X DOM validation still needs a logged-in controlled test account.
+Working MVP. The extension is loadable as an unpacked MV3 package, with local Gemini Nano classification when Chrome exposes the Prompt API, bounded candidate/result queues, Blur & Review overlays, local strike storage, strike dismissal, a fail-closed block coordinator, popup/options pages, tests, and a packaging script. Live X DOM extraction has been verified; the controlled two-account block test and public Store submission remain launch gates.
 
 ## Development
 
