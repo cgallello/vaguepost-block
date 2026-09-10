@@ -7,18 +7,24 @@ const PROMPT_TIMEOUT_MS = 20_000;
 
 let sessionPromise;
 
+async function availability() {
+  if (!globalThis.LanguageModel) return "unavailable";
+  try { return await LanguageModel.availability(AVAILABILITY_OPTIONS); } catch { return "unavailable"; }
+}
+
 async function session() {
   if (!globalThis.LanguageModel) return null;
   if (!sessionPromise) {
     sessionPromise = (async () => {
-      const availability = await LanguageModel.availability(AVAILABILITY_OPTIONS);
-      if (availability === "unavailable") return null;
+      const state = await availability();
+      if (state === "unavailable") return null;
       return LanguageModel.create({
         initialPrompts: [{ role: "system", content: PROMPT }],
         expectedInputs: AVAILABILITY_OPTIONS.expectedInputs,
         expectedOutputs: AVAILABILITY_OPTIONS.expectedOutputs,
         temperature: 0.1,
         topK: 3,
+        monitor(monitor) { monitor.addEventListener("downloadprogress", (event) => { const result = chrome.runtime.sendMessage({ type: "ai-download-progress", loaded: event.loaded }); result?.catch?.(() => {}); }); },
       });
     })().catch(() => null);
   }
@@ -28,10 +34,12 @@ async function session() {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type !== "offscreen-classify") return;
+  if (!["offscreen-classify", "offscreen-ai-status", "offscreen-prepare"].includes(message.type)) return;
   (async () => {
+    if (message.type === "offscreen-ai-status") return sendResponse({ availability: await availability() });
     const model = await session();
     if (!model) return sendResponse({ available: false, reason: "local_ai_unavailable" });
+    if (message.type === "offscreen-prepare") return sendResponse({ available: true, availability: "available" });
     const { addedText, quoteText } = message.candidate;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), PROMPT_TIMEOUT_MS);

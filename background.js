@@ -73,6 +73,16 @@ async function ensureOffscreen() {
   await chrome.offscreen.createDocument({ url: OFFSCREEN_URL, reasons: ["DOM_PARSER"], justification: "Host the local Gemini Nano classifier in an extension document." });
 }
 
+async function localAiStatus() {
+  try { await ensureOffscreen(); return await chrome.runtime.sendMessage({ type: "offscreen-ai-status" }); }
+  catch (error) { return { availability: "unavailable", reason: "local_ai_status_error", message: String(error?.message || error) }; }
+}
+
+async function prepareLocalAi() {
+  try { await ensureOffscreen(); return await chrome.runtime.sendMessage({ type: "offscreen-prepare" }); }
+  catch (error) { return { available: false, reason: "local_ai_prepare_error", message: String(error?.message || error) }; }
+}
+
 async function readCachedClassification(postId) {
   const key = String(postId || "");
   if (!key) return null;
@@ -195,9 +205,12 @@ async function digest(value) {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "ai-download-progress") { const broadcast = chrome.runtime.sendMessage({ type: "ai-progress", loaded: Number(message.loaded) || 0 }); broadcast?.catch?.(() => {}); sendResponse({ ok: true }); return false; }
   (async () => {
     if (message.type === "get-settings") return sendResponse(await getSettings());
     if (message.type === "open-options") { await chrome.runtime.openOptionsPage(); return sendResponse({ ok: true }); }
+    if (message.type === "ai-status") return sendResponse(await localAiStatus());
+    if (message.type === "prepare-ai") return sendResponse(await prepareLocalAi());
     if (message.type === "save-settings") {
       const settings = normalizeSettings(message.settings || DEFAULT_SETTINGS);
       await chrome.storage.local.set({ settings });

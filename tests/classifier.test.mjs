@@ -35,6 +35,13 @@ test("classifier host uses the same English text contract for availability and s
   assert.equal(promptOptions.signal instanceof AbortSignal, true);
 });
 
+test("classifier host exposes readiness from the same offscreen context used for inference", async () => {
+  const status = await invoke({ type: "offscreen-ai-status" });
+  assert.equal(status.availability, "available");
+  const prepared = await invoke({ type: "offscreen-prepare" });
+  assert.deepEqual(prepared, { available: true, availability: "available" });
+});
+
 test("classifier host fails closed when the model is unavailable", async () => {
   const original = LanguageModel.availability;
   LanguageModel.availability = async () => "unavailable";
