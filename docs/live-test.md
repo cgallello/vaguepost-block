@@ -53,4 +53,6 @@ Use text such as “Can I say something without everyone getting mad?” only on
 - Console/runtime error output if a selector is missing.
 - Whether local AI was `available`, `downloadable`, `downloading`, or `unavailable`.
 
+After the run, save a redacted evidence record at `docs/evidence/live-safety.json`. It must contain the Chrome version and boolean results for `reviewOverlayVerified`, `nonFollowedBlockVerified`, `followedSkipVerified`, `cleanupComplete`, and `networkFallback`. Use labels such as Account A and Account B only; never store handles, post text, passwords, cookies, or screenshots containing private data in this JSON file. The release audit accepts the safety gate only when all five booleans are true and `networkFallback` is false.
+
 Do not include passwords, cookies, private messages, or real users' post text in an issue report.

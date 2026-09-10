@@ -30,10 +30,10 @@ npm run release-audit
 These cannot be honestly marked complete from a repository-only test run:
 
 1. **Pass:** Chrome's on-device AI reports `available` on a supported desktop device. The September 9, 2026 check verified **Settings → AI in Chrome → On-device AI**, a downloaded model asset, and VagueBlock's **Prepare local AI** flow reaching **Local AI ready**. Evidence is recorded in [`docs/evidence/local-ai.json`](evidence/local-ai.json). Re-run this check on each supported Chrome release because Prompt API availability is browser-managed.
-2. **Pending:** Run the controlled two-account X test in `docs/live-test.md`, including a non-followed block and a followed-account skip, on the actual supported Chrome/model combination.
+2. **Pending:** Run the controlled two-account X test in `docs/live-test.md`, including a non-followed block and a followed-account skip, on the actual supported Chrome/model combination, then save the redacted result as `docs/evidence/live-safety.json`.
 3. **Pass:** Five real product screenshots are staged at 1280×800, alongside the Store promo and marquee. Fixture screenshots are not used as Store evidence.
 4. **Pass:** Support and privacy pages use maintained HTTPS GitHub issue URLs.
 5. **Pending:** Capture local-model predictions for the sanitized evaluation set (250 vague, 250 understandable, 250 contextual, 100 edge cases) and pass `node eval/score.mjs eval/dataset.json eval/predictions.json --strict` before enabling public Automatic block.
-6. **Pending:** Use the authenticated Chrome Web Store developer account to upload the reviewed ZIP, complete the Listing and Privacy tabs, run trusted beta distribution, and submit the production listing.
+6. **Pending:** Use the authenticated Chrome Web Store developer account to upload the reviewed ZIP, complete the Listing and Privacy tabs, run trusted beta distribution, and submit the production listing. Record only the listing ID, submission timestamp, and `pending_review`/`published` status in `docs/evidence/web-store.json` so the audit can verify the gate without storing account credentials.
 
 Until those gates pass, the extension intentionally remains a local release candidate and fails closed when Chrome cannot provide its model.

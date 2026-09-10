@@ -73,10 +73,26 @@ const correctlySizedScreenshots = screenshots.length >= 5 && screenshots.every((
   } catch { return false; }
 });
 check("Store screenshots 24-bit PNG", correctlySizedScreenshots, screenshotSizes.join(", ") || "No screenshots staged");
-for (const [name, detail] of [
-  ["controlled X safety run", "Run the two-account followed/non-followed block test"],
-  ["Web Store submission", "Use an authenticated developer account with 2-step verification"],
-]) check(name, false, detail);
+
+const safetyEvidencePath = resolve(root, "docs/evidence/live-safety.json");
+if (!existsSync(safetyEvidencePath)) check("controlled X safety run", false, "Run the two-account followed/non-followed block test and save docs/evidence/live-safety.json");
+else {
+  try {
+    const evidence = JSON.parse(readFileSync(safetyEvidencePath, "utf8"));
+    const valid = evidence.nonFollowedBlockVerified === true && evidence.followedSkipVerified === true && evidence.reviewOverlayVerified === true && evidence.cleanupComplete === true && evidence.networkFallback === false && typeof evidence.chromeVersion === "string";
+    check("controlled X safety run", valid, valid ? `Verified on Chrome ${evidence.chromeVersion}` : "Safety evidence is incomplete or does not prove both account paths");
+  } catch (error) { check("controlled X safety run", false, `Invalid safety evidence: ${error.message}`); }
+}
+
+const storeEvidencePath = resolve(root, "docs/evidence/web-store.json");
+if (!existsSync(storeEvidencePath)) check("Web Store submission", false, "Submit the reviewed ZIP and save docs/evidence/web-store.json");
+else {
+  try {
+    const evidence = JSON.parse(readFileSync(storeEvidencePath, "utf8"));
+    const valid = evidence.submitted === true && typeof evidence.listingId === "string" && evidence.listingId.length > 0 && typeof evidence.submittedAt === "string" && ["pending_review", "published"].includes(evidence.status);
+    check("Web Store submission", valid, valid ? `Submitted listing ${evidence.listingId} (${evidence.status})` : "Store evidence is incomplete or does not prove submission");
+  } catch (error) { check("Web Store submission", false, `Invalid Store evidence: ${error.message}`); }
+}
 
 const localAiEvidencePath = resolve(root, "docs/evidence/local-ai.json");
 if (!existsSync(localAiEvidencePath)) check("Chrome local model", false, "Prepare Gemini Nano on a supported unlocked Chrome profile");
