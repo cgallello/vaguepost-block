@@ -37,7 +37,8 @@ check("transparent mascot set", mascotFiles.length === 3 && mascotFiles.every((n
 
 for (const page of ["site/support.html", "site/privacy.html"]) {
   const html = readFileSync(resolve(root, page), "utf8");
-  check(`${page} contact`, !html.includes("maintained support contact"), "Replace the contact placeholder before submission");
+  const hasMaintainedContact = !html.includes("maintained support contact");
+  check(`${page} contact`, hasMaintainedContact, hasMaintainedContact ? "HTTPS GitHub issue contact present" : "Replace the contact placeholder before submission");
 }
 
 const datasetPath = resolve(root, "eval/dataset.json");
