@@ -30,6 +30,6 @@ Productivity
 
 ## Support and privacy
 
-- Support: `/docs/support.md` must be published at a maintained HTTPS URL before submission.
-- Privacy policy: `/docs/privacy-policy.md` must be published at a maintained HTTPS URL before submission.
+- Support: publish `site/support.html` at a maintained HTTPS URL before submission.
+- Privacy policy: publish `site/privacy.html` at a maintained HTTPS URL before submission.
 - Developer contact: add the maintained support email before Store submission.

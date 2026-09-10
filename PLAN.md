@@ -462,7 +462,7 @@ Chrome requires two-step verification for publishing/updating and requires Listi
 
 ### Support and operations
 
-- Public support page: installation, availability requirements, settings, false-positive recovery, data deletion, and reporting a broken X layout.
+- Public support page: `site/support.html` covers installation, availability requirements, settings, false-positive recovery, data deletion, and reporting a broken X layout; publish it at a maintained HTTPS URL before submission.
 - Private issue templates: X UI regression, detection false positive, follow-safety incident, and accessibility issue.
 - Weekly selector-health review after launch; expedite a fail-closed update if X changes a block or follow control.
 - Version releases use a changelog and repeat the full safety/fixture suite.
