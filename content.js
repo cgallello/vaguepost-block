@@ -10,14 +10,7 @@
 
   function getArticleFor(node) { return node?.closest?.('article[data-testid="tweet"]') || node?.closest?.('article'); }
 
-  function statusFromArticle(article, handle) {
-    const labels = [...article.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
-    const following = labels.filter((label) => /^following(?:\s|$)/i.test(label));
-    const follow = labels.filter((label) => new RegExp(`^follow(?: @?${handle})?$`, 'i').test(label) || /^follow$/i.test(label));
-    if (following.length === 1 && follow.length === 0) return 'following';
-    if (follow.length === 1 && following.length === 0) return 'not_following';
-    return 'unknown';
-  }
+  function statusFromArticle(article, handle) { const labels = [...article.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim()); return VGBDom.followStateFromLabels(labels, handle); }
 
   function isProfilePage() {
     const parts = location.pathname.split('/').filter(Boolean);
@@ -26,31 +19,14 @@
 
   function profileFollowState() {
     const labels = [...document.querySelectorAll('button,[role="button"]')].map((el) => (el.getAttribute('aria-label') || el.textContent || '').trim());
-    const following = labels.filter((label) => /^following(?:\s|$)/i.test(label));
-    const follow = labels.filter((label) => /^follow(?:\s|$)/i.test(label));
-    if (following.length === 1 && follow.length === 0) return 'following';
-    if (follow.length === 1 && following.length === 0) return 'not_following';
-    return 'unknown';
+    return VGBDom.followStateFromLabels(labels);
   }
 
   function reportProfileFollowState() {
     chrome.runtime.sendMessage({ type: 'profile-state', state: profileFollowState() });
   }
 
-  function extract(article) {
-    if (!article) return null;
-    const links = [...article.querySelectorAll('a[href*="/status/"]')];
-    const ids = [...new Set(links.map((link) => link.href.match(/\/status\/(\d+)/)?.[1]).filter(Boolean))];
-    if (ids.length < 2) return null;
-    const authorLink = article.querySelector('[data-testid="User-Name"] a[href^="/"]') || article.querySelector('a[href^="/"][role="link"]');
-    const handle = authorLink?.getAttribute('href')?.split('/').filter(Boolean)[0];
-    if (!handle) return null;
-    const textNodes = [...article.querySelectorAll('[data-testid="tweetText"]')].map((node) => node.innerText?.trim()).filter(Boolean);
-    const addedText = (textNodes[0] || '').slice(0, 420);
-    const quoteText = (textNodes[1] || '').slice(0, 1600);
-    const followingState = statusFromArticle(article, handle);
-    return { postId: ids[0], quotedPostId: ids[1], handle, addedText, quoteText, followingState };
-  }
+  function extract(article) { return VGBDom.extractQuoteCandidate(article); }
 
   function findMenuButton(article) {
     return article.querySelector('[data-testid="caret"]') || [...article.querySelectorAll('button,[role="button"]')].find((el) => /more|overflow/i.test(el.getAttribute('aria-label') || ''));
