@@ -22,6 +22,8 @@ VagueBlock is independent software and is not affiliated with X.
 
 Productivity
 
+**Compatibility:** Desktop Chrome 138 or newer with Chrome's on-device AI model available. The extension remains fail-closed on devices where the local model is unavailable.
+
 ## Promotional files
 
 - Small promo tile: `store-assets/promo-small.png` (440×280)

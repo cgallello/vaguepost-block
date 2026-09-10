@@ -7,6 +7,7 @@ const manifest = JSON.parse(readFileSync(new URL("manifest.json", root), "utf8")
 
 test("manifest stays narrowly scoped to the single purpose", () => {
   assert.equal(manifest.manifest_version, 3);
+  assert.equal(manifest.minimum_chrome_version, "138");
   assert.deepEqual(manifest.permissions.sort(), ["offscreen", "storage"]);
   assert.deepEqual(manifest.host_permissions, ["https://x.com/*"]);
   assert.equal(manifest.background.type, "module");
