@@ -1,18 +1,66 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>VagueBlock development fixture</title><link rel="stylesheet" href="../content.css"><style>body{margin:0;background:#dbe4da;font:16px system-ui,sans-serif}.fixture-header{max-width:720px;margin:24px auto 10px;padding:0 16px}.fixture-note{padding:12px 14px;border:2px solid #111;background:#fffdf7}.timeline{max-width:720px;margin:12px auto}.timeline article{position:relative;padding:18px;border:1px solid #aaa;background:#fff;margin:12px 0;min-height:220px}.author{font-weight:800}.quote{margin-top:18px;padding:18px;background:#eef1ee;border:1px solid #bbc}.quote p{margin:0;color:#444}</style></head>
-<body><div class="fixture-header"><div class="fixture-note"><strong>Development fixture only.</strong> This page uses a fake classifier response and fake Chrome runtime. It never calls X or a model.</div></div><main class="timeline"><article data-testid="tweet"><div data-testid="User-Name"><a href="/fixture_author">@fixture_author</a></div><button aria-label="Follow @fixture_author">Follow</button><div data-testid="tweetText">Can I say something without everyone getting mad?</div><a href="https://x.com/fixture_author/status/111">post</a><div class="quote"><a href="https://x.com/original/status/222">quoted</a><div data-testid="tweetText"><p class="quote">A completely ordinary post about a fictional committee report.</p></div></div></article></main>
-<script src="../shared/policy.js"></script><script src="../shared/dom-adapter.js"></script><script>
-  globalThis.chrome = { runtime: {
-    getURL(path) { return `../${path}`; }, lastError: undefined,
-    onMessage: { addListener() {} },
-    sendMessage(message, callback) {
-      const responses = {
-        'get-settings': { enabled: true, actionMode: 'blur', threshold: 0, sensitivity: 'standard', blurTrigger: 'every_high_confidence_flag', mascotMotion: 'reduced', allowlist: [], aiReady: true, automaticAck: false },
-        'classify-candidate': { available: true, result: { isVague: true, confidence: 0.96, reasonCode: 'UNSPECIFIED_REFERENT', explanation: 'The added text does not identify what is being discussed.', concreteSubjectPresent: false } },
-        'check-follow-state': { state: 'not_following' },
-        'record-strike': { record: { strikes: 1 }, duplicate: false, skipped: false, dismissed: false, thresholdReached: true },
-      };
-      setTimeout(() => callback(responses[message.type] || {}), 0);
-    }
-  };
-</script><script src="../content.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>VagueBlock development fixture</title>
+  <link rel="stylesheet" href="../content.css">
+  <style>
+    body { margin: 0; background: #dbe4da; font: 16px system-ui, sans-serif; }
+    .fixture-header { max-width: 720px; margin: 24px auto 10px; padding: 0 16px; }
+    .fixture-note { padding: 12px 14px; border: 2px solid #111; background: #fffdf7; }
+    .timeline { max-width: 720px; margin: 12px auto; }
+    .timeline article { position: relative; padding: 18px; border: 1px solid #aaa; background: #fff; margin: 12px 0; min-height: 220px; }
+    .author { font-weight: 800; }
+    .quote { margin-top: 18px; padding: 18px; background: #eef1ee; border: 1px solid #bbc; }
+    .quote p { margin: 0; color: #444; }
+  </style>
+</head>
+<body>
+  <div class="fixture-header"><div class="fixture-note"><strong>Development fixture only.</strong> This page uses a fake classifier and fake Chrome runtime; it never calls X or a model.</div></div>
+  <main class="timeline">
+    <article data-testid="tweet">
+      <div data-testid="User-Name"><a href="/fixture_author">@fixture_author</a></div>
+      <button aria-label="Follow @fixture_author">Follow</button>
+      <div data-testid="tweetText">Can I say something without everyone getting mad?</div>
+      <a href="https://x.com/fixture_author/status/111">post</a>
+      <div class="quote"><a href="https://x.com/original/status/222">quoted</a><div data-testid="tweetText"><p class="quote">A completely ordinary post about a fictional committee report.</p></div></div>
+    </article>
+    <article data-testid="tweet">
+      <div data-testid="User-Name"><a href="/concrete_author">@concrete_author</a></div>
+      <button aria-label="Follow @concrete_author">Follow</button>
+      <div data-testid="tweetText">This is wild.</div>
+      <a href="https://x.com/concrete_author/status/333">post</a>
+      <div class="quote"><a href="https://x.com/original/status/444">quoted</a><div data-testid="tweetText"><p class="quote">A completely ordinary post about a fictional committee report.</p></div></div>
+    </article>
+    <article data-testid="tweet">
+      <div data-testid="User-Name"><a href="/followed_author">@followed_author</a></div>
+      <button aria-label="Following">Following</button>
+      <div data-testid="tweetText">Can I say something without everyone getting mad?</div>
+      <a href="https://x.com/followed_author/status/555">post</a>
+      <div class="quote"><a href="https://x.com/original/status/666">quoted</a><div data-testid="tweetText"><p class="quote">A completely ordinary post about a fictional committee report.</p></div></div>
+    </article>
+  </main>
+  <script src="../shared/policy.js"></script>
+  <script src="../shared/dom-adapter.js"></script>
+  <script>
+    globalThis.chrome = { runtime: {
+      getURL(path) { return `../${path}`; },
+      lastError: undefined,
+      onMessage: { addListener() {} },
+      sendMessage(message, callback) {
+        const candidate = message.candidate || {};
+        let response = {};
+        if (message.type === 'get-settings') response = { enabled: true, actionMode: 'blur', threshold: 0, sensitivity: 'standard', blurTrigger: 'every_high_confidence_flag', mascotMotion: 'reduced', allowlist: [], aiReady: true, automaticAck: false };
+        if (message.type === 'classify-candidate') response = candidate.handle === 'concrete_author'
+          ? { available: true, result: { isVague: false, confidence: 0.98, reasonCode: 'NOT_VAGUE', explanation: 'The reaction is understandable without opening the quote.', concreteSubjectPresent: true } }
+          : { available: true, result: { isVague: true, confidence: 0.96, reasonCode: 'UNSPECIFIED_REFERENT', explanation: 'The added text does not identify what is being discussed.', concreteSubjectPresent: false } };
+        if (message.type === 'check-follow-state') response = { state: message.handle === 'followed_author' ? 'following' : 'not_following' };
+        if (message.type === 'record-strike') response = { record: { strikes: 1 }, duplicate: false, skipped: false, dismissed: false, thresholdReached: true };
+        setTimeout(() => callback(response), 0);
+      }
+    } };
+  </script>
+  <script src="../content.js"></script>
+</body>
+</html>

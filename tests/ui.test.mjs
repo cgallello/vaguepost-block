@@ -61,3 +61,12 @@ test("AI readiness and preparation have bounded failure paths", () => {
   assert.match(background, /local_ai_status_timeout/);
   assert.match(background, /local_ai_prepare_timeout/);
 });
+
+test("synthetic timeline fixture covers vague, understandable, and followed posts", () => {
+  const fixture = read("tests/fixture.html");
+  assert.match(fixture, /fixture_author/);
+  assert.match(fixture, /concrete_author/);
+  assert.match(fixture, /followed_author/);
+  assert.match(fixture, /isVague: false/);
+  assert.match(fixture, /state: message\.handle === 'followed_author' \? 'following'/);
+});
