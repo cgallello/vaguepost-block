@@ -11,7 +11,11 @@ const candidates = [
   process.env.VGB_CHROME_BIN,
   process.env.CHROME_BIN,
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/usr/bin/google-chrome-stable",
+  "/usr/bin/google-chrome",
+  "/usr/bin/chromium",
   "google-chrome",
+  "google-chrome-stable",
   "chromium",
   "chromium-browser",
 ].filter(Boolean);

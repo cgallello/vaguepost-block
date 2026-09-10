@@ -14,6 +14,7 @@ jobs:
           node-version: 22
       - run: npm test
       - run: npm run check
+      - run: npm run test:fixture
       - run: npm run release-check
       - uses: actions/upload-artifact@v4
         with:
