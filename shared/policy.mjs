@@ -1,6 +1,8 @@
-export const DEFAULT_SETTINGS = Object.freeze({ enabled: false, actionMode: "blur", threshold: 3, sensitivity: "standard", blurTrigger: "every_high_confidence_flag", mascotMotion: "reduced", allowlist: [], aiReady: false });
+export const DEFAULT_SETTINGS = Object.freeze({ enabled: false, actionMode: "blur", threshold: 3, sensitivity: "standard", blurTrigger: "every_high_confidence_flag", mascotMotion: "reduced", allowlist: [], aiReady: false, automaticAck: false });
 export const CONFIDENCE_THRESHOLDS = Object.freeze({ conservative: 0.90, standard: 0.82, aggressive: 0.72 });
 export function normalizeHandle(handle) { return String(handle || "").trim().replace(/^@/, "").toLowerCase(); }
+export function followStateAllowsAction(state) { return state === "not_following"; }
+export function followSkipOutcome(state) { return state === "following" ? "skipped_followed" : "skipped_unverified_follow_state"; }
 export function confidenceGate(result, sensitivity = "standard") { return Boolean(result && result.isVague === true && Number.isFinite(result.confidence) && result.confidence >= (CONFIDENCE_THRESHOLDS[sensitivity] ?? CONFIDENCE_THRESHOLDS.standard)); }
 export function automaticBlockAllowed(result) { return Boolean(result?.isVague === true && Number.isFinite(result.confidence) && result.confidence >= 0.90); }
 export function isConcreteEnough(text) { const value = String(text || "").trim(); if (value.length < 6) return false; const words = value.split(/\s+/).filter(Boolean); if (words.length >= 18) return true; if (/[#:][\w-]+|https?:\/\/|\b(?:because|about|after|before|when|since|according|explained|announced)\b/i.test(value)) return true; if (/\b(?:is|was|are|means|shows|matters|needs|deserves)\b/i.test(value) && words.length >= 6) return true; if (/\b(?:he|she|they|this|that|it|someone|somebody|people)\b/i.test(value) && words.length >= 9) return true; return false; }

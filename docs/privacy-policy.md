@@ -10,7 +10,7 @@ To provide the feature, VagueBlock reads visible content from x.com pages where 
 
 ## How information is used
 
-This information is used only on the device to identify likely vague quote-posts, prevent duplicate strikes, apply the user's settings, and show the local activity log. On supported Chrome devices, classification uses Chrome's on-device Gemini Nano model.
+This information is used only on the device to identify likely vague quote-posts, prevent duplicate strikes, cache bounded classifier results by post identifier, apply the user's settings, and show the local activity log. On supported Chrome devices, classification uses Chrome's on-device Gemini Nano model.
 
 ## No transmission or sale
 

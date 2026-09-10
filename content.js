@@ -60,20 +60,20 @@
   async function blockAccount(article, candidate) {
     const current = extract(article);
     const localState = current ? statusFromArticle(article, candidate.handle) : 'unknown';
-    const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
+    const profileState = await send({ type: 'check-follow-state', handle: candidate.handle, fresh: true });
     if (!current || current.handle.toLowerCase() !== candidate.handle.toLowerCase() || localState === 'following' || profileState.state !== 'not_following') {
       const followed = localState === 'following' || profileState.state === 'following';
-      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: followed ? 'skipped_followed' : 'skipped_unverified_follow_state' } });
+      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: VGBPolicy.followSkipOutcome(followed ? 'following' : 'unknown') } });
       return { ok: false, reason: followed ? 'followed' : 'unverified' };
     }
     const menu = findMenuButton(article);
     if (!menu) return { ok: false, reason: 'block_control_missing' };
     menu.click();
     const item = await waitFor(() => [...document.querySelectorAll('[role="menuitem"], [data-testid="Dropdown"] button')].find((el) => new RegExp(`^block\\s+@?${candidate.handle}$`, 'i').test((el.textContent || '').trim())));
-    if (!item) return { ok: false, reason: 'block_menu_item_missing' };
+    if (!item) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return { ok: false, reason: 'block_menu_item_missing' }; }
     const finalCheck = extract(article);
     const finalLocalState = finalCheck ? statusFromArticle(article, candidate.handle) : 'unknown';
-    const finalProfileState = await send({ type: 'check-follow-state', handle: candidate.handle });
+    const finalProfileState = await send({ type: 'check-follow-state', handle: candidate.handle, fresh: true });
     if (!finalCheck || finalCheck.handle.toLowerCase() !== candidate.handle.toLowerCase() || finalLocalState === 'following' || finalProfileState.state !== 'not_following') {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
       const followed = finalLocalState === 'following' || finalProfileState.state === 'following';
@@ -82,9 +82,9 @@
     }
     item.click();
     const confirm = await waitFor(() => [...document.querySelectorAll('[role="dialog"] button, [role="dialog"] [role="button"]')].find((el) => /^block$/i.test((el.textContent || '').trim()) || /^block\s+@/i.test((el.textContent || '').trim())));
-    if (!confirm) return { ok: false, reason: 'block_confirmation_missing' };
+    if (!confirm) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return { ok: false, reason: 'block_confirmation_missing' }; }
     confirm.click();
-    const blocked = await waitFor(() => /blocked/i.test(article.innerText || ''), 1800);
+    const blocked = await waitFor(() => /blocked/i.test(article.innerText || '') || /unblock\s+@?/i.test(document.body.innerText || '') || !document.contains(article), 2200);
     if (!blocked) return { ok: false, reason: 'block_result_unverified' };
     await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'blocked' } });
     return { ok: true };
@@ -118,7 +118,7 @@
     const actions = document.createElement('div'); actions.className = 'vgb-overlay-actions';
     const button = (label, handler, danger = false) => { const el = document.createElement('button'); el.type = 'button'; el.textContent = label; if (danger) el.className = 'vgb-danger'; el.addEventListener('click', handler); return el; };
     actions.append(button('Reveal post', () => removeOverlay(article)));
-    actions.append(button('Not vague', async () => { removeOverlay(article); await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'dismissed', reasonCode: result.reasonCode } }); }));
+    actions.append(button('Not vague', async () => { removeOverlay(article); await send({ type: 'dismiss-strike', candidate }); await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: 'dismissed', reasonCode: result.reasonCode } }); }));
     actions.append(button(`Allow @${candidate.handle}`, async () => { const next = { ...settings, allowlist: [...new Set([...(settings.allowlist || []), candidate.handle.toLowerCase()])] }; settings = await send({ type: 'save-settings', settings: next }); removeOverlay(article); }));
     if (candidate.followingState === 'not_following') {
       actions.append(button(strikeInfo.thresholdReached ? `Block @${candidate.handle}` : 'Block now', async () => {
@@ -144,7 +144,12 @@
       const profileState = await send({ type: 'check-follow-state', handle: candidate.handle });
       candidate.followingState = profileState.state || 'unknown';
     }
+    if (!VGBPolicy.followStateAllowsAction(candidate.followingState)) {
+      await send({ type: 'record-event', event: { handle: candidate.handle, postIdHash: candidate.postId, outcome: VGBPolicy.followSkipOutcome(candidate.followingState) } });
+      return;
+    }
     const strikeInfo = await send({ type: 'record-strike', candidate, result: response.result });
+    if (strikeInfo.skipped || strikeInfo.dismissed || strikeInfo.duplicate) return;
     if (settings.actionMode === 'blur' && (settings.blurTrigger === 'every_high_confidence_flag' || strikeInfo.thresholdReached)) addOverlay(article, candidate, response.result, strikeInfo, true);
     if (settings.actionMode === 'review') addOverlay(article, candidate, response.result, strikeInfo, false);
     if (settings.actionMode === 'automatic' && strikeInfo.thresholdReached && VGBPolicy.automaticBlockAllowed(response.result) && candidate.followingState === 'not_following') {
@@ -154,6 +159,6 @@
   }
 
   async function scan() { if (!settings?.enabled) return; document.querySelectorAll('article[data-testid="tweet"], article').forEach(processArticle); }
-  async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
+    async function init() { if (isProfilePage()) { const observer = new MutationObserver(reportProfileFollowState); observer.observe(document.body, { childList: true, subtree: true }); reportProfileFollowState(); setTimeout(reportProfileFollowState, 900); return; } settings = await send({ type: 'get-settings' }); await scan(); const observer = new MutationObserver(() => requestAnimationFrame(scan)); observer.observe(document.body, { childList: true, subtree: true }); chrome.runtime.onMessage.addListener((message) => { if (message.type === 'settings-changed') { settings = message.settings; seen.clear(); pending.clear(); if (!settings.enabled) clearAllOverlays(); else scan(); } }); }
   init();
 })();
