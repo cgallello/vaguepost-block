@@ -73,7 +73,7 @@
   function isProfilePage() {
     if (location.hostname !== 'x.com') return false;
     const parts = location.pathname.split('/').filter(Boolean);
-    return parts.length === 1 && !['home', 'explore', 'notifications', 'messages', 'i', 'settings', 'compose'].includes(parts[0]);
+    return parts.length === 1 && !['home', 'explore', 'notifications', 'messages', 'search', 'i', 'settings', 'compose'].includes(parts[0]);
   }
 
   function profileFollowState(handle) {

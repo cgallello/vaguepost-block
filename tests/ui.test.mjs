@@ -89,6 +89,10 @@ test("profile follow-state parsing recognizes X's Follow back label as not-follo
   assert.ok(read("content.js").includes("(?:\\\\s+back)?"));
 });
 
+test("search timelines are not mistaken for profile pages", () => {
+  assert.match(read("content.js"), /!\['home', 'explore', 'notifications', 'messages', 'search', 'i', 'settings', 'compose'\]\.includes\(parts\[0\]\)/);
+});
+
 test("flagged review and blur cards obtain fresh follow proof before showing actions", () => {
   const content = read("content.js");
   assert.match(content, /const needsFollowProof = settings\.actionMode === 'automatic'/);
