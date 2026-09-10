@@ -36,6 +36,7 @@ test("browser policy keeps the same unsafe-result gate as the worker policy", ()
 
 test("classifier response validation rejects unsafe or malformed output", () => {
   assert.deepEqual(validateClassifierResult({ isVague: true, confidence: 0.9, reasonCode: "UNSPECIFIED_REFERENT", explanation: "No subject.", concreteSubjectPresent: false }).isVague, true);
+  assert.deepEqual(validateClassifierResult({ isVague: true, confidence: 0.9, reasonCode: "UNSPECIFIED_REFERENT", explanation: "Names the subject.", concreteSubjectPresent: true }), { isVague: false, confidence: 0.9, reasonCode: "NOT_VAGUE", explanation: "Names the subject.", concreteSubjectPresent: true });
   assert.throws(() => validateClassifierResult({ isVague: "yes", confidence: 0.9, reasonCode: "UNSPECIFIED_REFERENT" }));
   assert.throws(() => validateClassifierResult({ isVague: true, confidence: 1.2, reasonCode: "UNSPECIFIED_REFERENT" }));
 });

@@ -1,0 +1,6802 @@
+[
+  {
+    "id": "vague-001",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-002",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-003",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-004",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-005",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-006",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-007",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-008",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-009",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-010",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-011",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-012",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-013",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-014",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-015",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-016",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-017",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-018",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-019",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-020",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-021",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-022",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-023",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-024",
+    "isVague": true,
+    "confidence": 0.89,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-025",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-026",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-027",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-028",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-029",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-030",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-031",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-032",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Generic reaction, unspecified 'this'.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-033",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a significant, undisclosed issue.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-034",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a hidden truth or revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-035",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a forthcoming, impactful disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-036",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a discovery with serious implications.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-037",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a situation needing explanation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-038",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Suggests an underlying issue requiring clarification.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-039",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "AMBIGUOUS_REACTION",
+    "explanation": "Expresses a subjective reaction to something.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-040",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for justification or accountability.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-041",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a hidden, significant event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-042",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a forthcoming, impactful revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-043",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a discovery with serious implications.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-044",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for discretion/avoiding trouble.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-045",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a larger context not immediately apparent.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-046",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for justification/explanation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-047",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a hidden truth being withheld.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-048",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Suggests an unspoken understanding/agreement.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-049",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests hidden knowledge/events.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-050",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a significant, undisclosed issue.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-051",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for justification/explanation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-052",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a deeper understanding.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-053",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for understanding/acknowledgment.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-054",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests unresolved conflict/grievance.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-055",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a shared, unspoken knowledge.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-056",
+    "isVague": true,
+    "confidence": 0.89,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates withheld information/intention.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-057",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, impactful change.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-058",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a forthcoming, impactful revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-059",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a discovery with serious implications.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-060",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for understanding/acknowledgment.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-061",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a deeper understanding of events.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-062",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for justification/explanation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-063",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates withheld information/intention.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-064",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a need for understanding/acknowledgment.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-065",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-066",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-067",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-068",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-069",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-070",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-071",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about talking without trouble.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-072",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-073",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-074",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-075",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-076",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about speaking without anger.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-077",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-078",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-079",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-080",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-081",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-082",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-083",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-084",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-085",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-086",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-087",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a question about the situation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-088",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-089",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-090",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-091",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-092",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about talking without trouble.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-093",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-094",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-095",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-096",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Depends on unspecified situation/reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-097",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-098",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-099",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-100",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-101",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks if speaking will cause anger; vague.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-102",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-103",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-104",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-105",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-106",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-107",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-108",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-109",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-110",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-111",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-112",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a question, but no subject is clear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-113",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-114",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-115",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-116",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-117",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Implies a question, but no subject is clear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-118",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-119",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-120",
+    "isVague": true,
+    "confidence": 0.89,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-121",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about trouble; subject unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-122",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-123",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-124",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-125",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-126",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-127",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-128",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information, reaction unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-129",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies hidden information/conflict.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-130",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, undisclosed revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-131",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a forthcoming, impactful disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-132",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a major, unforeseen consequence.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-133",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a negative reaction to upcoming news.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-134",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates restricted information/disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-135",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a future unveiling of facts.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-136",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a startling discovery.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-137",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests hidden information/conflict.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-138",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a significant, undisclosed issue.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-139",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a forthcoming, impactful revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-140",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a negative reaction to upcoming news.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-141",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates restricted information/disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-142",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a future unveiling of facts.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-143",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a startling discovery.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-144",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a major, unforeseen consequence.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-145",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a future revelation/event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-146",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates restricted information/disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-147",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a forthcoming, impactful disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-148",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a negative reaction to upcoming news.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-149",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a future unveiling of facts.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-150",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a startling discovery.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-151",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a major, unforeseen consequence.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-152",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a hidden/unnamed issue.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-153",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests hidden information/conflict.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-154",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a significant, undisclosed issue.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-155",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a forthcoming, impactful revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-156",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a negative reaction to upcoming news.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-157",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates restricted information/disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-158",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a future unveiling of facts.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-159",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a startling discovery.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-160",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a major, unforeseen consequence.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-161",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a significant, unspecified discovery.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-162",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Suggests a need for explanation, but vague.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-163",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "AMBIGUOUS_REACTION",
+    "explanation": "Generic reaction; lacks specific context.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-164",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "UNSPECIFIED_REFERENT",
+    "explanation": "'Interesting choice' lacks a clear referent.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-165",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies wrongdoing; context needed.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-166",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "UNSPECIFIED_REFERENT",
+    "explanation": "'Receipts' are unspecified; vague claim.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-167",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests maintaining a certain behavior.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-168",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a sensitive situation; vague.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-169",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, undisclosed event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-170",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a forthcoming revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-171",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about speaking without repercussions.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-172",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a reason for not revealing information.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-173",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a widespread reaction to an event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-174",
+    "isVague": true,
+    "confidence": 0.88,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates future understanding of the statement.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-175",
+    "isVague": true,
+    "confidence": 0.86,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about choosing silence.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-176",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "UNSPECIFIED_REFERENT",
+    "explanation": "The subject of the bulletin is unclear.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-177",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests hidden knowledge/events.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-178",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "UNSPECIFIED_REFERENT",
+    "explanation": "'Some people' is vague; context needed.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-179",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies past actions warranting apology.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-180",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a situation with unspoken understanding.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-181",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a forthcoming revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-182",
+    "isVague": true,
+    "confidence": 0.88,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a significant change in status.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-183",
+    "isVague": true,
+    "confidence": 0.86,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests negative consequences for disclosure.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-184",
+    "isVague": true,
+    "confidence": 0.84,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a restriction on discussing the topic.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-185",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, undisclosed event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-186",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a forthcoming revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-187",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks for explanation; vague context.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-188",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a situation with unspoken understanding.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-189",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a widespread reaction to an event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-190",
+    "isVague": true,
+    "confidence": 0.88,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates future understanding of the statement.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-191",
+    "isVague": true,
+    "confidence": 0.86,
+    "reasonCode": "UNSPECIFIED_REFERENT",
+    "explanation": "'Receipts' are unspecified; vague claim.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-192",
+    "isVague": true,
+    "confidence": 0.84,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests maintaining a certain behavior.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-193",
+    "isVague": true,
+    "confidence": 0.98,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a significant, hidden event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-194",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a larger, unstated issue.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-195",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a forthcoming revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-196",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about speaking without repercussions.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-197",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a desire to share but restraint.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-198",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a planned, deceptive reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-199",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a future understanding of the statement.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-200",
+    "isVague": true,
+    "confidence": 0.88,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "States a decision to remain silent.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-201",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests hidden knowledge/conflict.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-202",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates significant, unstated details.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-203",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a deeper understanding.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-204",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about speaking without repercussions.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-205",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a decision to withhold information.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-206",
+    "isVague": true,
+    "confidence": 0.88,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "States a decision to remain silent.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-207",
+    "isVague": true,
+    "confidence": 0.86,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a major alteration to the situation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-208",
+    "isVague": true,
+    "confidence": 0.84,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates anticipated negative reactions.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-209",
+    "isVague": true,
+    "confidence": 0.96,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests hidden information/conflict.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-210",
+    "isVague": true,
+    "confidence": 0.94,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a significant, unrevealed discovery.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-211",
+    "isVague": true,
+    "confidence": 0.92,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a revelation that will be shocking.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-212",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Expresses a refusal to comment.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-213",
+    "isVague": true,
+    "confidence": 0.88,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests the silence carries meaning.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-214",
+    "isVague": true,
+    "confidence": 0.86,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a questionable decision/action.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-215",
+    "isVague": true,
+    "confidence": 0.84,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Calls for an explanation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-216",
+    "isVague": true,
+    "confidence": 0.82,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests evidence exists, but timing is uncertain.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-217",
+    "isVague": true,
+    "confidence": 0.97,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a hidden, significant event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-218",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a situation with deeper implications.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-219",
+    "isVague": true,
+    "confidence": 0.93,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Hints at a forthcoming, important revelation.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-220",
+    "isVague": true,
+    "confidence": 0.91,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Asks about discussing something privately.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-221",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a desire to share but with restraint.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-222",
+    "isVague": true,
+    "confidence": 0.88,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a future understanding of the statement.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-223",
+    "isVague": true,
+    "confidence": 0.86,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Indicates a planned, deceptive reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-224",
+    "isVague": true,
+    "confidence": 0.84,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a decision to withhold information.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-225",
+    "isVague": true,
+    "confidence": 0.95,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a situation known to some, not others.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-226",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Generic question about audience reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-227",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-228",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies knowledge not shared by all.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-229",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a past event with unresolved issues.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-230",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a situation known to some, not others.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-231",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-232",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-233",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified discovery.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-234",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a situation known to some, not others.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-235",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-236",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a situation known to some, not others.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-237",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-238",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-239",
+    "isVague": true,
+    "confidence": 0.85,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-240",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-241",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-242",
+    "isVague": true,
+    "confidence": 0.85,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Implies a situation known to some, not others.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-243",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-244",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-245",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-246",
+    "isVague": true,
+    "confidence": 0.8,
+    "reasonCode": "CONTEXT_FREE_QUESTION",
+    "explanation": "Generic question about audience reaction.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-247",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-248",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-249",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "vague-250",
+    "isVague": true,
+    "confidence": 0.9,
+    "reasonCode": "IMPLIED_DRAMA",
+    "explanation": "Suggests a significant, unspecified event.",
+    "concreteSubjectPresent": false
+  },
+  {
+    "id": "understandable-001",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Mentions a transit contract audit.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-002",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Mentions a university lecture delay.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-003",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Mentions a television finale delay.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-004",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Mentions neighborhood election results.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-005",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Mentions a company CFO appointment.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-006",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Mentions a sculpture return.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-007",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (player suspension).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-008",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (clinic move).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-009",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (festival headliner change).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-010",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (book map correction).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-011",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (budget vote failure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-012",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-013",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes specific instructions for a recipe.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-014",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific train departure time.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-015",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (court decision).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-016",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (team winning a match).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-017",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (school meal program start).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-018",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (library extended hours).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-019",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (flood watch).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-020",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific state of a camera.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-021",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (committee approval).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-022",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (exhibition opening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-023",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (software update).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-024",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific action (watering garden).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-025",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (ferry service resume).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-026",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific need (audit contract).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-027",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (lecture cancellation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-028",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (finale delay).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-029",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (election certification).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-030",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (appointment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-031",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (sculpture return).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-032",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (player suspension).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-033",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (clinic move).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-034",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (headliner replacement).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-035",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (book map correction).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-036",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (budget vote failure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-037",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-038",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific instruction (recipe modification).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-039",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (train departure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-040",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (court decision).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-041",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (team win).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-042",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (meal program start).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-043",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (library hours).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-044",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (flood watch).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-045",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (camera battery).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-046",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (committee approval).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-047",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (exhibition opening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-048",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (software update).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-049",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (garden watering).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-050",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (ferry service resume).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-051",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (transit audit).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-052",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (lecture cancellation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-053",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (finale delay).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-054",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (election certification).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-055",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (CFO appointment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-056",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (sculpture return).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-057",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (player suspension).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-058",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (clinic relocation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-059",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (headliner replacement).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-060",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (book map correction).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-061",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (budget vote failure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-062",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-063",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (recipe instructions).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-064",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (train departure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-065",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (court decision).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-066",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (team win).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-067",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (meal program start).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-068",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (library hours).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-069",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (flood watch).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-070",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (camera battery).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-071",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: committee approval.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-072",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: exhibition opening.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-073",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: software update fix.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-074",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: garden watering.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-075",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: ferry service resumption.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-076",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: transit audit need.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-077",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: lecture cancellation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-078",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text refers to a studio strike, implying context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-079",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: election certification.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-080",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: CFO appointment.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-081",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: sculpture return.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-082",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: player suspension.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-083",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: clinic relocation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-084",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: headliner replacement.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-085",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: book map correction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-086",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: budget vote failure.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-087",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: bridge reopening.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-088",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: recipe instructions.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-089",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: train departure.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-090",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: court decision release.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-091",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: team winning.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-092",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: meal program start.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-093",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: library hours extension.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-094",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: flood watch issuance.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-095",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: battery status.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-096",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: committee approval.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-097",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: exhibition opening.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-098",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: software update fix.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-099",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: garden watering need.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-100",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: ferry service resumption.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-101",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: transit audit need.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-102",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text states a clear event: lecture cancellation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-103",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The delay is due to a studio strike, a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-104",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Election results were certified; a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-105",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "A new CFO was appointed; a clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-106",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Sculpture returned to owner; a specific action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-107",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Player suspended for games; a clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-108",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clinic moved to second floor; a clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-109",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Headliner replaced after cancellation; a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-110",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Book map corrected; a clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-111",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Budget vote failed after report; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-112",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopened after inspection; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-113",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Recipe needs changes; specific instructions.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-114",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Train departure time; specific information.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-115",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Court released decision; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-116",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team won match; clear outcome.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-117",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "New meal program starts; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-118",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Library extended hours; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-119",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch issued for valley; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-120",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Camera battery charged; clear status.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-121",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Committee approved proposal; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-122",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition opens next Thursday; clear date.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-123",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update fixes login; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-124",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden needs water; clear need.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-125",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry resumes after check; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-126",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Contract needs audit; clear requirement.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-127",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Lecture canceled due to alarm; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-128",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Finale delayed by strike; clear reason.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-129",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Election results certified; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-130",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "CFO appointed; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-131",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Sculpture returned to owner; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-132",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Player suspended; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-133",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clinic moved to second floor; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-134",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Headliner replaced; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-135",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (map correction).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-136",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (budget vote failure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-137",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-138",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (recipe adjustment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-139",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (train departure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-140",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (court decision).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-141",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (team winning).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-142",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (school meal program).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-143",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (library hours).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-144",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (flood watch).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-145",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (battery status).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-146",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (committee approval).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-147",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (exhibition opening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-148",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (software update).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-149",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (garden watering).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-150",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (ferry service).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-151",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (transit contract audit).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-152",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (lecture cancellation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-153",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (finale delay).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-154",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (election certification).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-155",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (appointment of CFO).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-156",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (sculpture return).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-157",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (player suspension).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-158",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (clinic relocation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-159",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (festival headliner replacement).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-160",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (book map correction).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-161",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (budget vote failure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-162",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-163",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (recipe adjustment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-164",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (train departure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-165",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (court decision).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-166",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (team winning).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-167",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (meal program).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-168",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (extended hours).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-169",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (flood watch).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-170",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific state (charged battery).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-171",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (proposal approval).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-172",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (exhibition opening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-173",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (software update).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-174",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific need (watering garden).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-175",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (ferry resumption).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-176",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (transit audit).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-177",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (lecture cancellation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-178",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (finale delay).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-179",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (election certification).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-180",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (appointment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-181",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (sculpture return).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-182",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (player suspension).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-183",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (clinic move).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-184",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (headliner replacement).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-185",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (book map correction).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-186",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (budget vote failure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-187",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-188",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (recipe adjustment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-189",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (train departure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-190",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (decision release).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-191",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (team winning).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-192",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (meal program start).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-193",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (extended hours).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-194",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (flood watch).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-195",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific state (charged battery).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-196",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (proposal approval).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-197",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (exhibition opening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-198",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (software update).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-199",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (garden watering).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-200",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (ferry service resumption).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-201",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (transit contract audit).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-202",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (lecture cancellation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-203",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (television finale delay).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-204",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (election results).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-205",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (financial officer appointment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-206",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (sculpture return).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-207",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (player suspension).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-208",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (clinic relocation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-209",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (headliner replacement).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-210",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (book map correction).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-211",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (budget vote failure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-212",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-213",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (recipe modification).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-214",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (train departure).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-215",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (court decision).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-216",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (team winning a match).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-217",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (school meal program).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-218",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (library hours extension).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-219",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (flood watch).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-220",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (camera battery status).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-221",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (committee approval).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-222",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (exhibition opening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-223",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (software update fix).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-224",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (garden watering).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-225",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (ferry service resumption).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-226",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (transit contract audit).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-227",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (lecture cancellation).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-228",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (television finale delay).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-229",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (election results certification).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-230",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event (financial officer appointment).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-231",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-232",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-233",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-234",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-235",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-236",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-237",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-238",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-239",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-240",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-241",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-242",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-243",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-244",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-245",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-246",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-247",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-248",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-249",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "understandable-250",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-001",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-002",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-003",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-004",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-005",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-006",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-007",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-008",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-009",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-010",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-011",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-012",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-013",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Vegetables firm, train times, court decision, team win, meal program, library hours, flood watch, SD",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-014",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Train times, court decision, team win, meal program, library hours, flood watch, SD",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-015",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Court decision",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-016",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team win",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-017",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Meal program",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-018",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Library hours",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-019",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-020",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Camera battery, SD",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-021",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Committee approval, public reporting, votes",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-022",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition opening, curator tour",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-023",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update, login timeout, passkeys",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-024",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden watering, seedlings",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-025",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry service, departure time",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-026",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Transit contract audit, accessibility plan",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-027",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Lecture canceled, online event",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-028",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Television finale delay, new schedule",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-029",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Election results, provisional ballots",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-030",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Company appointment, timeline",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-031",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Sculpture return, provenance review",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-032",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Player suspension, footage, teams",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-033",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clinic relocation, plumbing repairs",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-034",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Headliner replacement, ticket refund",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-035",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Book map correction, boundary error",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-036",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Budget vote, committee report, line items",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-037",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopening, inspection, weight limit",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-038",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Vegetable firmness, oven time, salt",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-039",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Train departure times",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-040",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Court decision, reasoning",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-041",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team win, halftime formation change",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-042",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Meal program start, menus, allergy guidance",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-043",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Library hours extension, exam study",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-044",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch, rainfall forecast",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-045",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update details are clear and understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-046",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Committee approval and clause addition are specific.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-047",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition dates and times are explicitly stated.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-048",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software fix details are clear and understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-049",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden needs and root conditions are understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-050",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry service resumption details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-051",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Transit contract audit reason is explicitly stated.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-052",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Lecture cancellation and online move are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-053",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Details of the delay and new schedule are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-054",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Election certification details are understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-055",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Company appointment and timeline are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-056",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Sculpture provenance review details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-057",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Player suspension details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-058",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clinic relocation details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-059",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Festival headliner replacement details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-060",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Book map correction details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-061",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Budget vote outcome and disputed items are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-062",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopening details and weight limit are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-063",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Recipe adjustments are specific and understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-064",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Train departure times are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-065",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Court decision reasoning is understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-066",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team win details and formation change are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-067",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Meal program start date and resources are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-068",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Library extended hours for exam period are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-069",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch details and rainfall forecast are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-070",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Camera battery and card formatting are specific.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-071",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Committee approval and clause addition are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-072",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition dates and curator tour are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-073",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-074",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden watering needs and seedling conditions are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-075",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry service resumption details are clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-076",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Transit contract audit reason is explicitly stated.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-077",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'the event will move online tomorrow' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-078",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'new schedule' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-079",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'certified' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-080",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'transition timeline' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-081",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'provenance review' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-082",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'reviewing the footage' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-083",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'plumbing repairs' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-084",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'refund the affected ticket section' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-085",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'boundary error' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-086",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'disputed line items' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-087",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'weight limit' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-088",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'vegetables are still firm' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-089",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'next service' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-090",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'narrow ruling' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-091",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'changing its formation' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-092",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'menus and allergy guidance' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-093",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'students can use the study rooms' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-094",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'heavier rainfall' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-095",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'spare card still needs to be formatted' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-096",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'requested public reporting clause' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-097",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'curator's tour' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-098",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'recovery link' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-099",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'shallow roots' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-100",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'first departure leaving at noon' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-101",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'public audit' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-102",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'leadership change' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-103",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'new schedule' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-104",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'certified' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-105",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'transition timeline' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-106",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'provenance review' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-107",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'reviewing the footage' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-108",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'plumbing repairs' implies context",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-109",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-110",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-111",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-112",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-113",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-114",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-115",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-116",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-117",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-118",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-119",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-120",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific situation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-121",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-122",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-123",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-124",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific situation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-125",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-126",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-127",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-128",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-129",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-130",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-131",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-132",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-133",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-134",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-135",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-136",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-137",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-138",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-139",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-140",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a specific event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-141",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team win, formation change - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-142",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Meal program start, menus posted - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-143",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Extended library hours for exams - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-144",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch due to rainfall - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-145",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Charged camera, needs card formatting - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-146",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Committee approved proposal, public reporting - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-147",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition opening, curator tour - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-148",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update fixes login, adds recovery - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-149",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden needs water due to roots - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-150",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry service resumes, departure time - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-151",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Transit contract audit, accessibility plan - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-152",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Lecture canceled, event moves online - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-153",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Television finale delayed, new schedule - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-154",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Election results certified, provisional ballots - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-155",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "New CFO appointed, transition timeline - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-156",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Sculpture returned, provenance review - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-157",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Player suspended after review - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-158",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clinic moved, plumbing repairs - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-159",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Headliner replaced, ticket refund - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-160",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Book map corrected, boundary error - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-161",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Budget vote failed, disputed items - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-162",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopened, weight limit - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-163",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Recipe needs adjustments, oven time - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-164",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Train departure times - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-165",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Court released decision, reasoning - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-166",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team won match, formation change - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-167",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Meal program start, menus posted - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-168",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Library extended hours for exams - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-169",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch due to rainfall - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-170",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Camera battery charged, card formatting - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-171",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Proposal approved, reporting clause - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-172",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition opens, curator tour - clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-173",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update details are clear and understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-174",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden needs water due to seedling roots; clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-175",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry service resuming after maintenance; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-176",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Transit contract audit due to accessibility issue; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-177",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Lecture canceled due to fire alarm; clear reason.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-178",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Finale delayed by studio strike; clear cause.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-179",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Election results certified after ballot count; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-180",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Company appointed new CFO; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-181",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Sculpture returned after review; clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-182",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Player suspended after footage review; clear action.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-183",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clinic moved due to plumbing repairs; clear reason.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-184",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Headliner replaced after cancellation; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-185",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Book map corrected after reader feedback; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-186",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Budget vote failed after report; clear outcome.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-187",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopened after inspection; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-188",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Recipe adjusted for firm vegetables; clear change.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-189",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Train departure times are clear and specific.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-190",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Court released decision with reasoning; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-191",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team won match after formation change; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-192",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Meal program starts Monday; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-193",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Extended weekend hours for student study; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-194",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch issued due to rainfall; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-195",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Camera battery charged, card needs formatting; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-196",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Proposal approved with public reporting; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-197",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition opens next Thursday; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-198",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update details are clear and understandable.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-199",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden needs water due to seedling roots; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-200",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry resumes after maintenance; clear event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-201",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Transit contract audit due to bid issue; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-202",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Lecture canceled due to fire alarm; clear reason.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-203",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Finale delayed by studio strike; clear cause.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-204",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Election results certified after ballot count; clear.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-205",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: CFO appointment & timeline.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-206",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: sculpture return.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-207",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: player suspension.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-208",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: clinic relocation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-209",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: headliner replacement & refund.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-210",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: book map correction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-211",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: budget vote failure.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-212",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clear event: bridge reopening.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-213",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes changes to a recipe.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-214",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes train schedules.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-215",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a court ruling.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-216",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a sports match result.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-217",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a school meal program.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-218",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes extended library hours.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-219",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a flood watch.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-220",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes camera equipment status.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-221",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a committee decision.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-222",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes an exhibition opening.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-223",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes software updates.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-224",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes garden care.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-225",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a ferry service resumption.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-226",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a transit contract audit.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-227",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a lecture cancellation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-228",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a television finale delay.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-229",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes election results.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-230",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a company appointment.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-231",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a sculpture return.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-232",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a player suspension.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-233",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a clinic relocation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-234",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a festival refund.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-235",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a book map correction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-236",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "The added text describes a budget vote failure.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-237",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Reopening bridge, weight limit posted.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-238",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Recipe needs less salt, longer oven time.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-239",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Train departure times and next service.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-240",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Court released written decision, reasoning included.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-241",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Team won match, changed formation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-242",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "School starts meal program, menus posted.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-243",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Library extends weekend hours for exams.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-244",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Flood watch issued due to rainfall.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-245",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Battery charged, spare card needs formatting.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-246",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Committee approved proposal, public reporting.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-247",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Exhibition opens next Thursday, curator tour Saturday.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-248",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Software update fixes login timeout, adds recovery.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-249",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Garden needs water due to shallow roots.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "contextual-250",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Ferry service resumes, first departure at noon.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-001",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'This is wild' - unclear reaction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-002",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'No sé qué decir' - unclear reaction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-003",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' - unclear context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-004",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Use my code if you know what I mean.' - vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-005",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wow' - unclear reaction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-006",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'I guess we know now' - vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-007",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Not everyone will understand' - vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-008",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' - unclear context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-009",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopened today.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-010",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Image of a bridge.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-011",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'This is wild' - unclear context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-012",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'No sé qué decir' - unclear context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-013",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' - unclear context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-014",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Use my code if you know what I mean.' - vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-015",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wow' - unclear context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-016",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'I guess we know now' - vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-017",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Not everyone will understand' - vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-018",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' - unclear context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-019",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clear statement of accomplishment.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-020",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-021",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wild' implies context; vague without it.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-022",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'No sé qué decir' lacks context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-023",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-024",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Code meaning is unspecified; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-025",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wow' lacks context; vague reaction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-026",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Deleted quote card; context missing.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-027",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Not everyone' lacks context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-028",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-029",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clear statement of accomplishment.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-030",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-031",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'This is wild' implies context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-032",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'No sé qué decir' lacks context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-033",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-034",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Code meaning is unspecified; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-035",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wow' lacks context; vague reaction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-036",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Deleted quote card; context missing.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-037",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Not everyone' lacks context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-038",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-039",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clear statement of accomplishment.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-040",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-041",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'This is wild' implies context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-042",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'No sé qué decir' lacks context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-043",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-044",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Use my code' lacks context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-045",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wow' lacks context; vague reaction.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-046",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Deleted quote card; context missing.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-047",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Not everyone' lacks context; vague.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-048",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-049",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Clear statement of accomplishment.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-050",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Specific event (bridge reopening).",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-051",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Depends on unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-052",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Generic reaction; lacks clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-053",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Question requires prior context to understand.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-054",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Code meaning is unspecified; requires context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-055",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Generic reaction; lacks clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-056",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Implies knowledge of a deleted post.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-057",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Depends on unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-058",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Question requires prior context to understand.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-059",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Subject (bridge reopening) is explicitly stated.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-060",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Requires context to understand the tone shift.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-061",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Generic reaction; lacks clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-062",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Depends on unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-063",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Question requires prior context to understand.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-064",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Code meaning is unspecified; requires context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-065",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Generic reaction; lacks clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-066",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Implies knowledge of a deleted post.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-067",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Depends on unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-068",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Requires context to understand the tone shift.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-069",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Subject (bridge reopening) is explicitly stated.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-070",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Requires context to understand the photo's relevance.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-071",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Generic reaction; lacks clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-072",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Depends on unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-073",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Question requires prior context to understand.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-074",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Code meaning is unspecified; requires context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-075",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Depends on unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-076",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Requires context to understand the tone shift.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-077",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Generic reaction; lacks clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-078",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Question requires prior context to understand.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-079",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Subject (bridge reopening) is explicitly stated.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-080",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Requires context to understand the photo's relevance.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-081",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Generic reaction; lacks clear subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-082",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Implies knowledge of a deleted post.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-083",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Depends on unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-084",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'What I mean' is undefined; requires context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-085",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wow' is a generic reaction; lacks specific subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-086",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'We know now' implies prior context is needed.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-087",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Not everyone' implies unspecified situation.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-088",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context for understanding.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-089",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopening is a clear, understandable event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-090",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopening is a clear, understandable event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-image-091",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'This is wild' is a generic reaction; lacks context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-multilingual-092",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'No sé qué decir' lacks context for understanding.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-thread-093",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context for understanding.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-promo-094",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Use my code' requires prior context/understanding.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-repost-095",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Wow' is a generic reaction; lacks specific subject.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-deleted-096",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'I guess we know now' implies prior context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-protected-097",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Not everyone' implies unspecified situation/context.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-malformed-098",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "'Can I say something?' lacks context for understanding.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-sarcasm-099",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopening is a clear, understandable event.",
+    "concreteSubjectPresent": true
+  },
+  {
+    "id": "edge-concrete-image-100",
+    "isVague": false,
+    "confidence": 0.99,
+    "reasonCode": "NOT_VAGUE",
+    "explanation": "Bridge reopening is a clear, understandable event.",
+    "concreteSubjectPresent": true
+  }
+]
