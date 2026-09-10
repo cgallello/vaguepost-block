@@ -88,8 +88,10 @@
     return { ok: true };
   }
 
-  function toast(message) {
-    const node = document.createElement('div'); node.className = 'vgb-toast'; node.textContent = message; node.setAttribute('role', 'status'); document.body.append(node); setTimeout(() => node.remove(), 4000);
+  function toast(message, mascot = 'idle') {
+    const node = document.createElement('div'); node.className = 'vgb-toast'; node.setAttribute('role', 'status');
+    const image = document.createElement('img'); image.src = chrome.runtime.getURL(`assets/king-${mascot}.png`); image.alt = '';
+    const copy = document.createElement('span'); copy.textContent = message; node.append(image, copy); document.body.append(node); setTimeout(() => node.remove(), 4000);
   }
 
   function removeOverlay(article, restoreFocus = false) {
@@ -122,7 +124,7 @@
     if (candidate.followingState === 'not_following') {
       actions.append(button(strikeInfo.thresholdReached ? `Block @${candidate.handle}` : 'Block now', async () => {
         const outcome = await blockAccount(article, candidate);
-        if (outcome.ok) { removeOverlay(article); toast(`Blocked @${candidate.handle}.`); }
+        if (outcome.ok) { removeOverlay(article); toast(`Blocked @${candidate.handle}.`, 'block'); }
         else if (outcome.reason === 'followed' || outcome.reason === 'unverified') { removeOverlay(article); toast('Block skipped: follow status could not be verified safely.'); }
         else toast('Block skipped: X changed this control.');
       }, true));
@@ -160,7 +162,7 @@
       if (settings.actionMode === 'review') addOverlay(article, candidate, response.result, strikeInfo, false);
       if (settings.actionMode === 'automatic' && settings.automaticAck === true && strikeInfo.thresholdReached && VGBPolicy.automaticBlockAllowed(response.result) && candidate.followingState === 'not_following') {
         const outcome = await blockAccount(article, candidate);
-        if (outcome.ok) { removeOverlay(article); toast(`Blocked @${candidate.handle}.`); }
+        if (outcome.ok) { removeOverlay(article); toast(`Blocked @${candidate.handle}.`, 'block'); }
       }
     } finally {
       pending.delete(candidate.postId);
