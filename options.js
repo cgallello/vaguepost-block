@@ -1,5 +1,9 @@
 const $ = (id) => document.getElementById(id);
-const send = (message) => new Promise((resolve) => chrome.runtime.sendMessage(message, (response) => { void chrome.runtime.lastError; resolve(response || {}); }));
+const extensionContext = Boolean(globalThis.chrome?.runtime?.id);
+const send = (message) => new Promise((resolve) => {
+  if (!extensionContext) { resolve({}); return; }
+  chrome.runtime.sendMessage(message, (response) => { void chrome.runtime.lastError; resolve(response || {}); });
+});
 let settings;
 let data;
 
@@ -80,6 +84,13 @@ function renderThreshold() {
 }
 
 async function init() {
+  if (!extensionContext) {
+    $("aiStatus").textContent = "Open settings from the installed VagueBlock extension";
+    $("aiDetail").textContent = "This file:// preview cannot access Chrome extension storage or the local model. Load the folder at chrome://extensions, then open VagueBlock → Open settings from the toolbar menu.";
+    $("prepareAi").hidden = true;
+    $("aiDiagnostics").hidden = true;
+    return;
+  }
   settings = await send({ type: "get-settings" }); data = await send({ type: "get-log" });
   $("sensitivity").value = settings.sensitivity; $("blurTrigger").value = settings.blurTrigger; $("mascotMotion").value = settings.mascotMotion;
   renderThreshold(); renderAllowlist(); renderLedger(); renderLog();
