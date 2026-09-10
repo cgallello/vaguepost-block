@@ -42,7 +42,7 @@ function runChrome(binary, url = fixture) {
       settled = true;
       clearTimeout(timer);
       if (!child.killed) child.kill("SIGKILL");
-      rmSync(profile, { recursive: true, force: true });
+      try { rmSync(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); } catch { /* Chrome may still be closing its profile; it is disposable test data. */ }
       if (error) reject(error); else resolveRun(dom);
     };
     const timer = setTimeout(() => {
