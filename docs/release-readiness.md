@@ -29,7 +29,7 @@ npm run release-audit
 
 These cannot be honestly marked complete from a repository-only test run:
 
-1. Chrome's on-device AI must report `available` or complete a model download on a supported desktop device. The inspected Chrome session currently reports `prompt_api` as **Not Supported**, with no text-model asset; the user must enable **Settings → System → On-device AI** and rerun the live check.
+1. Chrome's on-device AI must report `available` or complete a model download on a supported desktop device. Live check completed on September 9, 2026: the supported Chrome session had the Prompt API flags enabled, **Settings → AI in Chrome → On-device AI** enabled, downloaded the required asset, and VagueBlock's **Prepare local AI** flow reached **Local AI ready**. Re-run this check on each supported Chrome release because Prompt API availability is browser-managed.
 2. Run the controlled two-account X test in `docs/live-test.md`, including a non-followed block and a followed-account skip, on the actual supported Chrome/model combination.
 3. Capture five real product screenshots after that live run. The Store promo and marquee are staged; fixture screenshots must not be used as Store evidence.
 4. Replace the support/privacy contact placeholders with a maintained HTTPS support URL and developer contact.
