@@ -14,6 +14,7 @@
     "release-audit": "node release-audit.mjs",
     "release-audit:strict": "node release-audit.mjs --strict",
     "eval:example": "node eval/score.mjs eval/dataset.example.json eval/predictions.example.json",
+    "eval:score": "node eval/score.mjs eval/dataset.json eval/predictions.json --strict",
     "eval:generate": "node tools/generate-eval-data.mjs"
   }
 }
