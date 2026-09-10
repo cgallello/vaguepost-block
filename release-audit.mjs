@@ -64,10 +64,10 @@ for (const name of screenshots) {
 const correctlySizedScreenshots = screenshots.length >= 5 && screenshots.every((name) => {
   try {
     const info = pngInfo(resolve(root, "store-assets", name));
-    return info.width === 1280 && info.height === 800;
+    return info.width === 1280 && info.height === 800 && info.colorType === 2;
   } catch { return false; }
 });
-check("Store screenshot dimensions", correctlySizedScreenshots, screenshotSizes.join(", ") || "No screenshots staged");
+check("Store screenshots 24-bit PNG", correctlySizedScreenshots, screenshotSizes.join(", ") || "No screenshots staged");
 for (const [name, detail] of [
   ["controlled X safety run", "Run the two-account followed/non-followed block test"],
   ["Web Store submission", "Use an authenticated developer account with 2-step verification"],
