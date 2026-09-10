@@ -52,6 +52,22 @@ else {
 
 const screenshots = readdirSync(resolve(root, "store-assets")).filter((name) => /^screenshot-\d+\.png$/.test(name));
 check("real Store screenshots", screenshots.length >= 5, `${screenshots.length}/5 staged; capture from live Chrome/X, not fixtures`);
+const screenshotSizes = [];
+for (const name of screenshots) {
+  try {
+    const info = pngInfo(resolve(root, "store-assets", name));
+    screenshotSizes.push(`${name} ${info.width}×${info.height}`);
+  } catch (error) {
+    screenshotSizes.push(`${name}: invalid PNG`);
+  }
+}
+const correctlySizedScreenshots = screenshots.length >= 5 && screenshots.every((name) => {
+  try {
+    const info = pngInfo(resolve(root, "store-assets", name));
+    return info.width === 1280 && info.height === 800;
+  } catch { return false; }
+});
+check("Store screenshot dimensions", correctlySizedScreenshots, screenshotSizes.join(", ") || "No screenshots staged");
 for (const [name, detail] of [
   ["controlled X safety run", "Run the two-account followed/non-followed block test"],
   ["Web Store submission", "Use an authenticated developer account with 2-step verification"],
